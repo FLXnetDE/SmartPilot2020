@@ -1,0 +1,54 @@
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\bin\Debug\RCAutopilot.exe.config
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\bin\Debug\RCAutopilot.exe
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\bin\Debug\RCAutopilot.pdb
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\obj\Debug\RCAutopilot.csprojAssemblyReference.cache
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\obj\Debug\RCAutopilot.RCAutopilot.resources
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\obj\Debug\RCAutopilot.Properties.Resources.resources
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\obj\Debug\RCAutopilot.csproj.GenerateResource.cache
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\obj\Debug\RCAutopilot.csproj.CoreCompileInputs.cache
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\obj\Debug\RCAutopilot.exe
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\obj\Debug\RCAutopilot.pdb
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\bin\Debug\SharpDX.DirectInput.dll
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\bin\Debug\SharpDX.dll
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\bin\Debug\SharpDX.pdb
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\bin\Debug\SharpDX.DirectInput.pdb
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\bin\Debug\SharpDX.DirectInput.xml
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\obj\Debug\RCAutopilot.csproj.CopyComplete
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\bin\Debug\RCAutopilot.exe.config
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\bin\Debug\RCAutopilot.exe
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\bin\Debug\RCAutopilot.pdb
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\bin\Debug\SharpDX.DirectInput.dll
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\bin\Debug\SharpDX.dll
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\bin\Debug\SharpDX.pdb
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\bin\Debug\SharpDX.DirectInput.pdb
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\bin\Debug\SharpDX.DirectInput.xml
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.csprojAssemblyReference.cache
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.RCAutopilot.resources
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.Properties.Resources.resources
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.csproj.GenerateResource.cache
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.csproj.CoreCompileInputs.cache
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.csproj.CopyComplete
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.exe
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\RCAutopilot 2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.pdb
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\bin\Debug\RCAutopilot.exe.config
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\bin\Debug\RCAutopilot.exe
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\bin\Debug\RCAutopilot.pdb
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\bin\Debug\Newtonsoft.Json.dll
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\bin\Debug\SharpDX.DirectInput.dll
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\bin\Debug\SharpDX.dll
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\bin\Debug\Newtonsoft.Json.xml
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\bin\Debug\SharpDX.pdb
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\bin\Debug\SharpDX.DirectInput.pdb
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\bin\Debug\SharpDX.DirectInput.xml
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.csprojAssemblyReference.cache
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.RCAutopilot.resources
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.Properties.Resources.resources
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.csproj.GenerateResource.cache
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.csproj.CoreCompileInputs.cache
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.csproj.CopyComplete
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.exe
+Y:\40 Mikrocontroller\RCAutopilot2019\RCAutopilot\RCAutopilot\obj\Debug\RCAutopilot.pdb
