@@ -92,8 +92,8 @@ namespace RCAutopilot
             int pitchValue = MapValue(FlightHandler.PitchValue, PitchPulse[0], PitchPulse[1], 275, 25) - 4;
             int rollValue = MapValue(FlightHandler.RollValue, RollPulse[0], RollPulse[1], 25, 275) - 4;
 
-            g.DrawRectangle(new Pen(Brushes.Black, 2), new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
-            g.FillRectangle(Brushes.LimeGreen, new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
+            g.DrawRectangle(new Pen(Brushes.Black, 4), new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
+            g.FillRectangle(Brushes.Gold, new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
 
             g.DrawString(FlightHandler.PitchValue + "µs", new Font("Arial", 8), Brushes.Black, 135, 280);
             g.DrawString(FlightHandler.RollValue + "µs", new Font("Arial", 8), Brushes.Black, 1, 155);
