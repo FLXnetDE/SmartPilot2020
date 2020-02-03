@@ -3,15 +3,19 @@
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
-#include <Wire.h>
-#include <HMC5883L.h>
 #include <TinyGPS++.h>
 #include <SoftwareSerial.h>
+#include <Wire.h>
+
+#include <QMC5883LCompass.h>
 
 #define MOTOR_PIN 10
 #define ELEVATOR_PIN 3
 #define AILERON_PIN 5
 #define RUDDER_PIN 6
+
+// Debugging
+bool debug = true;
 
 // Radio (2,4GHz)
 RF24 radio(7, 8); // CE, CSN
@@ -23,16 +27,23 @@ Servo ELEVATOR;
 Servo AILERON;
 Servo RUDDER;
 
-// Compass
-int deviceConnectionFailedCounter = 0;
-HMC5883L compass;
-
 // GPS
-static const int RXPin = 2;
-static const int TXPin = 4;
-static const int GPSBaud = 9600;
+int rxPin = 4;
+int txPin = 2;
+int gpsBaud = 4800;
 TinyGPSPlus gps;
-SoftwareSerial gpsSerial(RXPin, TXPin);
+SoftwareSerial softwareSerial(rxPin, txPin);
+
+// Compass
+QMC5883LCompass compass;
+
+const char *gpsStream =
+  "$GPRMC,045103.000,A,3014.1984,N,09749.2872,W,0.67,161.46,030913,,,A*7C\r\n"
+  "$GPGGA,045104.000,3014.1985,N,09749.2873,W,1,09,1.2,211.6,M,-22.5,M,,0000*62\r\n"
+  "$GPRMC,045200.000,A,3014.3820,N,09748.9514,W,36.88,65.02,030913,,,A*77\r\n"
+  "$GPGGA,045201.000,3014.3864,N,09748.9411,W,1,10,1.2,200.8,M,-22.5,M,,0000*6C\r\n"
+  "$GPRMC,045251.000,A,3014.4275,N,09749.0626,W,0.51,217.94,030913,,,A*7D\r\n"
+  "$GPGGA,045252.000,3014.4273,N,09749.0628,W,1,09,1.3,206.9,M,-22.5,M,,0000*6F\r\n";
 
 void setup() {
   Serial.begin(9600);
@@ -49,42 +60,124 @@ void setup() {
   AILERON.attach(AILERON_PIN);
   RUDDER.attach(RUDDER_PIN);
 
-  // Compass
-  Serial.println("Initialize HMC5883L");
-  while (!compass.begin())
-  {
-    deviceConnectionFailedCounter++;
-    Serial.println("Could not find a valid HMC5883L sensor, check wiring!");
-    
-    delay(1000);
-    
-    if(deviceConnectionFailedCounter >= 5) {
-      Serial.println("Could not find a valid HMC5883L sensor! Compass heading information is not available!");
-      break;
-    }
-  }
-  compass.setRange(HMC5883L_RANGE_1_3GA); // Set measurement range
-  compass.setMeasurementMode(HMC5883L_CONTINOUS); // Set measurement mode
-  compass.setDataRate(HMC5883L_DATARATE_30HZ); // Set data rate
-  compass.setSamples(HMC5883L_SAMPLES_8); // Set number of samples averaged
-  compass.setOffset(0, 0); // Set calibration offset. See HMC5883L_calibration.ino
-
   // GPS
-  gpsSerial.begin(GPSBaud);
+  softwareSerial.begin(gpsBaud);
+
+  // Compass
+  compass.setADDR(0x0D);
+  compass.init();
+
+  Serial.println("[SmartPilot2020] Setup finished!");
+}
+
+void CompassTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+
+  while(1)
+  {
+    int x, y, z, a, b;
+    char compassArray[3];
+    
+    compass.read();
+    
+    x = compass.getX();
+    y = compass.getY();
+    z = compass.getZ();
+    a = compass.getAzimuth();
+    b = compass.getBearing(a);
   
+    compass.getDirection(compassArray, a);
+    
+    Serial.print("X: ");
+    Serial.print(x);
+  
+    Serial.print(" Y: ");
+    Serial.print(y);
+  
+    Serial.print(" Z: ");
+    Serial.print(z);
+  
+    Serial.print(" Azimuth: ");
+    Serial.print(a);
+  
+    Serial.print(" Bearing: ");
+    Serial.print(b);
+  
+    Serial.print(" Direction: ");
+    Serial.print(compassArray[0]);
+    Serial.print(compassArray[1]);
+    Serial.print(compassArray[2]);
+  
+    Serial.println();
+
+    MOS_Delay(tcb, 500);
+  }
+}
+
+void GPSTask(PTCB tcb) // "Offline" test
+{
+  MOS_Continue(tcb);
+
+  while(1)
+  {
+    MOS_WaitForCond(tcb, gps.encode(*gpsStream++));
+    
+    MOS_WaitForCond(tcb, gps.location.isValid());
+    if(gps.location.isValid())
+    {
+      Serial.println();
+      Serial.println("====== Test ========");
+      Serial.print("Latitude: ");
+      Serial.println(gps.location.lng(), 6);
+      Serial.print("Longitude: ");
+      Serial.println(gps.location.lat(), 6);
+      Serial.println("====================");
+      Serial.println();
+    } else
+    {
+      Serial.println("NMEA string is invalid!");
+    }
+
+    MOS_Delay(tcb, 3000);
+  }
+}
+
+/*
+void GPSTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+
+  while(softwareSerial.available())
+  {
+    Serial.println(gps.location.lng(), 6);
+    Serial.println(gps.location.lat(), 6);
+  }
+}
+*/
+
+void DebugTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+  
+  while(debug)
+  {
+    Serial.println("This is a debug line!");
+    MOS_Delay(tcb, 5000);
+  }
 }
 
 void ReceiveTask(PTCB tcb)
 {
   MOS_Continue(tcb);
 
-  while(1)
+  while(radio.available())
   {
-    if(radio.available())
-    {
       char controlParams[32] = "";
       radio.read(&controlParams, sizeof(controlParams));
       String str(controlParams);
+    
+      Serial.println(str);
     
       int id = getValue(str, ';', 0).toInt();
       int thrust = getValue(str, ';', 1).toInt();
@@ -96,89 +189,14 @@ void ReceiveTask(PTCB tcb)
       ELEVATOR.writeMicroseconds(pitch);
       AILERON.writeMicroseconds(roll);
       RUDDER.writeMicroseconds(yaw);
-    }
-
-  }
-}
-
-void CompassTask(PTCB tcb)
-{
-  MOS_Continue(tcb);
-
-  while(1)
-  {
-    Vector norm = compass.readNormalize();
-
-    // Calculate heading
-    float heading = atan2(norm.YAxis, norm.XAxis);
-  
-    // Set declination angle on your location and fix heading
-    // You can find your declination on: http://magnetic-declination.com/
-    // (+) Positive or (-) for negative
-    // For Bytom / Poland declination angle is 4'26E (positive)
-    // Formula: (deg + (min / 60.0)) / (180 / M_PI);
-    float declinationAngle = (2.0 + (45.0 / 60.0)) / (180 / M_PI);
-    heading += declinationAngle;
-
-    /*
-    // Correct for heading < 0deg and heading > 360deg
-    if (heading < 0)
-    {
-      heading += 2 * PI;
-    }
-  
-    if (heading > 2 * PI)
-    {
-      heading -= 2 * PI;
-    }
-    */
-  
-    // Convert to degrees
-    float headingDegrees = heading * 180/M_PI; 
-  
-    // Output
-    Serial.print(" Heading = ");
-    Serial.print(heading);
-    Serial.print(" Degress = ");
-    Serial.print(headingDegrees);
-    Serial.println();
-  
-    delay(100);
-  }
-}
-
-void GPSTask(PTCB tcb)
-{
-  MOS_Continue(tcb);
-
-  while(gpsSerial.available() > 0)
-  {
-    gps.encode(gpsSerial.read());
-    MOS_WaitForCond (tcb, gps.location.isUpdated()){
-      Serial.print("Latitude= "); 
-      Serial.print(gps.location.lat(), 6);
-      Serial.print(" Longitude= "); 
-      Serial.println(gps.location.lng(), 6);
-    }
-  }
-}
-
-void AirspeedTask(PTCB tcb)
-{
-  MOS_Continue(tcb);
-
-  while(1)
-  {
-    Serial.println("Airspeed placeholder...");
-    MOS_Delay(tcb, 3000);
   }
 }
 
 void loop() {
   MOS_Call(ReceiveTask);
-  MOS_Call(CompassTask);
   MOS_Call(GPSTask);
-  MOS_Call(AirspeedTask);
+  MOS_Call(CompassTask);
+  MOS_Call(DebugTask);
 }
 
 // Helper function to split control parameters

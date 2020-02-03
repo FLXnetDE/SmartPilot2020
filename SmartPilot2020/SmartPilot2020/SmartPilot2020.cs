@@ -21,7 +21,7 @@ namespace RCAutopilot
         // Global config //
         ///////////////////
 
-        public bool Debug = false;
+        public bool Debug = true;
         public int SystemTickInterval = 50;
 
         public int[] ThrustPulse = new int[2] { 500, 2500 };

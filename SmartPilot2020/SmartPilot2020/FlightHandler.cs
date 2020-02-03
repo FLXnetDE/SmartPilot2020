@@ -8,7 +8,7 @@ namespace RCAutopilot
     {
         private SmartPilot2020 main;
         private Timer ProcessTimer;
-        public RemoteDataOutputInterface RemoteDataOutputInterface;
+        public RemoteDataInterface RemoteDataOutputInterface;
 
         public bool ControlsActiveChecked = false;
 
@@ -34,7 +34,7 @@ namespace RCAutopilot
             ProcessTimer.Interval = main.SystemTickInterval;
             ProcessTimer.Start();
 
-            this.RemoteDataOutputInterface = new RemoteDataOutputInterface(main);
+            this.RemoteDataOutputInterface = new RemoteDataInterface(main);
             this.RemoteDataOutputInterface.Connect();
 
             main.Log("FlightHandler started!");

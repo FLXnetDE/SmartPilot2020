@@ -72,7 +72,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FlightHandler.cs" />
-    <Compile Include="RemoteDataOutputInterface.cs" />
+    <Compile Include="RemoteDataInterface.cs" />
     <EmbeddedResource Include="SmartPilot2020.resx">
       <DependentUpon>SmartPilot2020.cs</DependentUpon>
     </EmbeddedResource>

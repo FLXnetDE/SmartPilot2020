@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RCAutopilot
 {
-    public class RemoteDataOutputInterface
+    public class RemoteDataInterface
     {
         private SmartPilot2020 main;
         private SerialPort SerialPort;
@@ -17,7 +17,7 @@ namespace RCAutopilot
         public int rx = 0;
         public bool PacketOutputState = true;
 
-        public RemoteDataOutputInterface(SmartPilot2020 main)
+        public RemoteDataInterface(SmartPilot2020 main)
         {
             this.main = main;
 

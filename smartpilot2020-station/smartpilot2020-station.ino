@@ -37,7 +37,7 @@ void SendControlSignalTask(PTCB tcb)
   while(Serial.available())
   {
     String flightParams = Serial.readString();
-    const char copy[32];
+    char copy[32];
     flightParams.toCharArray(copy, 32);
     radio.write(&copy, 32);
   }
