@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -49,7 +50,7 @@ namespace RCAutopilot
         {
             String input = SerialPort.ReadLine();
 
-            // Current plane position input packet
+            // Spacial location input packet - id;pitch;roll;heading;speed;altitude
             if (input.StartsWith("2;"))
             {
                 try
@@ -62,7 +63,19 @@ namespace RCAutopilot
                     main.FlightHandler.CurrentAltitude = Int32.Parse(inputPacket[5]);
                 } catch(Exception)
                 {
-                    main.Log("Received faulty message...");
+                    main.Log("Received faulty spacial location packet");
+                }
+            } else if(input.StartsWith("3;")) // GPS position input packet - id;lat;lon
+            {
+                try
+                {
+                    string[] inputPacket = input.Split(';');
+                    main.FlightHandler.CurrentLatitude = Convert.ToDouble(inputPacket[1]);
+                    main.FlightHandler.CurrentLongitude = Convert.ToDouble(inputPacket[2]);
+                }
+                catch (Exception)
+                {
+                    main.Log("Received faulty GPS position packet");
                 }
             }
 

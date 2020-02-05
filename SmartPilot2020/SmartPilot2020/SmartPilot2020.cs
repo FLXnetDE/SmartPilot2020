@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -21,7 +22,7 @@ namespace RCAutopilot
         // Global config //
         ///////////////////
 
-        public bool Debug = true;
+        public bool Debug = false;
         public int SystemTickInterval = 50;
 
         public int[] ThrustPulse = new int[2] { 500, 2500 };
@@ -55,6 +56,9 @@ namespace RCAutopilot
             pbSpeedVisualization.Refresh();
             pbAltitudeVisualization.Refresh();
             pbHeadingVisualization.Refresh();
+
+            SetLatitude(FlightHandler.CurrentLatitude);
+            SetLongitude(FlightHandler.CurrentLongitude);
         }
 
         private void pbPitchRollVisualization_Paint(object sender, PaintEventArgs e)
@@ -266,6 +270,24 @@ namespace RCAutopilot
                 lblComPort.ForeColor = Color.Red;
                 lblComPort.Text = "Offline";
             }
+        }
+
+        // Set latitude
+        public void SetLatitude(double latitude)
+        {
+            lblLatitude.Invoke((MethodInvoker)delegate
+           {
+               lblLatitude.Text = "Latitude: " + latitude;
+           });
+        }
+
+        // Set longitude
+        public void SetLongitude(double longitude)
+        {
+            lblLongitude.Invoke((MethodInvoker)delegate
+            {
+                lblLongitude.Text = "Longitude: " + longitude;
+            });
         }
 
         // Programm beenden

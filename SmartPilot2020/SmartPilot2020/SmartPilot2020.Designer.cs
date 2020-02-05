@@ -50,6 +50,8 @@
             this.pbSpeedVisualization = new System.Windows.Forms.PictureBox();
             this.pbAltitudeVisualization = new System.Windows.Forms.PictureBox();
             this.pbHeadingVisualization = new System.Windows.Forms.PictureBox();
+            this.lblLatitude = new System.Windows.Forms.Label();
+            this.lblLongitude = new System.Windows.Forms.Label();
             this.tsTop.SuspendLayout();
             this.ssBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbThrustVisualization)).BeginInit();
@@ -75,7 +77,7 @@
             this.toolStripSeparator3});
             this.tsTop.Location = new System.Drawing.Point(0, 0);
             this.tsTop.Name = "tsTop";
-            this.tsTop.Size = new System.Drawing.Size(1239, 25);
+            this.tsTop.Size = new System.Drawing.Size(1236, 25);
             this.tsTop.TabIndex = 13;
             this.tsTop.Text = "Top";
             // 
@@ -161,7 +163,7 @@
             this.lblTrafficMonnitor});
             this.ssBottom.Location = new System.Drawing.Point(0, 533);
             this.ssBottom.Name = "ssBottom";
-            this.ssBottom.Size = new System.Drawing.Size(1239, 22);
+            this.ssBottom.Size = new System.Drawing.Size(1236, 22);
             this.ssBottom.TabIndex = 14;
             this.ssBottom.Text = "Bottom";
             // 
@@ -245,11 +247,37 @@
             this.pbHeadingVisualization.TabStop = false;
             this.pbHeadingVisualization.Paint += new System.Windows.Forms.PaintEventHandler(this.pbHeadingVisualization_Paint);
             // 
+            // lblLatitude
+            // 
+            this.lblLatitude.AutoSize = true;
+            this.lblLatitude.BackColor = System.Drawing.Color.Black;
+            this.lblLatitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLatitude.ForeColor = System.Drawing.Color.Lime;
+            this.lblLatitude.Location = new System.Drawing.Point(558, 294);
+            this.lblLatitude.Name = "lblLatitude";
+            this.lblLatitude.Size = new System.Drawing.Size(89, 26);
+            this.lblLatitude.TabIndex = 25;
+            this.lblLatitude.Text = "Latitude";
+            // 
+            // lblLongitude
+            // 
+            this.lblLongitude.AutoSize = true;
+            this.lblLongitude.BackColor = System.Drawing.Color.Black;
+            this.lblLongitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLongitude.ForeColor = System.Drawing.Color.Lime;
+            this.lblLongitude.Location = new System.Drawing.Point(558, 320);
+            this.lblLongitude.Name = "lblLongitude";
+            this.lblLongitude.Size = new System.Drawing.Size(107, 26);
+            this.lblLongitude.TabIndex = 26;
+            this.lblLongitude.Text = "Longitude";
+            // 
             // SmartPilot2020
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1239, 555);
+            this.ClientSize = new System.Drawing.Size(1236, 555);
+            this.Controls.Add(this.lblLongitude);
+            this.Controls.Add(this.lblLatitude);
             this.Controls.Add(this.pbHeadingVisualization);
             this.Controls.Add(this.pbAltitudeVisualization);
             this.Controls.Add(this.pbSpeedVisualization);
@@ -301,6 +329,8 @@
         private System.Windows.Forms.ToolStripButton btnStopOutgoingPackets;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel lblPacketOutput;
+        private System.Windows.Forms.Label lblLatitude;
+        private System.Windows.Forms.Label lblLongitude;
     }
 }
 

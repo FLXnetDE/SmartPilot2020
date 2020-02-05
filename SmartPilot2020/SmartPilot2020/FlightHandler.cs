@@ -25,6 +25,9 @@ namespace RCAutopilot
         public int CurrentPitchAngle;
         public int CurrentRollAngle;
 
+        public double CurrentLatitude;
+        public double CurrentLongitude;
+
         public FlightHandler(SmartPilot2020 main)
         {
             this.main = main;

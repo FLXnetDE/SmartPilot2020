@@ -7,8 +7,6 @@
 #include <SoftwareSerial.h>
 #include <Wire.h>
 
-#include <QMC5883LCompass.h>
-
 #define MOTOR_PIN 10
 #define ELEVATOR_PIN 3
 #define AILERON_PIN 5
@@ -35,7 +33,6 @@ TinyGPSPlus gps;
 SoftwareSerial softwareSerial(rxPin, txPin);
 
 // Compass
-QMC5883LCompass compass;
 
 const char *gpsStream =
   "$GPRMC,045103.000,A,3014.1984,N,09749.2872,W,0.67,161.46,030913,,,A*7C\r\n"
@@ -64,8 +61,6 @@ void setup() {
   softwareSerial.begin(gpsBaud);
 
   // Compass
-  compass.setADDR(0x0D);
-  compass.init();
 
   Serial.println("[SmartPilot2020] Setup finished!");
 }
@@ -76,42 +71,7 @@ void CompassTask(PTCB tcb)
 
   while(1)
   {
-    int x, y, z, a, b;
-    char compassArray[3];
     
-    compass.read();
-    
-    x = compass.getX();
-    y = compass.getY();
-    z = compass.getZ();
-    a = compass.getAzimuth();
-    b = compass.getBearing(a);
-  
-    compass.getDirection(compassArray, a);
-    
-    Serial.print("X: ");
-    Serial.print(x);
-  
-    Serial.print(" Y: ");
-    Serial.print(y);
-  
-    Serial.print(" Z: ");
-    Serial.print(z);
-  
-    Serial.print(" Azimuth: ");
-    Serial.print(a);
-  
-    Serial.print(" Bearing: ");
-    Serial.print(b);
-  
-    Serial.print(" Direction: ");
-    Serial.print(compassArray[0]);
-    Serial.print(compassArray[1]);
-    Serial.print(compassArray[2]);
-  
-    Serial.println();
-
-    MOS_Delay(tcb, 500);
   }
 }
 
@@ -163,7 +123,15 @@ void DebugTask(PTCB tcb)
   while(debug)
   {
     Serial.println("This is a debug line!");
-    MOS_Delay(tcb, 5000);
+
+    radio.stopListening();
+    radio.openWritingPipe(address);
+    radio.write("2;45;10;150;20;50", 32);
+    radio.write("3;-97.821456;30.239772", 32);
+    radio.openReadingPipe(0, address);
+    radio.startListening();
+    
+    MOS_Delay(tcb, 3000);
   }
 }
 
@@ -194,8 +162,8 @@ void ReceiveTask(PTCB tcb)
 
 void loop() {
   MOS_Call(ReceiveTask);
-  MOS_Call(GPSTask);
-  MOS_Call(CompassTask);
+  //MOS_Call(GPSTask);
+  //MOS_Call(CompassTask);
   MOS_Call(DebugTask);
 }
 
