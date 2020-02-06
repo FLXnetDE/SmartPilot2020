@@ -15,13 +15,6 @@ void setup() {
   radio.openReadingPipe(0, address);
   radio.setPALevel(RF24_PA_MIN);
   radio.startListening();
-  
-  /*
-  radio.begin();
-  radio.openWritingPipe(address);
-  radio.setPALevel(RF24_PA_MIN);
-  radio.stopListening();
-  */
 }
 
 void ExampleInputTask(PTCB tcb)
@@ -33,6 +26,8 @@ void ExampleInputTask(PTCB tcb)
     Serial.print("2;");
     Serial.print(random(-60, 60));
     Serial.println(";10;150;20;50");
+
+    Serial.println("3;-97.821456;30.239772");
 
     MOS_Delay(tcb, 2000);
   }

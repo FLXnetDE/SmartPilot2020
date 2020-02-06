@@ -34,9 +34,6 @@ C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\10 Microcontroller\40 Mi
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\10 Microcontroller\40 Mikrocontroller\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.csproj.CopyComplete
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\10 Microcontroller\40 Mikrocontroller\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\RCAutopilot.exe
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\10 Microcontroller\40 Mikrocontroller\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\RCAutopilot.pdb
-C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\bin\Debug\RCAutopilot.exe.config
-C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\bin\Debug\RCAutopilot.exe
-C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\bin\Debug\RCAutopilot.pdb
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\bin\Debug\SharpDX.DirectInput.dll
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\bin\Debug\SharpDX.dll
@@ -46,9 +43,12 @@ C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilo
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\bin\Debug\SharpDX.DirectInput.xml
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.csprojAssemblyReference.cache
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\RCAutopilot.SmartPilot2020.resources
-C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\RCAutopilot.Properties.Resources.resources
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.csproj.GenerateResource.cache
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.csproj.CoreCompileInputs.cache
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.csproj.CopyComplete
-C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\RCAutopilot.exe
-C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\RCAutopilot.pdb
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\bin\Debug\SmartPilot2020.exe.config
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\bin\Debug\SmartPilot2020.exe
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\bin\Debug\SmartPilot2020.pdb
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.Properties.Resources.resources
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.exe
+C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.pdb

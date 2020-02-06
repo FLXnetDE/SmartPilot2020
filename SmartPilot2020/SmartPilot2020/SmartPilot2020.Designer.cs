@@ -44,7 +44,6 @@
             this.lblTrafficMonnitor = new System.Windows.Forms.ToolStripStatusLabel();
             this.clbLog = new System.Windows.Forms.CheckedListBox();
             this.btnClearLog = new System.Windows.Forms.Button();
-            this.pbThrustVisualization = new System.Windows.Forms.PictureBox();
             this.pbPitchRollVisualization = new System.Windows.Forms.PictureBox();
             this.pbMonitorVisualization = new System.Windows.Forms.PictureBox();
             this.pbSpeedVisualization = new System.Windows.Forms.PictureBox();
@@ -54,7 +53,6 @@
             this.lblLongitude = new System.Windows.Forms.Label();
             this.tsTop.SuspendLayout();
             this.ssBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbThrustVisualization)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPitchRollVisualization)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMonitorVisualization)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSpeedVisualization)).BeginInit();
@@ -193,15 +191,6 @@
             this.btnClearLog.UseVisualStyleBackColor = true;
             this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
             // 
-            // pbThrustVisualization
-            // 
-            this.pbThrustVisualization.Location = new System.Drawing.Point(579, 111);
-            this.pbThrustVisualization.Name = "pbThrustVisualization";
-            this.pbThrustVisualization.Size = new System.Drawing.Size(200, 150);
-            this.pbThrustVisualization.TabIndex = 20;
-            this.pbThrustVisualization.TabStop = false;
-            this.pbThrustVisualization.Paint += new System.Windows.Forms.PaintEventHandler(this.pbThrustVisualization_Paint);
-            // 
             // pbPitchRollVisualization
             // 
             this.pbPitchRollVisualization.Location = new System.Drawing.Point(123, 111);
@@ -253,7 +242,7 @@
             this.lblLatitude.BackColor = System.Drawing.Color.Black;
             this.lblLatitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLatitude.ForeColor = System.Drawing.Color.Lime;
-            this.lblLatitude.Location = new System.Drawing.Point(558, 294);
+            this.lblLatitude.Location = new System.Drawing.Point(543, 111);
             this.lblLatitude.Name = "lblLatitude";
             this.lblLatitude.Size = new System.Drawing.Size(89, 26);
             this.lblLatitude.TabIndex = 25;
@@ -265,7 +254,7 @@
             this.lblLongitude.BackColor = System.Drawing.Color.Black;
             this.lblLongitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLongitude.ForeColor = System.Drawing.Color.Lime;
-            this.lblLongitude.Location = new System.Drawing.Point(558, 320);
+            this.lblLongitude.Location = new System.Drawing.Point(543, 137);
             this.lblLongitude.Name = "lblLongitude";
             this.lblLongitude.Size = new System.Drawing.Size(107, 26);
             this.lblLongitude.TabIndex = 26;
@@ -282,7 +271,6 @@
             this.Controls.Add(this.pbAltitudeVisualization);
             this.Controls.Add(this.pbSpeedVisualization);
             this.Controls.Add(this.pbMonitorVisualization);
-            this.Controls.Add(this.pbThrustVisualization);
             this.Controls.Add(this.pbPitchRollVisualization);
             this.Controls.Add(this.btnClearLog);
             this.Controls.Add(this.clbLog);
@@ -296,7 +284,6 @@
             this.tsTop.PerformLayout();
             this.ssBottom.ResumeLayout(false);
             this.ssBottom.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbThrustVisualization)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPitchRollVisualization)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMonitorVisualization)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSpeedVisualization)).EndInit();
@@ -316,7 +303,6 @@
         private System.Windows.Forms.ToolStripButton btnConnectComPort;
         private System.Windows.Forms.ToolStripButton btnDisconnectComPort;
         private System.Windows.Forms.ToolStripStatusLabel lblTrafficMonnitor;
-        private System.Windows.Forms.PictureBox pbThrustVisualization;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel lblJoystick;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

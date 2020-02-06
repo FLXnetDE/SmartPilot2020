@@ -1,14 +1,6 @@
-﻿using SharpDX.DirectInput;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RCAutopilot
@@ -50,7 +42,6 @@ namespace RCAutopilot
         public void UpdateControlVisualization()
         {
             pbPitchRollVisualization.Refresh();
-            pbThrustVisualization.Refresh();
             pbMonitorVisualization.Refresh();
 
             pbSpeedVisualization.Refresh();
@@ -97,7 +88,7 @@ namespace RCAutopilot
             int rollValue = MapValue(FlightHandler.RollValue, RollPulse[0], RollPulse[1], 25, 275) - 4;
 
             g.DrawRectangle(new Pen(Brushes.Black, 4), new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
-            g.FillRectangle(Brushes.Gold, new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
+            g.FillRectangle(Brushes.LimeGreen, new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
 
             g.DrawString(FlightHandler.PitchValue + "µs", new Font("Arial", 8), Brushes.Black, 135, 280);
             g.DrawString(FlightHandler.RollValue + "µs", new Font("Arial", 8), Brushes.Black, 1, 155);
@@ -107,41 +98,46 @@ namespace RCAutopilot
         private void pbSpeedVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            pbSpeedVisualization.BackColor = Color.Gray;
+            pbSpeedVisualization.BackColor = Color.Black;
 
-            // Border helper lines
-            g.DrawLine(new Pen(Brushes.White, 6), new Point(0, 0), new Point(60, 0));
-            g.DrawLine(new Pen(Brushes.White, 6), new Point(60, 0), new Point(60, 300));
-            g.DrawLine(new Pen(Brushes.White, 6), new Point(0, 300), new Point(60, 300));
         }
 
         private void pbAltitudeVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            pbAltitudeVisualization.BackColor = Color.Gray;
-
-            // Border helper lines
-            g.DrawLine(new Pen(Brushes.White, 6), new Point(0, 0), new Point(60, 0));
-            g.DrawLine(new Pen(Brushes.White, 6), new Point(60, 0), new Point(60, 300));
-            g.DrawLine(new Pen(Brushes.White, 6), new Point(0, 300), new Point(60, 300));
+            pbAltitudeVisualization.BackColor = Color.Black;
 
         }
 
         private void pbHeadingVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            pbHeadingVisualization.BackColor = Color.Gray;
+            pbHeadingVisualization.BackColor = Color.Black;
 
-            // Border helper lines
-            g.DrawLine(new Pen(Brushes.White, 6), new Point(0, 60), new Point(0, 0));
-            g.DrawLine(new Pen(Brushes.White, 6), new Point(0, 0), new Point(300, 0));
-            g.DrawLine(new Pen(Brushes.White, 6), new Point(300, 0), new Point(300, 60));
+            g.DrawLine(new Pen(Brushes.White, 2), 5, 30, 295, 30);
+
+            g.DrawLine(new Pen(Brushes.White, 2), 150, 5, 150, 40);
+
+            int width = 0;
+            if(FlightHandler.CurrentHeading < 10)
+            {
+                width = 144;
+            } else if(FlightHandler.CurrentHeading > 10 && FlightHandler.CurrentHeading < 100)
+            {
+                width = 140;
+            } else
+            {
+                width = 137;
+            }
+
+            g.DrawString(FlightHandler.CurrentHeading.ToString(), new Font("Arial", 10), Brushes.White, width, 40);
 
         }
 
         private void pbMonitorVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+            pbMonitorVisualization.BackColor = Color.Black;
 
             g.DrawLine(new Pen(Brushes.White, 1), 62.5F, 5, 62.5F, 55);
 
@@ -156,30 +152,14 @@ namespace RCAutopilot
             ///////////////////////////////
             if (FlightHandler.ThrustValue == ThrustPulse[0])
             {
-                g.DrawString("IDLE", new Font("Arial", 12, FontStyle.Bold), Brushes.LightBlue, 5, 20);
+                g.DrawString("IDLE", new Font("Arial", 12, FontStyle.Bold), Brushes.White, 9, 10);
             }
             else if (FlightHandler.ThrustValue == ThrustPulse[1])
             {
-                g.DrawString("PWR", new Font("Arial", 12, FontStyle.Bold), Brushes.LimeGreen, 5, 20);
+                g.DrawString("PWR", new Font("Arial", 12, FontStyle.Bold), Brushes.LimeGreen, 9, 10);
             }
 
-        }
-
-        private void pbThrustVisualization_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-
-            g.DrawArc(new Pen(new SolidBrush(Color.Black), 2), new Rectangle(0, 20, 150, 150), 180, 180);
-            g.DrawRectangle(new Pen(new SolidBrush(Color.Black), 2), new Rectangle(75, 65, 2, 2));
-
-            ////////////////////////////////////////
-            // Thrust Control input visualization //
-            ////////////////////////////////////////
-
-            g.DrawRectangle(new Pen(Brushes.White, 2), new Rectangle(70, 75, 60, 20));
-            g.DrawString(FlightHandler.ThrustValue + "µs", new Font("Arial", 10, FontStyle.Bold), Brushes.LimeGreen, 78, 77);
-
-            g.DrawLine(new Pen(Brushes.LimeGreen, 2), 76, 65, 76, 12);
+            g.DrawString(FlightHandler.ThrustValue + "µs", new Font("Arial", 8), Brushes.White, 12, 35);
 
         }
 
@@ -273,7 +253,7 @@ namespace RCAutopilot
         }
 
         // Set latitude
-        public void SetLatitude(double latitude)
+        public void SetLatitude(String latitude)
         {
             lblLatitude.Invoke((MethodInvoker)delegate
            {
@@ -282,7 +262,7 @@ namespace RCAutopilot
         }
 
         // Set longitude
-        public void SetLongitude(double longitude)
+        public void SetLongitude(String longitude)
         {
             lblLongitude.Invoke((MethodInvoker)delegate
             {

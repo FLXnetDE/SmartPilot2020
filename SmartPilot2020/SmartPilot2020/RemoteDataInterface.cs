@@ -70,8 +70,8 @@ namespace RCAutopilot
                 try
                 {
                     string[] inputPacket = input.Split(';');
-                    main.FlightHandler.CurrentLatitude = Convert.ToDouble(inputPacket[1]);
-                    main.FlightHandler.CurrentLongitude = Convert.ToDouble(inputPacket[2]);
+                    main.FlightHandler.CurrentLatitude = inputPacket[1];
+                    main.FlightHandler.CurrentLongitude = inputPacket[2];
                 }
                 catch (Exception)
                 {

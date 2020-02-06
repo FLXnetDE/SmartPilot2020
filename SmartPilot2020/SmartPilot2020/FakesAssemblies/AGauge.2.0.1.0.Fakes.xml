@@ -1,0 +1,2366 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AGauge.2.0.1.0.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.QualityTools.Testing.Fakes.Delegates.AGaugeDelegates">
+            <summary>Enthält benutzerdefinierte Delegaten für die Stubs und Shims von AGauge.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimAGauge">
+            <summary>Shim-Typ von System.Windows.Forms.AGauge</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGauge.#ctor">
+            <summary>Initialisiert eine neue Shim-Instanz.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGauge.#ctor(System.Windows.Forms.AGauge)">
+            <summary>Initialisiert einen neuen Shim für die gegebene Instanz.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimAGauge.AllInstances">
+            <summary>Shims für alle Instanzenmember definieren</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.AllowDropGet">
+            <summary>Legt die shim von AGauge.get_AllowDrop() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.AllowDropSetBoolean">
+            <summary>Legt die shim von AGauge.set_AllowDrop(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.AutoSizeGet">
+            <summary>Legt die shim von AGauge.get_AutoSize() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.AutoSizeSetBoolean">
+            <summary>Legt die shim von AGauge.set_AutoSize(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BackColorGet">
+            <summary>Legt die shim von AGauge.get_BackColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BackColorSetColor">
+            <summary>Legt die shim von AGauge.set_BackColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BackgroundImageLayoutGet">
+            <summary>Legt die shim von AGauge.get_BackgroundImageLayout() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BackgroundImageLayoutSetImageLayout">
+            <summary>Legt die shim von AGauge.set_BackgroundImageLayout(ImageLayout value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BaseArcColorGet">
+            <summary>Legt die shim von AGauge.get_BaseArcColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BaseArcColorSetColor">
+            <summary>Legt die shim von AGauge.set_BaseArcColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BaseArcRadiusGet">
+            <summary>Legt die shim von AGauge.get_BaseArcRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BaseArcRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_BaseArcRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BaseArcStartGet">
+            <summary>Legt die shim von AGauge.get_BaseArcStart() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BaseArcStartSetInt32">
+            <summary>Legt die shim von AGauge.set_BaseArcStart(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BaseArcSweepGet">
+            <summary>Legt die shim von AGauge.get_BaseArcSweep() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BaseArcSweepSetInt32">
+            <summary>Legt die shim von AGauge.set_BaseArcSweep(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BaseArcWidthGet">
+            <summary>Legt die shim von AGauge.get_BaseArcWidth() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.BaseArcWidthSetInt32">
+            <summary>Legt die shim von AGauge.set_BaseArcWidth(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.CenterGet">
+            <summary>Legt die shim von AGauge.get_Center() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.CenterSetPoint">
+            <summary>Legt die shim von AGauge.set_Center(Point value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.DisposeBoolean">
+            <summary>Legt die shim von AGauge.Dispose(Boolean disposing) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.FindFontBounds">
+            <summary>Legt die shim von AGauge.FindFontBounds() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.FontGet">
+            <summary>Legt die shim von AGauge.get_Font() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.FontSetFont">
+            <summary>Legt die shim von AGauge.set_Font(Font value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ForeColorGet">
+            <summary>Legt die shim von AGauge.get_ForeColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ForeColorSetBoolean">
+            <summary>Legt die shim von AGauge.set_ForeColor(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.GaugeLabelsGet">
+            <summary>Legt die shim von AGauge.get_GaugeLabels() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.GaugeRangesGet">
+            <summary>Legt die shim von AGauge.get_GaugeRanges() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ImeModeGet">
+            <summary>Legt die shim von AGauge.get_ImeMode() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ImeModeSetBoolean">
+            <summary>Legt die shim von AGauge.set_ImeMode(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.InitializeComponent">
+            <summary>Legt die shim von AGauge.InitializeComponent() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.MaxValueGet">
+            <summary>Legt die shim von AGauge.get_MaxValue() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.MaxValueSetSingle">
+            <summary>Legt die shim von AGauge.set_MaxValue(Single value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.MinValueGet">
+            <summary>Legt die shim von AGauge.get_MinValue() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.MinValueSetSingle">
+            <summary>Legt die shim von AGauge.set_MinValue(Single value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.NeedleColor1Get">
+            <summary>Legt die shim von AGauge.get_NeedleColor1() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.NeedleColor1SetAGaugeNeedleColor">
+            <summary>Legt die shim von AGauge.set_NeedleColor1(AGaugeNeedleColor value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.NeedleColor2Get">
+            <summary>Legt die shim von AGauge.get_NeedleColor2() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.NeedleColor2SetColor">
+            <summary>Legt die shim von AGauge.set_NeedleColor2(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.NeedleRadiusGet">
+            <summary>Legt die shim von AGauge.get_NeedleRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.NeedleRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_NeedleRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.NeedleTypeGet">
+            <summary>Legt die shim von AGauge.get_NeedleType() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.NeedleTypeSetNeedleType">
+            <summary>Legt die shim von AGauge.set_NeedleType(NeedleType value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.NeedleWidthGet">
+            <summary>Legt die shim von AGauge.get_NeedleWidth() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.NeedleWidthSetInt32">
+            <summary>Legt die shim von AGauge.set_NeedleWidth(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.OnPaintBackgroundPaintEventArgs">
+            <summary>Legt die shim von AGauge.OnPaintBackground(PaintEventArgs pevent) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.OnPaintPaintEventArgs">
+            <summary>Legt die shim von AGauge.OnPaint(PaintEventArgs e) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.OnResizeEventArgs">
+            <summary>Legt die shim von AGauge.OnResize(EventArgs e) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.OnValueChanged">
+            <summary>Legt die shim von AGauge.OnValueChanged() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.OnValueInRangeChangedAGaugeRangeSingle">
+            <summary>Legt die shim von AGauge.OnValueInRangeChanged(AGaugeRange range, Single value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.RepaintControl">
+            <summary>Legt die shim von AGauge.RepaintControl() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesInterColorGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesInterColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesInterColorSetColor">
+            <summary>Legt die shim von AGauge.set_ScaleLinesInterColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesInterInnerRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesInterInnerRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesInterInnerRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesInterInnerRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesInterOuterRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesInterOuterRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesInterOuterRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesInterOuterRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesInterWidthGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesInterWidth() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesInterWidthSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesInterWidth(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMajorColorGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMajorColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMajorColorSetColor">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMajorColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMajorInnerRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMajorInnerRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMajorInnerRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMajorInnerRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMajorOuterRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMajorOuterRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMajorOuterRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMajorOuterRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMajorStepValueGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMajorStepValue() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMajorStepValueSetSingle">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMajorStepValue(Single value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMajorWidthGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMajorWidth() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMajorWidthSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMajorWidth(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMinorColorGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMinorColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMinorColorSetColor">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMinorColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMinorInnerRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMinorInnerRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMinorInnerRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMinorInnerRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMinorOuterRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMinorOuterRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMinorOuterRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMinorOuterRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMinorTicksGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMinorTicks() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMinorTicksSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMinorTicks(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMinorWidthGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMinorWidth() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleLinesMinorWidthSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMinorWidth(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersColorGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersColorSetColor">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersFormatGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersFormat() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersFormatSetString">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersFormat(String value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersRotationGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersRotation() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersRotationSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersRotation(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersStartScaleLineGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersStartScaleLine() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersStartScaleLineSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersStartScaleLine(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersStepScaleLinesGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersStepScaleLines() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ScaleNumbersStepScaleLinesSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersStepScaleLines(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ValueChangedAddEventHandler">
+            <summary>Legt die shim von AGauge.add_ValueChanged(EventHandler value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ValueChangedRemoveEventHandler">
+            <summary>Legt die shim von AGauge.remove_ValueChanged(EventHandler value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ValueGet">
+            <summary>Legt die shim von AGauge.get_Value() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ValueInRangeChangedAddEventHandlerOfValueInRangeChangedEventArgs">
+            <summary>Legt die shim von AGauge.add_ValueInRangeChanged(EventHandler`1&lt;ValueInRangeChangedEventArgs&gt; value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ValueInRangeChangedRemoveEventHandlerOfValueInRangeChangedEventArgs">
+            <summary>Legt die shim von AGauge.remove_ValueInRangeChanged(EventHandler`1&lt;ValueInRangeChangedEventArgs&gt; value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllInstances.ValueSetSingle">
+            <summary>Legt die shim von AGauge.set_Value(Single value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllowDropGet">
+            <summary>Legt die shim von AGauge.get_AllowDrop() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AllowDropSetBoolean">
+            <summary>Legt die shim von AGauge.set_AllowDrop(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AutoSizeGet">
+            <summary>Legt die shim von AGauge.get_AutoSize() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.AutoSizeSetBoolean">
+            <summary>Legt die shim von AGauge.set_AutoSize(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BackColorGet">
+            <summary>Legt die shim von AGauge.get_BackColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BackColorSetColor">
+            <summary>Legt die shim von AGauge.set_BackColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BackgroundImageLayoutGet">
+            <summary>Legt die shim von AGauge.get_BackgroundImageLayout() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BackgroundImageLayoutSetImageLayout">
+            <summary>Legt die shim von AGauge.set_BackgroundImageLayout(ImageLayout value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BaseArcColorGet">
+            <summary>Legt die shim von AGauge.get_BaseArcColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BaseArcColorSetColor">
+            <summary>Legt die shim von AGauge.set_BaseArcColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BaseArcRadiusGet">
+            <summary>Legt die shim von AGauge.get_BaseArcRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BaseArcRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_BaseArcRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BaseArcStartGet">
+            <summary>Legt die shim von AGauge.get_BaseArcStart() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BaseArcStartSetInt32">
+            <summary>Legt die shim von AGauge.set_BaseArcStart(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BaseArcSweepGet">
+            <summary>Legt die shim von AGauge.get_BaseArcSweep() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BaseArcSweepSetInt32">
+            <summary>Legt die shim von AGauge.set_BaseArcSweep(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BaseArcWidthGet">
+            <summary>Legt die shim von AGauge.get_BaseArcWidth() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.BaseArcWidthSetInt32">
+            <summary>Legt die shim von AGauge.set_BaseArcWidth(Int32 value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGauge.BehaveAsCurrent">
+            <summary>Weist das &apos;Current&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGauge.BehaveAsNotImplemented">
+            <summary>Weist das &apos;NotImplemented&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.Behavior">
+            <summary>Weist das Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGauge.Bind(System.ComponentModel.IComponent)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGauge.Bind(System.ComponentModel.ISynchronizeInvoke)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGauge.Bind(System.Windows.Forms.IBindableComponent)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGauge.Bind(System.Windows.Forms.IDropTarget)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGauge.Bind(System.Windows.Forms.IWin32Window)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGauge.Bind(System.IDisposable)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.CenterGet">
+            <summary>Legt die shim von AGauge.get_Center() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.CenterSetPoint">
+            <summary>Legt die shim von AGauge.set_Center(Point value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.Constructor">
+            <summary>Legt die shim von AGauge.AGauge() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.DisposeBoolean">
+            <summary>Legt die shim von AGauge.Dispose(Boolean disposing) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.FindFontBounds">
+            <summary>Legt die shim von AGauge.FindFontBounds() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.FontGet">
+            <summary>Legt die shim von AGauge.get_Font() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.FontSetFont">
+            <summary>Legt die shim von AGauge.set_Font(Font value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ForeColorGet">
+            <summary>Legt die shim von AGauge.get_ForeColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ForeColorSetBoolean">
+            <summary>Legt die shim von AGauge.set_ForeColor(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.GaugeLabelsGet">
+            <summary>Legt die shim von AGauge.get_GaugeLabels() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.GaugeRangesGet">
+            <summary>Legt die shim von AGauge.get_GaugeRanges() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ImeModeGet">
+            <summary>Legt die shim von AGauge.get_ImeMode() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ImeModeSetBoolean">
+            <summary>Legt die shim von AGauge.set_ImeMode(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.InitializeComponent">
+            <summary>Legt die shim von AGauge.InitializeComponent() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.MaxValueGet">
+            <summary>Legt die shim von AGauge.get_MaxValue() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.MaxValueSetSingle">
+            <summary>Legt die shim von AGauge.set_MaxValue(Single value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.MinValueGet">
+            <summary>Legt die shim von AGauge.get_MinValue() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.MinValueSetSingle">
+            <summary>Legt die shim von AGauge.set_MinValue(Single value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.NeedleColor1Get">
+            <summary>Legt die shim von AGauge.get_NeedleColor1() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.NeedleColor1SetAGaugeNeedleColor">
+            <summary>Legt die shim von AGauge.set_NeedleColor1(AGaugeNeedleColor value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.NeedleColor2Get">
+            <summary>Legt die shim von AGauge.get_NeedleColor2() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.NeedleColor2SetColor">
+            <summary>Legt die shim von AGauge.set_NeedleColor2(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.NeedleRadiusGet">
+            <summary>Legt die shim von AGauge.get_NeedleRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.NeedleRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_NeedleRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.NeedleTypeGet">
+            <summary>Legt die shim von AGauge.get_NeedleType() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.NeedleTypeSetNeedleType">
+            <summary>Legt die shim von AGauge.set_NeedleType(NeedleType value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.NeedleWidthGet">
+            <summary>Legt die shim von AGauge.get_NeedleWidth() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.NeedleWidthSetInt32">
+            <summary>Legt die shim von AGauge.set_NeedleWidth(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.OnPaintBackgroundPaintEventArgs">
+            <summary>Legt die shim von AGauge.OnPaintBackground(PaintEventArgs pevent) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.OnPaintPaintEventArgs">
+            <summary>Legt die shim von AGauge.OnPaint(PaintEventArgs e) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.OnResizeEventArgs">
+            <summary>Legt die shim von AGauge.OnResize(EventArgs e) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.OnValueChanged">
+            <summary>Legt die shim von AGauge.OnValueChanged() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.OnValueInRangeChangedAGaugeRangeSingle">
+            <summary>Legt die shim von AGauge.OnValueInRangeChanged(AGaugeRange range, Single value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.RepaintControl">
+            <summary>Legt die shim von AGauge.RepaintControl() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesInterColorGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesInterColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesInterColorSetColor">
+            <summary>Legt die shim von AGauge.set_ScaleLinesInterColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesInterInnerRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesInterInnerRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesInterInnerRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesInterInnerRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesInterOuterRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesInterOuterRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesInterOuterRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesInterOuterRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesInterWidthGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesInterWidth() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesInterWidthSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesInterWidth(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMajorColorGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMajorColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMajorColorSetColor">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMajorColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMajorInnerRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMajorInnerRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMajorInnerRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMajorInnerRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMajorOuterRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMajorOuterRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMajorOuterRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMajorOuterRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMajorStepValueGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMajorStepValue() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMajorStepValueSetSingle">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMajorStepValue(Single value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMajorWidthGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMajorWidth() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMajorWidthSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMajorWidth(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMinorColorGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMinorColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMinorColorSetColor">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMinorColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMinorInnerRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMinorInnerRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMinorInnerRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMinorInnerRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMinorOuterRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMinorOuterRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMinorOuterRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMinorOuterRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMinorTicksGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMinorTicks() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMinorTicksSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMinorTicks(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMinorWidthGet">
+            <summary>Legt die shim von AGauge.get_ScaleLinesMinorWidth() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleLinesMinorWidthSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleLinesMinorWidth(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersColorGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersColor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersColorSetColor">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersFormatGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersFormat() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersFormatSetString">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersFormat(String value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersRadiusGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersRadiusSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersRotationGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersRotation() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersRotationSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersRotation(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersStartScaleLineGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersStartScaleLine() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersStartScaleLineSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersStartScaleLine(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersStepScaleLinesGet">
+            <summary>Legt die shim von AGauge.get_ScaleNumbersStepScaleLines() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ScaleNumbersStepScaleLinesSetInt32">
+            <summary>Legt die shim von AGauge.set_ScaleNumbersStepScaleLines(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ValueChangedAddEventHandler">
+            <summary>Legt die shim von AGauge.add_ValueChanged(EventHandler value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ValueChangedRemoveEventHandler">
+            <summary>Legt die shim von AGauge.remove_ValueChanged(EventHandler value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ValueGet">
+            <summary>Legt die shim von AGauge.get_Value() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ValueInRangeChangedAddEventHandlerOfValueInRangeChangedEventArgs">
+            <summary>Legt die shim von AGauge.add_ValueInRangeChanged(EventHandler`1&lt;ValueInRangeChangedEventArgs&gt; value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ValueInRangeChangedRemoveEventHandlerOfValueInRangeChangedEventArgs">
+            <summary>Legt die shim von AGauge.remove_ValueInRangeChanged(EventHandler`1&lt;ValueInRangeChangedEventArgs&gt; value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGauge.ValueSetSingle">
+            <summary>Legt die shim von AGauge.set_Value(Single value) fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimAGaugeLabel">
+            <summary>Shim-Typ von System.Windows.Forms.AGaugeLabel</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeLabel.#ctor">
+            <summary>Initialisiert eine neue Shim-Instanz.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeLabel.#ctor(System.Windows.Forms.AGaugeLabel)">
+            <summary>Initialisiert einen neuen Shim für die gegebene Instanz.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances">
+            <summary>Shims für alle Instanzenmember definieren</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.ColorGet">
+            <summary>Legt die shim von AGaugeLabel.get_Color() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.ColorSetColor">
+            <summary>Legt die shim von AGaugeLabel.set_Color(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.FontGet">
+            <summary>Legt die shim von AGaugeLabel.get_Font() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.FontSetFont">
+            <summary>Legt die shim von AGaugeLabel.set_Font(Font value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.NameGet">
+            <summary>Legt die shim von AGaugeLabel.get_Name() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.NameSetString">
+            <summary>Legt die shim von AGaugeLabel.set_Name(String value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.NotifyOwner">
+            <summary>Legt die shim von AGaugeLabel.NotifyOwner() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.PositionGet">
+            <summary>Legt die shim von AGaugeLabel.get_Position() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.PositionSetPoint">
+            <summary>Legt die shim von AGaugeLabel.set_Position(Point value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.ResetFont">
+            <summary>Legt die shim von AGaugeLabel.ResetFont() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.SetOwnerAGauge">
+            <summary>Legt die shim von AGaugeLabel.SetOwner(AGauge value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.ShouldSerializeFont">
+            <summary>Legt die shim von AGaugeLabel.ShouldSerializeFont() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.TextGet">
+            <summary>Legt die shim von AGaugeLabel.get_Text() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.AllInstances.TextSetString">
+            <summary>Legt die shim von AGaugeLabel.set_Text(String value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeLabel.BehaveAsCurrent">
+            <summary>Weist das &apos;Current&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeLabel.BehaveAsNotImplemented">
+            <summary>Weist das &apos;NotImplemented&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.Behavior">
+            <summary>Weist das Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.ColorGet">
+            <summary>Legt die shim von AGaugeLabel.get_Color() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.ColorSetColor">
+            <summary>Legt die shim von AGaugeLabel.set_Color(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.Constructor">
+            <summary>Legt die shim von AGaugeLabel.AGaugeLabel() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.FontGet">
+            <summary>Legt die shim von AGaugeLabel.get_Font() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.FontSetFont">
+            <summary>Legt die shim von AGaugeLabel.set_Font(Font value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.NameGet">
+            <summary>Legt die shim von AGaugeLabel.get_Name() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.NameSetString">
+            <summary>Legt die shim von AGaugeLabel.set_Name(String value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.NotifyOwner">
+            <summary>Legt die shim von AGaugeLabel.NotifyOwner() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.PositionGet">
+            <summary>Legt die shim von AGaugeLabel.get_Position() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.PositionSetPoint">
+            <summary>Legt die shim von AGaugeLabel.set_Position(Point value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.ResetFont">
+            <summary>Legt die shim von AGaugeLabel.ResetFont() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.SetOwnerAGauge">
+            <summary>Legt die shim von AGaugeLabel.SetOwner(AGauge value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.ShouldSerializeFont">
+            <summary>Legt die shim von AGaugeLabel.ShouldSerializeFont() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.StaticConstructor">
+            <summary>Legt die shim von AGaugeLabel.AGaugeLabel() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.TextGet">
+            <summary>Legt die shim von AGaugeLabel.get_Text() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabel.TextSetString">
+            <summary>Legt die shim von AGaugeLabel.set_Text(String value) fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection">
+            <summary>Shim-Typ von System.Windows.Forms.AGaugeLabelCollection</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.#ctor">
+            <summary>Initialisiert eine neue Shim-Instanz.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.#ctor(System.Windows.Forms.AGaugeLabelCollection)">
+            <summary>Initialisiert einen neuen Shim für die gegebene Instanz.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AddAGaugeLabel">
+            <summary>Legt die shim von AGaugeLabelCollection.Add(AGaugeLabel itemType) fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances">
+            <summary>Shims für alle Instanzenmember definieren</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances.AddAGaugeLabel">
+            <summary>Legt die shim von AGaugeLabelCollection.Add(AGaugeLabel itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances.ContainsAGaugeLabel">
+            <summary>Legt die shim von AGaugeLabelCollection.Contains(AGaugeLabel itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances.FindByNameString">
+            <summary>Legt die shim von AGaugeLabelCollection.FindByName(String name) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances.GetUniqueName">
+            <summary>Legt die shim von AGaugeLabelCollection.GetUniqueName() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances.IndexOfAGaugeLabel">
+            <summary>Legt die shim von AGaugeLabelCollection.IndexOf(AGaugeLabel itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances.InsertInt32AGaugeLabel">
+            <summary>Legt die shim von AGaugeLabelCollection.Insert(Int32 index, AGaugeLabel itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances.ItemGetInt32">
+            <summary>Legt die shim von AGaugeLabelCollection.get_Item(Int32 index) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances.OnClear">
+            <summary>Legt die shim von AGaugeLabelCollection.OnClear() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances.OnInsertInt32Object">
+            <summary>Legt die shim von AGaugeLabelCollection.OnInsert(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances.OnRemoveInt32Object">
+            <summary>Legt die shim von AGaugeLabelCollection.OnRemove(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.AllInstances.RemoveAGaugeLabel">
+            <summary>Legt die shim von AGaugeLabelCollection.Remove(AGaugeLabel itemType) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.BehaveAsCurrent">
+            <summary>Weist das &apos;Current&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.BehaveAsNotImplemented">
+            <summary>Weist das &apos;NotImplemented&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.Behavior">
+            <summary>Weist das Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.Bind(System.Collections.ICollection)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.Bind(System.Collections.IEnumerable)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.Bind(System.Collections.IList)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.ConstructorAGauge">
+            <summary>Legt die shim von AGaugeLabelCollection.AGaugeLabelCollection(AGauge sender) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.ContainsAGaugeLabel">
+            <summary>Legt die shim von AGaugeLabelCollection.Contains(AGaugeLabel itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.FindByNameString">
+            <summary>Legt die shim von AGaugeLabelCollection.FindByName(String name) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.GetUniqueName">
+            <summary>Legt die shim von AGaugeLabelCollection.GetUniqueName() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.IndexOfAGaugeLabel">
+            <summary>Legt die shim von AGaugeLabelCollection.IndexOf(AGaugeLabel itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.InsertInt32AGaugeLabel">
+            <summary>Legt die shim von AGaugeLabelCollection.Insert(Int32 index, AGaugeLabel itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.ItemGetInt32">
+            <summary>Legt die shim von AGaugeLabelCollection.get_Item(Int32 index) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.OnClear">
+            <summary>Legt die shim von AGaugeLabelCollection.OnClear() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.OnInsertInt32Object">
+            <summary>Legt die shim von AGaugeLabelCollection.OnInsert(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.OnRemoveInt32Object">
+            <summary>Legt die shim von AGaugeLabelCollection.OnRemove(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeLabelCollection.RemoveAGaugeLabel">
+            <summary>Legt die shim von AGaugeLabelCollection.Remove(AGaugeLabel itemType) fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimAGaugeRange">
+            <summary>Shim-Typ von System.Windows.Forms.AGaugeRange</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeRange.#ctor">
+            <summary>Initialisiert eine neue Shim-Instanz.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeRange.#ctor(System.Windows.Forms.AGaugeRange)">
+            <summary>Initialisiert einen neuen Shim für die gegebene Instanz.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances">
+            <summary>Shims für alle Instanzenmember definieren</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.ColorGet">
+            <summary>Legt die shim von AGaugeRange.get_Color() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.ColorSetColor">
+            <summary>Legt die shim von AGaugeRange.set_Color(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.EndValueGet">
+            <summary>Legt die shim von AGaugeRange.get_EndValue() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.EndValueSetSingle">
+            <summary>Legt die shim von AGaugeRange.set_EndValue(Single value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.InRangeGet">
+            <summary>Legt die shim von AGaugeRange.get_InRange() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.InRangeSetBoolean">
+            <summary>Legt die shim von AGaugeRange.set_InRange(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.InnerRadiusGet">
+            <summary>Legt die shim von AGaugeRange.get_InnerRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.InnerRadiusSetInt32">
+            <summary>Legt die shim von AGaugeRange.set_InnerRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.NameGet">
+            <summary>Legt die shim von AGaugeRange.get_Name() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.NameSetString">
+            <summary>Legt die shim von AGaugeRange.set_Name(String value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.NotifyOwner">
+            <summary>Legt die shim von AGaugeRange.NotifyOwner() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.OuterRadiusGet">
+            <summary>Legt die shim von AGaugeRange.get_OuterRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.OuterRadiusSetInt32">
+            <summary>Legt die shim von AGaugeRange.set_OuterRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.SetOwnerAGauge">
+            <summary>Legt die shim von AGaugeRange.SetOwner(AGauge value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.StartValueGet">
+            <summary>Legt die shim von AGaugeRange.get_StartValue() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.AllInstances.StartValueSetSingle">
+            <summary>Legt die shim von AGaugeRange.set_StartValue(Single value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeRange.BehaveAsCurrent">
+            <summary>Weist das &apos;Current&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeRange.BehaveAsNotImplemented">
+            <summary>Weist das &apos;NotImplemented&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.Behavior">
+            <summary>Weist das Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.ColorGet">
+            <summary>Legt die shim von AGaugeRange.get_Color() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.ColorSetColor">
+            <summary>Legt die shim von AGaugeRange.set_Color(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.Constructor">
+            <summary>Legt die shim von AGaugeRange.AGaugeRange() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.ConstructorColorSingleSingleInt32Int32">
+            <summary>Legt die shim von AGaugeRange.AGaugeRange(Color color, Single startValue, Single endValue, Int32 innerRadius, Int32 outerRadius) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.EndValueGet">
+            <summary>Legt die shim von AGaugeRange.get_EndValue() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.EndValueSetSingle">
+            <summary>Legt die shim von AGaugeRange.set_EndValue(Single value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.InRangeGet">
+            <summary>Legt die shim von AGaugeRange.get_InRange() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.InRangeSetBoolean">
+            <summary>Legt die shim von AGaugeRange.set_InRange(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.InnerRadiusGet">
+            <summary>Legt die shim von AGaugeRange.get_InnerRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.InnerRadiusSetInt32">
+            <summary>Legt die shim von AGaugeRange.set_InnerRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.NameGet">
+            <summary>Legt die shim von AGaugeRange.get_Name() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.NameSetString">
+            <summary>Legt die shim von AGaugeRange.set_Name(String value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.NotifyOwner">
+            <summary>Legt die shim von AGaugeRange.NotifyOwner() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.OuterRadiusGet">
+            <summary>Legt die shim von AGaugeRange.get_OuterRadius() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.OuterRadiusSetInt32">
+            <summary>Legt die shim von AGaugeRange.set_OuterRadius(Int32 value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.SetOwnerAGauge">
+            <summary>Legt die shim von AGaugeRange.SetOwner(AGauge value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.StartValueGet">
+            <summary>Legt die shim von AGaugeRange.get_StartValue() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRange.StartValueSetSingle">
+            <summary>Legt die shim von AGaugeRange.set_StartValue(Single value) fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection">
+            <summary>Shim-Typ von System.Windows.Forms.AGaugeRangeCollection</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.#ctor">
+            <summary>Initialisiert eine neue Shim-Instanz.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.#ctor(System.Windows.Forms.AGaugeRangeCollection)">
+            <summary>Initialisiert einen neuen Shim für die gegebene Instanz.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AddAGaugeRange">
+            <summary>Legt die shim von AGaugeRangeCollection.Add(AGaugeRange itemType) fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances">
+            <summary>Shims für alle Instanzenmember definieren</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances.AddAGaugeRange">
+            <summary>Legt die shim von AGaugeRangeCollection.Add(AGaugeRange itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances.ContainsAGaugeRange">
+            <summary>Legt die shim von AGaugeRangeCollection.Contains(AGaugeRange itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances.FindByNameString">
+            <summary>Legt die shim von AGaugeRangeCollection.FindByName(String name) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances.GetUniqueName">
+            <summary>Legt die shim von AGaugeRangeCollection.GetUniqueName() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances.IndexOfAGaugeRange">
+            <summary>Legt die shim von AGaugeRangeCollection.IndexOf(AGaugeRange itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances.InsertInt32AGaugeRange">
+            <summary>Legt die shim von AGaugeRangeCollection.Insert(Int32 index, AGaugeRange itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances.ItemGetInt32">
+            <summary>Legt die shim von AGaugeRangeCollection.get_Item(Int32 index) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances.OnClear">
+            <summary>Legt die shim von AGaugeRangeCollection.OnClear() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances.OnInsertInt32Object">
+            <summary>Legt die shim von AGaugeRangeCollection.OnInsert(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances.OnRemoveInt32Object">
+            <summary>Legt die shim von AGaugeRangeCollection.OnRemove(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.AllInstances.RemoveAGaugeRange">
+            <summary>Legt die shim von AGaugeRangeCollection.Remove(AGaugeRange itemType) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.BehaveAsCurrent">
+            <summary>Weist das &apos;Current&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.BehaveAsNotImplemented">
+            <summary>Weist das &apos;NotImplemented&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.Behavior">
+            <summary>Weist das Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.Bind(System.Collections.ICollection)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.Bind(System.Collections.IEnumerable)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.Bind(System.Collections.IList)">
+            <summary>Bindet die Member der Schnittstelle an den Shim.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.ConstructorAGauge">
+            <summary>Legt die shim von AGaugeRangeCollection.AGaugeRangeCollection(AGauge sender) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.ContainsAGaugeRange">
+            <summary>Legt die shim von AGaugeRangeCollection.Contains(AGaugeRange itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.FindByNameString">
+            <summary>Legt die shim von AGaugeRangeCollection.FindByName(String name) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.GetUniqueName">
+            <summary>Legt die shim von AGaugeRangeCollection.GetUniqueName() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.IndexOfAGaugeRange">
+            <summary>Legt die shim von AGaugeRangeCollection.IndexOf(AGaugeRange itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.InsertInt32AGaugeRange">
+            <summary>Legt die shim von AGaugeRangeCollection.Insert(Int32 index, AGaugeRange itemType) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.ItemGetInt32">
+            <summary>Legt die shim von AGaugeRangeCollection.get_Item(Int32 index) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.OnClear">
+            <summary>Legt die shim von AGaugeRangeCollection.OnClear() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.OnInsertInt32Object">
+            <summary>Legt die shim von AGaugeRangeCollection.OnInsert(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.OnRemoveInt32Object">
+            <summary>Legt die shim von AGaugeRangeCollection.OnRemove(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimAGaugeRangeCollection.RemoveAGaugeRange">
+            <summary>Legt die shim von AGaugeRangeCollection.Remove(AGaugeRange itemType) fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs">
+            <summary>Shim-Typ von System.Windows.Forms.ValueInRangeChangedEventArgs</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.#ctor">
+            <summary>Initialisiert eine neue Shim-Instanz.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.#ctor(System.Windows.Forms.ValueInRangeChangedEventArgs)">
+            <summary>Initialisiert einen neuen Shim für die gegebene Instanz.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.AllInstances">
+            <summary>Shims für alle Instanzenmember definieren</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.AllInstances.InRangeGet">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.get_InRange() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.AllInstances.InRangeSetBoolean">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.set_InRange(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.AllInstances.RangeGet">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.get_Range() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.AllInstances.RangeSetAGaugeRange">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.set_Range(AGaugeRange value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.AllInstances.ValueGet">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.get_Value() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.AllInstances.ValueSetSingle">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.set_Value(Single value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.BehaveAsCurrent">
+            <summary>Weist das &apos;Current&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.BehaveAsNotImplemented">
+            <summary>Weist das &apos;NotImplemented&apos;-Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.Behavior">
+            <summary>Weist das Verhalten für alle Methoden des Shim-Typs zu.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.ConstructorAGaugeRangeSingleBoolean">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.ValueInRangeChangedEventArgs(AGaugeRange range, Single value, Boolean inRange) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.InRangeGet">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.get_InRange() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.InRangeSetBoolean">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.set_InRange(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.RangeGet">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.get_Range() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.RangeSetAGaugeRange">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.set_Range(AGaugeRange value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.ValueGet">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.get_Value() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.ShimValueInRangeChangedEventArgs.ValueSetSingle">
+            <summary>Legt die shim von ValueInRangeChangedEventArgs.set_Value(Single value) fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.StubAGauge">
+            <summary>Stub-Typ von System.Windows.Forms.AGauge</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.#ctor">
+            <summary>Initialisiert eine neue Instanz.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.Anchor">
+            <summary>Legt die stub von Control.get_Anchor() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.AnchorGet">
+            <summary>Legt die stub von Control.get_Anchor() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.AnchorSetAnchorStyles">
+            <summary>Legt die stub von Control.set_Anchor(AnchorStyles value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToAnchor">
+            <summary>Fügt Delegate an, um StubAGauge.Anchor als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToAutoScrollOffset">
+            <summary>Fügt Delegate an, um StubAGauge.AutoScrollOffset als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToBackColor">
+            <summary>Fügt Delegate an, um StubAGauge.BackColor als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToBackgroundImage">
+            <summary>Fügt Delegate an, um StubAGauge.BackgroundImage als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToBackgroundImageLayout">
+            <summary>Fügt Delegate an, um StubAGauge.BackgroundImageLayout als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToBindingContext">
+            <summary>Fügt Delegate an, um StubAGauge.BindingContext als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToContextMenu">
+            <summary>Fügt Delegate an, um StubAGauge.ContextMenu als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToContextMenuStrip">
+            <summary>Fügt Delegate an, um StubAGauge.ContextMenuStrip als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToCursor">
+            <summary>Fügt Delegate an, um StubAGauge.Cursor als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToDock">
+            <summary>Fügt Delegate an, um StubAGauge.Dock als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToDoubleBuffered">
+            <summary>Fügt Delegate an, um StubAGauge.DoubleBuffered als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToFont">
+            <summary>Fügt Delegate an, um StubAGauge.Font als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToImeModeBase">
+            <summary>Fügt Delegate an, um StubAGauge.ImeModeBase als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToMaximumSize">
+            <summary>Fügt Delegate an, um StubAGauge.MaximumSize als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToMinimumSize">
+            <summary>Fügt Delegate an, um StubAGauge.MinimumSize als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToRightToLeft">
+            <summary>Fügt Delegate an, um StubAGauge.RightToLeft als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToSite">
+            <summary>Fügt Delegate an, um StubAGauge.Site als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.AttachBackingFieldToText">
+            <summary>Fügt Delegate an, um StubAGauge.Text als Eigenschaft mit einem dahinter liegenden Feld zu emulieren.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.AutoScrollOffset">
+            <summary>Legt die stub von Control.get_AutoScrollOffset() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.AutoScrollOffsetGet">
+            <summary>Legt die stub von Control.get_AutoScrollOffset() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.AutoScrollOffsetSetPoint">
+            <summary>Legt die stub von Control.set_AutoScrollOffset(Point value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.BackColor">
+            <summary>Legt die stub von AGauge.get_BackColor() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.BackColorGet">
+            <summary>Legt die stub von AGauge.get_BackColor() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.BackColorSetColor">
+            <summary>Legt die stub von AGauge.set_BackColor(Color value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.BackgroundImage">
+            <summary>Legt die stub von Control.get_BackgroundImage() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.BackgroundImageGet">
+            <summary>Legt die stub von Control.get_BackgroundImage() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.BackgroundImageLayout">
+            <summary>Legt die stub von AGauge.get_BackgroundImageLayout() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.BackgroundImageLayoutGet">
+            <summary>Legt die stub von AGauge.get_BackgroundImageLayout() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.BackgroundImageLayoutSetImageLayout">
+            <summary>Legt die stub von AGauge.set_BackgroundImageLayout(ImageLayout value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.BackgroundImageSetImage">
+            <summary>Legt die stub von Control.set_BackgroundImage(Image value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.BindingContext">
+            <summary>Legt die stub von Control.get_BindingContext() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.BindingContextGet">
+            <summary>Legt die stub von Control.get_BindingContext() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.BindingContextSetBindingContext">
+            <summary>Legt die stub von Control.set_BindingContext(BindingContext value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.CallBase">
+            <summary>Ruft einen Wert ab, der angibt, ob die Basismethode anstelle des Fallback-Verhaltens abgerufen werden soll, oder legt diesen fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.CanEnableIme">
+            <summary>Legt die stub von Control.get_CanEnableIme() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.CanEnableImeGet">
+            <summary>Legt die stub von Control.get_CanEnableIme() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.CanRaiseEvents">
+            <summary>Legt die stub von Control.get_CanRaiseEvents() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.CanRaiseEventsGet">
+            <summary>Legt die stub von Control.get_CanRaiseEvents() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.ContextMenu">
+            <summary>Legt die stub von Control.get_ContextMenu() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ContextMenuGet">
+            <summary>Legt die stub von Control.get_ContextMenu() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ContextMenuSetContextMenu">
+            <summary>Legt die stub von Control.set_ContextMenu(ContextMenu value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.ContextMenuStrip">
+            <summary>Legt die stub von Control.get_ContextMenuStrip() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ContextMenuStripGet">
+            <summary>Legt die stub von Control.get_ContextMenuStrip() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ContextMenuStripSetContextMenuStrip">
+            <summary>Legt die stub von Control.set_ContextMenuStrip(ContextMenuStrip value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.CreateAccessibilityInstance">
+            <summary>Legt die stub von Control.CreateAccessibilityInstance() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.CreateAccessibilityInstance01">
+            <summary>Legt die stub von Control.CreateAccessibilityInstance() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.CreateControlsInstance">
+            <summary>Legt die stub von Control.CreateControlsInstance() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.CreateControlsInstance01">
+            <summary>Legt die stub von Control.CreateControlsInstance() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.CreateHandle">
+            <summary>Legt die stub von Control.CreateHandle() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.CreateHandle01">
+            <summary>Legt die stub von Control.CreateHandle() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.CreateParams">
+            <summary>Legt die stub von Control.get_CreateParams() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.CreateParamsGet">
+            <summary>Legt die stub von Control.get_CreateParams() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.Cursor">
+            <summary>Legt die stub von Control.get_Cursor() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.CursorGet">
+            <summary>Legt die stub von Control.get_Cursor() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.CursorSetCursor">
+            <summary>Legt die stub von Control.set_Cursor(Cursor value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.DefWndProc(System.Windows.Forms.Message@)">
+            <summary>Legt die stub von Control.DefWndProc(Message&amp; m) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DefWndProcMessageRef">
+            <summary>Legt die stub von Control.DefWndProc(Message&amp; m) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.DefaultCursor">
+            <summary>Legt die stub von Control.get_DefaultCursor() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DefaultCursorGet">
+            <summary>Legt die stub von Control.get_DefaultCursor() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.DefaultImeMode">
+            <summary>Legt die stub von Control.get_DefaultImeMode() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DefaultImeModeGet">
+            <summary>Legt die stub von Control.get_DefaultImeMode() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.DefaultMargin">
+            <summary>Legt die stub von Control.get_DefaultMargin() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DefaultMarginGet">
+            <summary>Legt die stub von Control.get_DefaultMargin() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.DefaultMaximumSize">
+            <summary>Legt die stub von Control.get_DefaultMaximumSize() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DefaultMaximumSizeGet">
+            <summary>Legt die stub von Control.get_DefaultMaximumSize() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.DefaultMinimumSize">
+            <summary>Legt die stub von Control.get_DefaultMinimumSize() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DefaultMinimumSizeGet">
+            <summary>Legt die stub von Control.get_DefaultMinimumSize() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.DefaultPadding">
+            <summary>Legt die stub von Control.get_DefaultPadding() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DefaultPaddingGet">
+            <summary>Legt die stub von Control.get_DefaultPadding() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.DefaultSize">
+            <summary>Legt die stub von Control.get_DefaultSize() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DefaultSizeGet">
+            <summary>Legt die stub von Control.get_DefaultSize() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.DestroyHandle">
+            <summary>Legt die stub von Control.DestroyHandle() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DestroyHandle01">
+            <summary>Legt die stub von Control.DestroyHandle() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.DisplayRectangle">
+            <summary>Legt die stub von Control.get_DisplayRectangle() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DisplayRectangleGet">
+            <summary>Legt die stub von Control.get_DisplayRectangle() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.Dispose(System.Boolean)">
+            <summary>Legt die stub von AGauge.Dispose(Boolean disposing) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DisposeBoolean">
+            <summary>Legt die stub von AGauge.Dispose(Boolean disposing) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.Dock">
+            <summary>Legt die stub von Control.get_Dock() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DockGet">
+            <summary>Legt die stub von Control.get_Dock() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DockSetDockStyle">
+            <summary>Legt die stub von Control.set_Dock(DockStyle value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.DoubleBuffered">
+            <summary>Legt die stub von Control.get_DoubleBuffered() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DoubleBufferedGet">
+            <summary>Legt die stub von Control.get_DoubleBuffered() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.DoubleBufferedSetBoolean">
+            <summary>Legt die stub von Control.set_DoubleBuffered(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.Focused">
+            <summary>Legt die stub von Control.get_Focused() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.FocusedGet">
+            <summary>Legt die stub von Control.get_Focused() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.Font">
+            <summary>Legt die stub von AGauge.get_Font() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.FontGet">
+            <summary>Legt die stub von AGauge.get_Font() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.FontSetFont">
+            <summary>Legt die stub von AGauge.set_Font(Font value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.GetAccessibilityObjectById(System.Int32)">
+            <summary>Legt die stub von Control.GetAccessibilityObjectById(Int32 objectId) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.GetAccessibilityObjectByIdInt32">
+            <summary>Legt die stub von Control.GetAccessibilityObjectById(Int32 objectId) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.GetPreferredSize(System.Drawing.Size)">
+            <summary>Legt die stub von Control.GetPreferredSize(Size proposedSize) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.GetPreferredSizeSize">
+            <summary>Legt die stub von Control.GetPreferredSize(Size proposedSize) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.GetScaledBounds(System.Drawing.Rectangle,System.Drawing.SizeF,System.Windows.Forms.BoundsSpecified)">
+            <summary>Legt die stub von Control.GetScaledBounds(Rectangle bounds, SizeF factor, BoundsSpecified specified) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.GetScaledBoundsRectangleSizeFBoundsSpecified">
+            <summary>Legt die stub von Control.GetScaledBounds(Rectangle bounds, SizeF factor, BoundsSpecified specified) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.GetService(System.Type)">
+            <summary>Legt die stub von Component.GetService(Type service) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.GetServiceType">
+            <summary>Legt die stub von Component.GetService(Type service) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.ImeModeBase">
+            <summary>Legt die stub von Control.get_ImeModeBase() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ImeModeBaseGet">
+            <summary>Legt die stub von Control.get_ImeModeBase() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ImeModeBaseSetImeMode">
+            <summary>Legt die stub von Control.set_ImeModeBase(ImeMode value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.InitLayout">
+            <summary>Legt die stub von Control.InitLayout() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.InitLayout01">
+            <summary>Legt die stub von Control.InitLayout() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.InitializeStub">
+            <summary>Initialisiert eine neue Instanz von type StubAGauge.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.InstanceBehavior">
+            <summary>Ruft das Instanzverhalten ab, oder legt dieses fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.InstanceObserver">
+            <summary>Ruft den Instanzbeobachter ab, oder legt ihn fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.IsInputChar(System.Char)">
+            <summary>Legt die stub von Control.IsInputChar(Char charCode) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.IsInputCharChar">
+            <summary>Legt die stub von Control.IsInputChar(Char charCode) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.IsInputKey(System.Windows.Forms.Keys)">
+            <summary>Legt die stub von Control.IsInputKey(Keys keyData) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.IsInputKeyKeys">
+            <summary>Legt die stub von Control.IsInputKey(Keys keyData) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.LayoutEngine">
+            <summary>Legt die stub von Control.get_LayoutEngine() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.LayoutEngineGet">
+            <summary>Legt die stub von Control.get_LayoutEngine() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.MaximumSize">
+            <summary>Legt die stub von Control.get_MaximumSize() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.MaximumSizeGet">
+            <summary>Legt die stub von Control.get_MaximumSize() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.MaximumSizeSetSize">
+            <summary>Legt die stub von Control.set_MaximumSize(Size value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.MinimumSize">
+            <summary>Legt die stub von Control.get_MinimumSize() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.MinimumSizeGet">
+            <summary>Legt die stub von Control.get_MinimumSize() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.MinimumSizeSetSize">
+            <summary>Legt die stub von Control.set_MinimumSize(Size value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.NotifyInvalidate(System.Drawing.Rectangle)">
+            <summary>Legt die stub von Control.NotifyInvalidate(Rectangle invalidatedArea) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.NotifyInvalidateRectangle">
+            <summary>Legt die stub von Control.NotifyInvalidate(Rectangle invalidatedArea) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnAutoSizeChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnAutoSizeChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnAutoSizeChangedEventArgs">
+            <summary>Legt die stub von Control.OnAutoSizeChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnBackColorChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnBackColorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnBackColorChangedEventArgs">
+            <summary>Legt die stub von Control.OnBackColorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnBackgroundImageChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnBackgroundImageChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnBackgroundImageChangedEventArgs">
+            <summary>Legt die stub von Control.OnBackgroundImageChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnBackgroundImageLayoutChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnBackgroundImageLayoutChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnBackgroundImageLayoutChangedEventArgs">
+            <summary>Legt die stub von Control.OnBackgroundImageLayoutChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnBindingContextChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnBindingContextChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnBindingContextChangedEventArgs">
+            <summary>Legt die stub von Control.OnBindingContextChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnCausesValidationChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnCausesValidationChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnCausesValidationChangedEventArgs">
+            <summary>Legt die stub von Control.OnCausesValidationChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnChangeUICues(System.Windows.Forms.UICuesEventArgs)">
+            <summary>Legt die stub von Control.OnChangeUICues(UICuesEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnChangeUICuesUICuesEventArgs">
+            <summary>Legt die stub von Control.OnChangeUICues(UICuesEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnClick(System.EventArgs)">
+            <summary>Legt die stub von Control.OnClick(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnClickEventArgs">
+            <summary>Legt die stub von Control.OnClick(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnClientSizeChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnClientSizeChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnClientSizeChangedEventArgs">
+            <summary>Legt die stub von Control.OnClientSizeChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnContextMenuChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnContextMenuChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnContextMenuChangedEventArgs">
+            <summary>Legt die stub von Control.OnContextMenuChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnContextMenuStripChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnContextMenuStripChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnContextMenuStripChangedEventArgs">
+            <summary>Legt die stub von Control.OnContextMenuStripChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnControlAdded(System.Windows.Forms.ControlEventArgs)">
+            <summary>Legt die stub von Control.OnControlAdded(ControlEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnControlAddedControlEventArgs">
+            <summary>Legt die stub von Control.OnControlAdded(ControlEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnControlRemoved(System.Windows.Forms.ControlEventArgs)">
+            <summary>Legt die stub von Control.OnControlRemoved(ControlEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnControlRemovedControlEventArgs">
+            <summary>Legt die stub von Control.OnControlRemoved(ControlEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnCreateControl">
+            <summary>Legt die stub von Control.OnCreateControl() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnCreateControl01">
+            <summary>Legt die stub von Control.OnCreateControl() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnCursorChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnCursorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnCursorChangedEventArgs">
+            <summary>Legt die stub von Control.OnCursorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnDockChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnDockChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnDockChangedEventArgs">
+            <summary>Legt die stub von Control.OnDockChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnDoubleClick(System.EventArgs)">
+            <summary>Legt die stub von Control.OnDoubleClick(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnDoubleClickEventArgs">
+            <summary>Legt die stub von Control.OnDoubleClick(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnDragDrop(System.Windows.Forms.DragEventArgs)">
+            <summary>Legt die stub von Control.OnDragDrop(DragEventArgs drgevent) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnDragDropDragEventArgs">
+            <summary>Legt die stub von Control.OnDragDrop(DragEventArgs drgevent) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnDragEnter(System.Windows.Forms.DragEventArgs)">
+            <summary>Legt die stub von Control.OnDragEnter(DragEventArgs drgevent) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnDragEnterDragEventArgs">
+            <summary>Legt die stub von Control.OnDragEnter(DragEventArgs drgevent) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnDragLeave(System.EventArgs)">
+            <summary>Legt die stub von Control.OnDragLeave(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnDragLeaveEventArgs">
+            <summary>Legt die stub von Control.OnDragLeave(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnDragOver(System.Windows.Forms.DragEventArgs)">
+            <summary>Legt die stub von Control.OnDragOver(DragEventArgs drgevent) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnDragOverDragEventArgs">
+            <summary>Legt die stub von Control.OnDragOver(DragEventArgs drgevent) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnEnabledChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnEnabledChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnEnabledChangedEventArgs">
+            <summary>Legt die stub von Control.OnEnabledChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnEnter(System.EventArgs)">
+            <summary>Legt die stub von Control.OnEnter(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnEnterEventArgs">
+            <summary>Legt die stub von Control.OnEnter(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnFontChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnFontChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnFontChangedEventArgs">
+            <summary>Legt die stub von Control.OnFontChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnForeColorChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnForeColorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnForeColorChangedEventArgs">
+            <summary>Legt die stub von Control.OnForeColorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnGiveFeedback(System.Windows.Forms.GiveFeedbackEventArgs)">
+            <summary>Legt die stub von Control.OnGiveFeedback(GiveFeedbackEventArgs gfbevent) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnGiveFeedbackGiveFeedbackEventArgs">
+            <summary>Legt die stub von Control.OnGiveFeedback(GiveFeedbackEventArgs gfbevent) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnGotFocus(System.EventArgs)">
+            <summary>Legt die stub von Control.OnGotFocus(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnGotFocusEventArgs">
+            <summary>Legt die stub von Control.OnGotFocus(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnHandleCreated(System.EventArgs)">
+            <summary>Legt die stub von Control.OnHandleCreated(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnHandleCreatedEventArgs">
+            <summary>Legt die stub von Control.OnHandleCreated(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnHandleDestroyed(System.EventArgs)">
+            <summary>Legt die stub von Control.OnHandleDestroyed(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnHandleDestroyedEventArgs">
+            <summary>Legt die stub von Control.OnHandleDestroyed(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnHelpRequested(System.Windows.Forms.HelpEventArgs)">
+            <summary>Legt die stub von Control.OnHelpRequested(HelpEventArgs hevent) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnHelpRequestedHelpEventArgs">
+            <summary>Legt die stub von Control.OnHelpRequested(HelpEventArgs hevent) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnImeModeChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnImeModeChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnImeModeChangedEventArgs">
+            <summary>Legt die stub von Control.OnImeModeChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnInvalidated(System.Windows.Forms.InvalidateEventArgs)">
+            <summary>Legt die stub von Control.OnInvalidated(InvalidateEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnInvalidatedInvalidateEventArgs">
+            <summary>Legt die stub von Control.OnInvalidated(InvalidateEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+            <summary>Legt die stub von Control.OnKeyDown(KeyEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnKeyDownKeyEventArgs">
+            <summary>Legt die stub von Control.OnKeyDown(KeyEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnKeyPress(System.Windows.Forms.KeyPressEventArgs)">
+            <summary>Legt die stub von Control.OnKeyPress(KeyPressEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnKeyPressKeyPressEventArgs">
+            <summary>Legt die stub von Control.OnKeyPress(KeyPressEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnKeyUp(System.Windows.Forms.KeyEventArgs)">
+            <summary>Legt die stub von Control.OnKeyUp(KeyEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnKeyUpKeyEventArgs">
+            <summary>Legt die stub von Control.OnKeyUp(KeyEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnLayout(System.Windows.Forms.LayoutEventArgs)">
+            <summary>Legt die stub von Control.OnLayout(LayoutEventArgs levent) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnLayoutLayoutEventArgs">
+            <summary>Legt die stub von Control.OnLayout(LayoutEventArgs levent) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnLeave(System.EventArgs)">
+            <summary>Legt die stub von Control.OnLeave(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnLeaveEventArgs">
+            <summary>Legt die stub von Control.OnLeave(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnLocationChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnLocationChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnLocationChangedEventArgs">
+            <summary>Legt die stub von Control.OnLocationChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnLostFocus(System.EventArgs)">
+            <summary>Legt die stub von Control.OnLostFocus(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnLostFocusEventArgs">
+            <summary>Legt die stub von Control.OnLostFocus(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMarginChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnMarginChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMarginChangedEventArgs">
+            <summary>Legt die stub von Control.OnMarginChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMouseCaptureChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnMouseCaptureChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMouseCaptureChangedEventArgs">
+            <summary>Legt die stub von Control.OnMouseCaptureChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMouseClick(System.Windows.Forms.MouseEventArgs)">
+            <summary>Legt die stub von Control.OnMouseClick(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMouseClickMouseEventArgs">
+            <summary>Legt die stub von Control.OnMouseClick(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMouseDoubleClick(System.Windows.Forms.MouseEventArgs)">
+            <summary>Legt die stub von Control.OnMouseDoubleClick(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMouseDoubleClickMouseEventArgs">
+            <summary>Legt die stub von Control.OnMouseDoubleClick(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
+            <summary>Legt die stub von Control.OnMouseDown(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMouseDownMouseEventArgs">
+            <summary>Legt die stub von Control.OnMouseDown(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMouseEnter(System.EventArgs)">
+            <summary>Legt die stub von Control.OnMouseEnter(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMouseEnterEventArgs">
+            <summary>Legt die stub von Control.OnMouseEnter(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMouseHover(System.EventArgs)">
+            <summary>Legt die stub von Control.OnMouseHover(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMouseHoverEventArgs">
+            <summary>Legt die stub von Control.OnMouseHover(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMouseLeave(System.EventArgs)">
+            <summary>Legt die stub von Control.OnMouseLeave(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMouseLeaveEventArgs">
+            <summary>Legt die stub von Control.OnMouseLeave(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+            <summary>Legt die stub von Control.OnMouseMove(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMouseMoveMouseEventArgs">
+            <summary>Legt die stub von Control.OnMouseMove(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            <summary>Legt die stub von Control.OnMouseUp(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMouseUpMouseEventArgs">
+            <summary>Legt die stub von Control.OnMouseUp(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMouseWheel(System.Windows.Forms.MouseEventArgs)">
+            <summary>Legt die stub von Control.OnMouseWheel(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMouseWheelMouseEventArgs">
+            <summary>Legt die stub von Control.OnMouseWheel(MouseEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnMove(System.EventArgs)">
+            <summary>Legt die stub von Control.OnMove(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnMoveEventArgs">
+            <summary>Legt die stub von Control.OnMove(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnNotifyMessage(System.Windows.Forms.Message)">
+            <summary>Legt die stub von Control.OnNotifyMessage(Message m) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnNotifyMessageMessage">
+            <summary>Legt die stub von Control.OnNotifyMessage(Message m) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnPaddingChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnPaddingChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnPaddingChangedEventArgs">
+            <summary>Legt die stub von Control.OnPaddingChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>Legt die stub von AGauge.OnPaint(PaintEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            <summary>Legt die stub von AGauge.OnPaintBackground(PaintEventArgs pevent) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnPaintBackgroundPaintEventArgs">
+            <summary>Legt die stub von AGauge.OnPaintBackground(PaintEventArgs pevent) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnPaintPaintEventArgs">
+            <summary>Legt die stub von AGauge.OnPaint(PaintEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnParentBackColorChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnParentBackColorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnParentBackColorChangedEventArgs">
+            <summary>Legt die stub von Control.OnParentBackColorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnParentBackgroundImageChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnParentBackgroundImageChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnParentBackgroundImageChangedEventArgs">
+            <summary>Legt die stub von Control.OnParentBackgroundImageChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnParentBindingContextChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnParentBindingContextChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnParentBindingContextChangedEventArgs">
+            <summary>Legt die stub von Control.OnParentBindingContextChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnParentChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnParentChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnParentChangedEventArgs">
+            <summary>Legt die stub von Control.OnParentChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnParentCursorChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnParentCursorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnParentCursorChangedEventArgs">
+            <summary>Legt die stub von Control.OnParentCursorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnParentEnabledChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnParentEnabledChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnParentEnabledChangedEventArgs">
+            <summary>Legt die stub von Control.OnParentEnabledChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnParentFontChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnParentFontChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnParentFontChangedEventArgs">
+            <summary>Legt die stub von Control.OnParentFontChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnParentForeColorChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnParentForeColorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnParentForeColorChangedEventArgs">
+            <summary>Legt die stub von Control.OnParentForeColorChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnParentRightToLeftChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnParentRightToLeftChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnParentRightToLeftChangedEventArgs">
+            <summary>Legt die stub von Control.OnParentRightToLeftChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnParentVisibleChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnParentVisibleChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnParentVisibleChangedEventArgs">
+            <summary>Legt die stub von Control.OnParentVisibleChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnPreviewKeyDown(System.Windows.Forms.PreviewKeyDownEventArgs)">
+            <summary>Legt die stub von Control.OnPreviewKeyDown(PreviewKeyDownEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnPreviewKeyDownPreviewKeyDownEventArgs">
+            <summary>Legt die stub von Control.OnPreviewKeyDown(PreviewKeyDownEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnPrint(System.Windows.Forms.PaintEventArgs)">
+            <summary>Legt die stub von Control.OnPrint(PaintEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnPrintPaintEventArgs">
+            <summary>Legt die stub von Control.OnPrint(PaintEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnQueryContinueDrag(System.Windows.Forms.QueryContinueDragEventArgs)">
+            <summary>Legt die stub von Control.OnQueryContinueDrag(QueryContinueDragEventArgs qcdevent) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnQueryContinueDragQueryContinueDragEventArgs">
+            <summary>Legt die stub von Control.OnQueryContinueDrag(QueryContinueDragEventArgs qcdevent) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnRegionChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnRegionChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnRegionChangedEventArgs">
+            <summary>Legt die stub von Control.OnRegionChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnResize(System.EventArgs)">
+            <summary>Legt die stub von AGauge.OnResize(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnResizeEventArgs">
+            <summary>Legt die stub von AGauge.OnResize(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnRightToLeftChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnRightToLeftChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnRightToLeftChangedEventArgs">
+            <summary>Legt die stub von Control.OnRightToLeftChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnSizeChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnSizeChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnSizeChangedEventArgs">
+            <summary>Legt die stub von Control.OnSizeChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnStyleChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnStyleChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnStyleChangedEventArgs">
+            <summary>Legt die stub von Control.OnStyleChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnSystemColorsChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnSystemColorsChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnSystemColorsChangedEventArgs">
+            <summary>Legt die stub von Control.OnSystemColorsChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnTabIndexChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnTabIndexChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnTabIndexChangedEventArgs">
+            <summary>Legt die stub von Control.OnTabIndexChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnTabStopChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnTabStopChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnTabStopChangedEventArgs">
+            <summary>Legt die stub von Control.OnTabStopChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnTextChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnTextChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnTextChangedEventArgs">
+            <summary>Legt die stub von Control.OnTextChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnValidated(System.EventArgs)">
+            <summary>Legt die stub von Control.OnValidated(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnValidatedEventArgs">
+            <summary>Legt die stub von Control.OnValidated(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnValidating(System.ComponentModel.CancelEventArgs)">
+            <summary>Legt die stub von Control.OnValidating(CancelEventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnValidatingCancelEventArgs">
+            <summary>Legt die stub von Control.OnValidating(CancelEventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.OnVisibleChanged(System.EventArgs)">
+            <summary>Legt die stub von Control.OnVisibleChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.OnVisibleChangedEventArgs">
+            <summary>Legt die stub von Control.OnVisibleChanged(EventArgs e) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.PreProcessMessage(System.Windows.Forms.Message@)">
+            <summary>Legt die stub von Control.PreProcessMessage(Message&amp; msg) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.PreProcessMessageMessageRef">
+            <summary>Legt die stub von Control.PreProcessMessage(Message&amp; msg) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)">
+            <summary>Legt die stub von Control.ProcessCmdKey(Message&amp; msg, Keys keyData) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ProcessCmdKeyMessageRefKeys">
+            <summary>Legt die stub von Control.ProcessCmdKey(Message&amp; msg, Keys keyData) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ProcessDialogChar(System.Char)">
+            <summary>Legt die stub von Control.ProcessDialogChar(Char charCode) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ProcessDialogCharChar">
+            <summary>Legt die stub von Control.ProcessDialogChar(Char charCode) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ProcessDialogKey(System.Windows.Forms.Keys)">
+            <summary>Legt die stub von Control.ProcessDialogKey(Keys keyData) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ProcessDialogKeyKeys">
+            <summary>Legt die stub von Control.ProcessDialogKey(Keys keyData) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ProcessKeyEventArgs(System.Windows.Forms.Message@)">
+            <summary>Legt die stub von Control.ProcessKeyEventArgs(Message&amp; m) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ProcessKeyEventArgsMessageRef">
+            <summary>Legt die stub von Control.ProcessKeyEventArgs(Message&amp; m) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ProcessKeyMessage(System.Windows.Forms.Message@)">
+            <summary>Legt die stub von Control.ProcessKeyMessage(Message&amp; m) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ProcessKeyMessageMessageRef">
+            <summary>Legt die stub von Control.ProcessKeyMessage(Message&amp; m) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ProcessKeyPreview(System.Windows.Forms.Message@)">
+            <summary>Legt die stub von Control.ProcessKeyPreview(Message&amp; m) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ProcessKeyPreviewMessageRef">
+            <summary>Legt die stub von Control.ProcessKeyPreview(Message&amp; m) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ProcessMnemonic(System.Char)">
+            <summary>Legt die stub von Control.ProcessMnemonic(Char charCode) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ProcessMnemonicChar">
+            <summary>Legt die stub von Control.ProcessMnemonic(Char charCode) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.Refresh">
+            <summary>Legt die stub von Control.Refresh() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.Refresh01">
+            <summary>Legt die stub von Control.Refresh() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ResetBackColor">
+            <summary>Legt die stub von Control.ResetBackColor() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ResetBackColor01">
+            <summary>Legt die stub von Control.ResetBackColor() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ResetCursor">
+            <summary>Legt die stub von Control.ResetCursor() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ResetCursor01">
+            <summary>Legt die stub von Control.ResetCursor() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ResetFont">
+            <summary>Legt die stub von Control.ResetFont() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ResetFont01">
+            <summary>Legt die stub von Control.ResetFont() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ResetForeColor">
+            <summary>Legt die stub von Control.ResetForeColor() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ResetForeColor01">
+            <summary>Legt die stub von Control.ResetForeColor() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ResetRightToLeft">
+            <summary>Legt die stub von Control.ResetRightToLeft() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ResetRightToLeft01">
+            <summary>Legt die stub von Control.ResetRightToLeft() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ResetText">
+            <summary>Legt die stub von Control.ResetText() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ResetText01">
+            <summary>Legt die stub von Control.ResetText() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.RightToLeft">
+            <summary>Legt die stub von Control.get_RightToLeft() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.RightToLeftGet">
+            <summary>Legt die stub von Control.get_RightToLeft() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.RightToLeftSetRightToLeft">
+            <summary>Legt die stub von Control.set_RightToLeft(RightToLeft value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.ScaleChildren">
+            <summary>Legt die stub von Control.get_ScaleChildren() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ScaleChildrenGet">
+            <summary>Legt die stub von Control.get_ScaleChildren() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ScaleControl(System.Drawing.SizeF,System.Windows.Forms.BoundsSpecified)">
+            <summary>Legt die stub von Control.ScaleControl(SizeF factor, BoundsSpecified specified) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ScaleControlSizeFBoundsSpecified">
+            <summary>Legt die stub von Control.ScaleControl(SizeF factor, BoundsSpecified specified) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ScaleCore(System.Single,System.Single)">
+            <summary>Legt die stub von Control.ScaleCore(Single dx, Single dy) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ScaleCoreSingleSingle">
+            <summary>Legt die stub von Control.ScaleCore(Single dx, Single dy) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.Select(System.Boolean,System.Boolean)">
+            <summary>Legt die stub von Control.Select(Boolean directed, Boolean forward) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.SelectBooleanBoolean">
+            <summary>Legt die stub von Control.Select(Boolean directed, Boolean forward) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.SetBoundsCore(System.Int32,System.Int32,System.Int32,System.Int32,System.Windows.Forms.BoundsSpecified)">
+            <summary>Legt die stub von Control.SetBoundsCore(Int32 x, Int32 y, Int32 width, Int32 height, BoundsSpecified specified) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.SetBoundsCoreInt32Int32Int32Int32BoundsSpecified">
+            <summary>Legt die stub von Control.SetBoundsCore(Int32 x, Int32 y, Int32 width, Int32 height, BoundsSpecified specified) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.SetClientSizeCore(System.Int32,System.Int32)">
+            <summary>Legt die stub von Control.SetClientSizeCore(Int32 x, Int32 y) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.SetClientSizeCoreInt32Int32">
+            <summary>Legt die stub von Control.SetClientSizeCore(Int32 x, Int32 y) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.SetVisibleCore(System.Boolean)">
+            <summary>Legt die stub von Control.SetVisibleCore(Boolean value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.SetVisibleCoreBoolean">
+            <summary>Legt die stub von Control.SetVisibleCore(Boolean value) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.ShowFocusCues">
+            <summary>Legt die stub von Control.get_ShowFocusCues() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ShowFocusCuesGet">
+            <summary>Legt die stub von Control.get_ShowFocusCues() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.ShowKeyboardCues">
+            <summary>Legt die stub von Control.get_ShowKeyboardCues() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ShowKeyboardCuesGet">
+            <summary>Legt die stub von Control.get_ShowKeyboardCues() fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.Site">
+            <summary>Legt die stub von Control.get_Site() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.SiteGet">
+            <summary>Legt die stub von Control.get_Site() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.SiteSetISite">
+            <summary>Legt die stub von Control.set_Site(ISite value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.SizeFromClientSize(System.Drawing.Size)">
+            <summary>Legt die stub von Control.SizeFromClientSize(Size clientSize) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.SizeFromClientSizeSize">
+            <summary>Legt die stub von Control.SizeFromClientSize(Size clientSize) fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGauge.Text">
+            <summary>Legt die stub von Control.get_Text() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.TextGet">
+            <summary>Legt die stub von Control.get_Text() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.TextSetString">
+            <summary>Legt die stub von Control.set_Text(String value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.ToString">
+            <summary>Legt die stub von Component.ToString() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.ToString01">
+            <summary>Legt die stub von Component.ToString() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGauge.WndProc(System.Windows.Forms.Message@)">
+            <summary>Legt die stub von Control.WndProc(Message&amp; m) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGauge.WndProcMessageRef">
+            <summary>Legt die stub von Control.WndProc(Message&amp; m) fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.StubAGaugeLabel">
+            <summary>Stub-Typ von System.Windows.Forms.AGaugeLabel</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabel.#ctor">
+            <summary>Initialisiert eine neue Instanz.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeLabel.CallBase">
+            <summary>Ruft einen Wert ab, der angibt, ob die Basismethode anstelle des Fallback-Verhaltens abgerufen werden soll, oder legt diesen fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabel.InitializeStub">
+            <summary>Initialisiert eine neue Instanz von type StubAGaugeLabel.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeLabel.InstanceBehavior">
+            <summary>Ruft das Instanzverhalten ab, oder legt dieses fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeLabel.InstanceObserver">
+            <summary>Ruft den Instanzbeobachter ab, oder legt ihn fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.StubAGaugeLabelCollection">
+            <summary>Stub-Typ von System.Windows.Forms.AGaugeLabelCollection</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.#ctor(System.Windows.Forms.AGauge)">
+            <summary>Initialisiert eine neue Instanz.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.CallBase">
+            <summary>Ruft einen Wert ab, der angibt, ob die Basismethode anstelle des Fallback-Verhaltens abgerufen werden soll, oder legt diesen fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.InitializeStub">
+            <summary>Initialisiert eine neue Instanz von type StubAGaugeLabelCollection.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.InstanceBehavior">
+            <summary>Ruft das Instanzverhalten ab, oder legt dieses fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.InstanceObserver">
+            <summary>Ruft den Instanzbeobachter ab, oder legt ihn fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnClear">
+            <summary>Legt die stub von AGaugeLabelCollection.OnClear() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnClear01">
+            <summary>Legt die stub von AGaugeLabelCollection.OnClear() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnClearComplete">
+            <summary>Legt die stub von CollectionBase.OnClearComplete() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnClearComplete01">
+            <summary>Legt die stub von CollectionBase.OnClearComplete() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnInsert(System.Int32,System.Object)">
+            <summary>Legt die stub von AGaugeLabelCollection.OnInsert(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnInsertComplete(System.Int32,System.Object)">
+            <summary>Legt die stub von CollectionBase.OnInsertComplete(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnInsertCompleteInt32Object">
+            <summary>Legt die stub von CollectionBase.OnInsertComplete(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnInsertInt32Object">
+            <summary>Legt die stub von AGaugeLabelCollection.OnInsert(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnRemove(System.Int32,System.Object)">
+            <summary>Legt die stub von AGaugeLabelCollection.OnRemove(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnRemoveComplete(System.Int32,System.Object)">
+            <summary>Legt die stub von CollectionBase.OnRemoveComplete(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnRemoveCompleteInt32Object">
+            <summary>Legt die stub von CollectionBase.OnRemoveComplete(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnRemoveInt32Object">
+            <summary>Legt die stub von AGaugeLabelCollection.OnRemove(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnSet(System.Int32,System.Object,System.Object)">
+            <summary>Legt die stub von CollectionBase.OnSet(Int32 index, Object oldValue, Object newValue) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnSetComplete(System.Int32,System.Object,System.Object)">
+            <summary>Legt die stub von CollectionBase.OnSetComplete(Int32 index, Object oldValue, Object newValue) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnSetCompleteInt32ObjectObject">
+            <summary>Legt die stub von CollectionBase.OnSetComplete(Int32 index, Object oldValue, Object newValue) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnSetInt32ObjectObject">
+            <summary>Legt die stub von CollectionBase.OnSet(Int32 index, Object oldValue, Object newValue) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnValidate(System.Object)">
+            <summary>Legt die stub von CollectionBase.OnValidate(Object value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeLabelCollection.OnValidateObject">
+            <summary>Legt die stub von CollectionBase.OnValidate(Object value) fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.StubAGaugeRange">
+            <summary>Stub-Typ von System.Windows.Forms.AGaugeRange</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRange.#ctor">
+            <summary>Initialisiert eine neue Instanz.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRange.#ctor(System.Drawing.Color,System.Single,System.Single,System.Int32,System.Int32)">
+            <summary>Initialisiert eine neue Instanz.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeRange.CallBase">
+            <summary>Ruft einen Wert ab, der angibt, ob die Basismethode anstelle des Fallback-Verhaltens abgerufen werden soll, oder legt diesen fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRange.InitializeStub">
+            <summary>Initialisiert eine neue Instanz von type StubAGaugeRange.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeRange.InstanceBehavior">
+            <summary>Ruft das Instanzverhalten ab, oder legt dieses fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeRange.InstanceObserver">
+            <summary>Ruft den Instanzbeobachter ab, oder legt ihn fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.StubAGaugeRangeCollection">
+            <summary>Stub-Typ von System.Windows.Forms.AGaugeRangeCollection</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.#ctor(System.Windows.Forms.AGauge)">
+            <summary>Initialisiert eine neue Instanz.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.CallBase">
+            <summary>Ruft einen Wert ab, der angibt, ob die Basismethode anstelle des Fallback-Verhaltens abgerufen werden soll, oder legt diesen fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.InitializeStub">
+            <summary>Initialisiert eine neue Instanz von type StubAGaugeRangeCollection.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.InstanceBehavior">
+            <summary>Ruft das Instanzverhalten ab, oder legt dieses fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.InstanceObserver">
+            <summary>Ruft den Instanzbeobachter ab, oder legt ihn fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnClear">
+            <summary>Legt die stub von AGaugeRangeCollection.OnClear() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnClear01">
+            <summary>Legt die stub von AGaugeRangeCollection.OnClear() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnClearComplete">
+            <summary>Legt die stub von CollectionBase.OnClearComplete() fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnClearComplete01">
+            <summary>Legt die stub von CollectionBase.OnClearComplete() fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnInsert(System.Int32,System.Object)">
+            <summary>Legt die stub von AGaugeRangeCollection.OnInsert(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnInsertComplete(System.Int32,System.Object)">
+            <summary>Legt die stub von CollectionBase.OnInsertComplete(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnInsertCompleteInt32Object">
+            <summary>Legt die stub von CollectionBase.OnInsertComplete(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnInsertInt32Object">
+            <summary>Legt die stub von AGaugeRangeCollection.OnInsert(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnRemove(System.Int32,System.Object)">
+            <summary>Legt die stub von AGaugeRangeCollection.OnRemove(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnRemoveComplete(System.Int32,System.Object)">
+            <summary>Legt die stub von CollectionBase.OnRemoveComplete(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnRemoveCompleteInt32Object">
+            <summary>Legt die stub von CollectionBase.OnRemoveComplete(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnRemoveInt32Object">
+            <summary>Legt die stub von AGaugeRangeCollection.OnRemove(Int32 index, Object value) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnSet(System.Int32,System.Object,System.Object)">
+            <summary>Legt die stub von CollectionBase.OnSet(Int32 index, Object oldValue, Object newValue) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnSetComplete(System.Int32,System.Object,System.Object)">
+            <summary>Legt die stub von CollectionBase.OnSetComplete(Int32 index, Object oldValue, Object newValue) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnSetCompleteInt32ObjectObject">
+            <summary>Legt die stub von CollectionBase.OnSetComplete(Int32 index, Object oldValue, Object newValue) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnSetInt32ObjectObject">
+            <summary>Legt die stub von CollectionBase.OnSet(Int32 index, Object oldValue, Object newValue) fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnValidate(System.Object)">
+            <summary>Legt die stub von CollectionBase.OnValidate(Object value) fest.</summary>
+        </member>
+        <member name="F:System.Windows.Forms.Fakes.StubAGaugeRangeCollection.OnValidateObject">
+            <summary>Legt die stub von CollectionBase.OnValidate(Object value) fest.</summary>
+        </member>
+        <member name="T:System.Windows.Forms.Fakes.StubValueInRangeChangedEventArgs">
+            <summary>Stub-Typ von System.Windows.Forms.ValueInRangeChangedEventArgs</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubValueInRangeChangedEventArgs.#ctor(System.Windows.Forms.AGaugeRange,System.Single,System.Boolean)">
+            <summary>Initialisiert eine neue Instanz.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubValueInRangeChangedEventArgs.CallBase">
+            <summary>Ruft einen Wert ab, der angibt, ob die Basismethode anstelle des Fallback-Verhaltens abgerufen werden soll, oder legt diesen fest.</summary>
+        </member>
+        <member name="M:System.Windows.Forms.Fakes.StubValueInRangeChangedEventArgs.InitializeStub">
+            <summary>Initialisiert eine neue Instanz von type StubValueInRangeChangedEventArgs.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubValueInRangeChangedEventArgs.InstanceBehavior">
+            <summary>Ruft das Instanzverhalten ab, oder legt dieses fest.</summary>
+        </member>
+        <member name="P:System.Windows.Forms.Fakes.StubValueInRangeChangedEventArgs.InstanceObserver">
+            <summary>Ruft den Instanzbeobachter ab, oder legt ihn fest.</summary>
+        </member>
+    </members>
+</doc>
