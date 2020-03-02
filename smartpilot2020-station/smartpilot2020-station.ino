@@ -23,13 +23,36 @@ void ExampleInputTask(PTCB tcb)
 
   while(1)
   {
+    // RemoteTelemetryPacket - ID;PITCH;ROLL;HEADING;SPEED;ALTITUDE
     Serial.print("2;");
     Serial.print(random(-60, 60));
-    Serial.println(";10;150;20;50");
+    Serial.print(";10;");
+    Serial.print(random(0, 360));
+    Serial.println(";20;50");
 
-    Serial.println("3;-97.821456;30.239772");
+    // RemotePositionPacket - ID;LATITUDE;LONGITUDE
+    Serial.print("3;-97,821");
+    Serial.print(random(0, 999));
+    Serial.print(";30,239");
+    Serial.println(random(0, 999));
 
-    MOS_Delay(tcb, 2000);
+    // RemoteEnvironmentPacket - ID;TEMPERATURE;HUMIDITY;PRESSURE
+    Serial.println("4;19,25;35,14;1002");
+
+    MOS_Delay(tcb, 3000);
+  }
+}
+
+void StationaryMeasurementTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+
+  while(1)
+  {
+    // StationaryEnvironmentPacket - ID;TEMPERATURE;HUMIDITY;PRESSURE
+    Serial.println("5;18,25;44,14;1008");
+
+    MOS_Delay(tcb, 5000);
   }
 }
 
@@ -68,5 +91,6 @@ void SendControlSignalTask(PTCB tcb)
 void loop() {
   MOS_Call(ReceiveTask);
   MOS_Call(SendControlSignalTask);
-  //MOS_Call(ExampleInputTask);
+  MOS_Call(StationaryMeasurementTask);
+  MOS_Call(ExampleInputTask);
 }

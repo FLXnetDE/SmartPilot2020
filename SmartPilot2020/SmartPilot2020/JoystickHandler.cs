@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RCAutopilot
+namespace SmartPilot2020
 {
     public class JoystickHandler
     {
@@ -14,7 +14,7 @@ namespace RCAutopilot
         public JoystickHandler(SmartPilot2020 main)
         {
             this.main = main;
-            main.Log("JoystickHandler started!");
+            main.log.Log("JoystickHandler started!");
 
             DirectInput directInput = new DirectInput();
             Guid joystickGuid = Guid.Empty;

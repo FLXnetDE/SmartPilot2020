@@ -1,9 +1,12 @@
-﻿using System;
+﻿using SmartPilot2020;
+using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Threading;
 using System.Windows.Forms;
+using SmartPilot2020.Properties;
 
-namespace RCAutopilot
+namespace SmartPilot2020
 {
     public partial class SmartPilot2020 : Form
     {
@@ -13,6 +16,8 @@ namespace RCAutopilot
         ///////////////////
         // Global config //
         ///////////////////
+
+        public LogForm log;
 
         public bool Debug = false;
         public int SystemTickInterval = 50;
@@ -29,6 +34,9 @@ namespace RCAutopilot
 
         private void RCAutopilot_Load(object sender, EventArgs e)
         {
+            log = new LogForm();
+            log.Show();
+
             (new Thread(() => {
                 JoystickHandler = new JoystickHandler(this);
             })).Start();
@@ -41,6 +49,7 @@ namespace RCAutopilot
         ////////////////////////////////
         public void UpdateControlVisualization()
         {
+            // Graphic based visualtization
             pbPitchRollVisualization.Refresh();
             pbMonitorVisualization.Refresh();
 
@@ -48,13 +57,35 @@ namespace RCAutopilot
             pbAltitudeVisualization.Refresh();
             pbHeadingVisualization.Refresh();
 
+            pbNavigation.Refresh();
+
+            pbStationaryWindDirection.Refresh();
+
+            // Text based visualization
+            SetCurrentPitch(FlightHandler.CurrentPitchAngle);
+            SetCurrentRoll(FlightHandler.CurrentRollAngle);
+            SetCurrentHeading(FlightHandler.CurrentHeading);
+            SetCurrentSpeed(FlightHandler.CurrentSpeed);
+            SetCurrentAltitude(FlightHandler.CurrentAltitude);
+
             SetLatitude(FlightHandler.CurrentLatitude);
             SetLongitude(FlightHandler.CurrentLongitude);
+
+            SetCurrentAircraftTemperature(FlightHandler.CurrentAircraftTemperature);
+            SetCurrentAircraftHumidity(FlightHandler.CurrentAircraftHumidity);
+            SetCurrentAircraftPressure(FlightHandler.CurrentAircraftPressure);
+
+            SetCurrentStationaryTemperature(FlightHandler.CurrentStationaryTemperature);
+            SetCurrentStationaryHumidity(FlightHandler.CurrentStationaryHumidity);
+            SetCurrentStationaryPressure(FlightHandler.CurrentStationaryPressure);
+
+            SetCurrentWindInformation(tbAngle.Value, 15);
         }
 
         private void pbPitchRollVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
 
             ///////////////////////////////////
             // Virtual horizon visualization //
@@ -98,31 +129,54 @@ namespace RCAutopilot
         private void pbSpeedVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            pbSpeedVisualization.BackColor = Color.Black;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            pbSpeedVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
+
+            if (!FlightHandler.ControlsActiveChecked)
+            {
+                return;
+            }
 
         }
 
         private void pbAltitudeVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            pbAltitudeVisualization.BackColor = Color.Black;
+            pbAltitudeVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
+
+            if (!FlightHandler.ControlsActiveChecked)
+            {
+                return;
+            }
 
         }
 
         private void pbHeadingVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            pbHeadingVisualization.BackColor = Color.Black;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            pbHeadingVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
 
             g.DrawLine(new Pen(Brushes.White, 2), 5, 30, 295, 30);
-
             g.DrawLine(new Pen(Brushes.White, 2), 150, 5, 150, 40);
+
+            g.DrawLine(new Pen(Brushes.White, 2), 100, 15, 100, 40);
+            g.DrawLine(new Pen(Brushes.White, 2), 50, 15, 50, 40);
+            g.DrawLine(new Pen(Brushes.White, 2), 200, 15, 200, 40);
+            g.DrawLine(new Pen(Brushes.White, 2), 250, 15, 250, 40);
+
+            if (!FlightHandler.ControlsActiveChecked)
+            {
+                return;
+            }
+
+            int currentHeading = FlightHandler.CurrentHeading;
 
             int width = 0;
             if(FlightHandler.CurrentHeading < 10)
             {
                 width = 144;
-            } else if(FlightHandler.CurrentHeading > 10 && FlightHandler.CurrentHeading < 100)
+            } else if(currentHeading > 10 && currentHeading < 100)
             {
                 width = 140;
             } else
@@ -130,14 +184,15 @@ namespace RCAutopilot
                 width = 137;
             }
 
-            g.DrawString(FlightHandler.CurrentHeading.ToString(), new Font("Arial", 10), Brushes.White, width, 40);
+            g.DrawString(currentHeading.ToString(), new Font("Arial", 10, FontStyle.Bold), Brushes.White, width, 40);
 
         }
 
         private void pbMonitorVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            pbMonitorVisualization.BackColor = Color.Black;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            pbMonitorVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
 
             g.DrawLine(new Pen(Brushes.White, 1), 62.5F, 5, 62.5F, 55);
 
@@ -159,7 +214,75 @@ namespace RCAutopilot
                 g.DrawString("PWR", new Font("Arial", 12, FontStyle.Bold), Brushes.LimeGreen, 9, 10);
             }
 
-            g.DrawString(FlightHandler.ThrustValue + "µs", new Font("Arial", 8), Brushes.White, 12, 35);
+            g.DrawString(FlightHandler.ThrustValue + "µs", new Font("Arial", 8, FontStyle.Bold), Brushes.White, 12, 35);
+
+        }
+
+        private void pbNavigation_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            pbNavigation.BackColor = Color.Black;
+
+            Image plane = Properties.Resources.YellowPlane;
+
+            int a = (pbNavigation.Size.Width / 2) - (plane.Width / 2);
+            int b = (pbNavigation.Size.Height / 2) - (plane.Height / 2);
+            g.DrawImage(plane, a, b);
+
+            g.DrawString("Latitude: " + FlightHandler.CurrentLatitude, new Font("Arial", 10, FontStyle.Bold), Brushes.Green, 10, 10);
+            g.DrawString("Longitude: " + FlightHandler.CurrentLongitude, new Font("Arial", 10, FontStyle.Bold), Brushes.Green, 10, 30);
+        }
+
+        private void pbStationaryWindDirection_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+
+            int angle = tbAngle.Value;
+
+            Image greenArrow = Properties.Resources.GreenArrow;
+            g.DrawImage(RotateImage(greenArrow, angle), 0, 0);
+        }
+
+        //////////
+        // Test //
+        //////////
+
+        private void tbAngle_Scroll(object sender, EventArgs e)
+        {
+            pbGaugeTest.Refresh();
+        }
+
+        private void pbGaugeTest_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+
+            int diameter = 118;
+            int angle = tbAngle.Value;
+
+            double radian = (angle * (Math.PI / 180));
+
+            // Center
+            int a = 60;
+            int b = 60;
+
+            g.DrawEllipse(new Pen(Brushes.Green, 2), new Rectangle(0, 0, diameter, diameter));
+            g.FillEllipse(Brushes.Green, new Rectangle(a - 3, b - 3, 6, 6));
+
+            // Point on circumfence
+            int x = (int) (a + ((diameter / 2) * Math.Cos(radian)));
+            int y = (int) (b + ((diameter / 2) * Math.Sin(radian)));
+            g.DrawLine(new Pen(Brushes.Black, 2), a, b, x, y);
+
+            /*
+            int x2 = (int)(a - ((diameter / 2) * Math.Cos(radian)));
+            int y2 = (int)(b - ((diameter / 2) * Math.Sin(radian)));
+            g.DrawLine(new Pen(Brushes.Black, 2), a, b, x2, y2);
+            */
+
+            g.DrawString(angle + "°", new Font("Arial", 8, FontStyle.Bold), Brushes.Black, 50, 125);
 
         }
 
@@ -214,15 +337,6 @@ namespace RCAutopilot
         // Helper functions //
         //////////////////////
 
-        // Add message to CheckedListBox
-        public void Log(String text)
-        {
-            clbLog.Invoke((MethodInvoker)delegate
-           {
-               clbLog.Items.Add("[" + DateTime.Now + "] " + text);
-           });
-        }
-
         // Display in/out traffic to 2,4GHz module
         public void SetTraffic(String text)
         {
@@ -253,7 +367,7 @@ namespace RCAutopilot
         }
 
         // Set latitude
-        public void SetLatitude(String latitude)
+        public void SetLatitude(double latitude)
         {
             lblLatitude.Invoke((MethodInvoker)delegate
            {
@@ -262,12 +376,120 @@ namespace RCAutopilot
         }
 
         // Set longitude
-        public void SetLongitude(String longitude)
+        public void SetLongitude(double longitude)
         {
             lblLongitude.Invoke((MethodInvoker)delegate
             {
                 lblLongitude.Text = "Longitude: " + longitude;
             });
+        }
+
+        // Set current pitch (label text)
+        public void SetCurrentPitch(int pitch)
+        {
+            lblCurrentPitch.Invoke((MethodInvoker)delegate
+           {
+               lblCurrentPitch.Text = "Pitch: " + pitch + "°";
+           });
+        }
+
+        // Set current roll (label text)
+        public void SetCurrentRoll(int roll)
+        {
+            lblCurrentRoll.Invoke((MethodInvoker)delegate
+            {
+                lblCurrentRoll.Text = "Roll: " + roll + "°";
+            });
+        }
+
+        // Set current heading (label text)
+        public void SetCurrentHeading(int heading)
+        {
+            lblCurrentHeading.Invoke((MethodInvoker)delegate
+            {
+                lblCurrentHeading.Text = "Heading: " + heading + "°";
+            });
+        }
+
+        // Set current speed (label text)
+        public void SetCurrentSpeed(int speed)
+        {
+            lblCurrentSpeed.Invoke((MethodInvoker)delegate
+            {
+                lblCurrentSpeed.Text = "Speed: " + speed + " ?";
+            });
+        }
+
+        // Set current altitude (label text)
+        public void SetCurrentAltitude(int altitude)
+        {
+            lblCurrentAltitude.Invoke((MethodInvoker)delegate
+            {
+                lblCurrentAltitude.Text = "Altitude: " + altitude + " ?";
+            });
+        }
+
+        // Set current aircraft temperature (label text)
+        public void SetCurrentAircraftTemperature(double temperature)
+        {
+            lblAircraftTemperature.Invoke((MethodInvoker)delegate
+           {
+               lblAircraftTemperature.Text = "Temperature: " + temperature + "°C";
+           });
+        }
+
+        // Set current aircraft humidity (label text)
+        public void SetCurrentAircraftHumidity(double humidity)
+        {
+            lblAircraftHumidity.Invoke((MethodInvoker)delegate
+            {
+                lblAircraftHumidity.Text = "Humidity: " + humidity + "%";
+            });
+        }
+
+        // Set current aircraft pressure (label text)
+        public void SetCurrentAircraftPressure(int pressure)
+        {
+            lblAircraftPressure.Invoke((MethodInvoker)delegate
+            {
+                lblAircraftPressure.Text = "Pressure: " + pressure + "hPa";
+            });
+        }
+
+        // Set current stationary temperature (label text)
+        public void SetCurrentStationaryTemperature(double temperature)
+        {
+            lblStationaryTemperature.Invoke((MethodInvoker)delegate
+            {
+                lblStationaryTemperature.Text = "Temperature: " + temperature + "°C";
+            });
+        }
+
+        // Set current stationary humidity (label text)
+        public void SetCurrentStationaryHumidity(double humidity)
+        {
+            lblStationaryHumidity.Invoke((MethodInvoker)delegate
+            {
+                lblStationaryHumidity.Text = "Humidity: " + humidity + "%";
+            });
+        }
+
+        // Set current stationary pressure (label text)
+        public void SetCurrentStationaryPressure(int pressure)
+        {
+            lblStationaryPressure.Invoke((MethodInvoker)delegate
+            {
+                lblStationaryPressure.Text = "Pressure: " + pressure + "hPa";
+            });
+        }
+
+        // Set current wind information (label text)
+        public void SetCurrentWindInformation(int angle, int windStrength)
+        {
+            lblCurrentWindInformation.Invoke((MethodInvoker)delegate
+           {
+               lblCurrentWindInformation.Text = "5KT / " + angle + "°";
+           });
         }
 
         // Programm beenden
@@ -282,37 +504,31 @@ namespace RCAutopilot
             return (int)Math.Ceiling((value - from1) / (to1 - from1) * (to2 - from2) + from2);
         }
 
-        // Clear log
-        private void btnClearLog_Click(object sender, EventArgs e)
-        {
-            clbLog.Items.Clear();
-        }
-
         // Create connection to ComPort manually
         private void btnConnectComPort_Click(object sender, EventArgs e)
         {
-            this.FlightHandler.RemoteDataOutputInterface.Connect();
+            this.FlightHandler.RemoteDataInterface.Connect();
         }
 
         // End connection to ComPort manually
         private void btnDisconnectComPort_Click(object sender, EventArgs e)
         {
-            this.FlightHandler.RemoteDataOutputInterface.Disconnect();
+            this.FlightHandler.RemoteDataInterface.Disconnect();
         }
 
         // Stop outgoing packets
         private void btnStopOutgoingPackets_Click(object sender, EventArgs e)
         {
-            if(this.FlightHandler.RemoteDataOutputInterface.PacketOutputState)
+            if(this.FlightHandler.RemoteDataInterface.PacketOutputState)
             {
-                this.FlightHandler.RemoteDataOutputInterface.PacketOutputState = false;
+                this.FlightHandler.RemoteDataInterface.PacketOutputState = false;
                 SetPacketOutputState(false);
-                Log("Remote packet output stopped!");
+                log.Log("Remote packet output stopped!");
             } else
             {
-                this.FlightHandler.RemoteDataOutputInterface.PacketOutputState = true;
+                this.FlightHandler.RemoteDataInterface.PacketOutputState = true;
                 SetPacketOutputState(true);
-                Log("Remote packet output started!");
+                log.Log("Remote packet output started!");
             }
         }
 
@@ -327,6 +543,36 @@ namespace RCAutopilot
                 lblPacketOutput.ForeColor = Color.Red;
                 lblPacketOutput.Text = "Stopped";
             }
+        }
+
+        public static Image RotateImage(Image img, float rotationAngle)
+        {
+            //create an empty Bitmap image
+            Bitmap bmp = new Bitmap(img.Width, img.Height);
+
+            //turn the Bitmap into a Graphics object
+            Graphics gfx = Graphics.FromImage(bmp);
+
+            //now we set the rotation point to the center of our image
+            gfx.TranslateTransform((float)bmp.Width / 2, (float)bmp.Height / 2);
+
+            //now rotate the image
+            gfx.RotateTransform(rotationAngle);
+
+            gfx.TranslateTransform(-(float)bmp.Width / 2, -(float)bmp.Height / 2);
+
+            //set the InterpolationMode to HighQualityBicubic so to ensure a high
+            //quality image once it is transformed to the specified size
+            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            //now draw our new image onto the graphics object
+            gfx.DrawImage(img, new Point(0, 0));
+
+            //dispose of our Graphics object
+            gfx.Dispose();
+
+            //return the image
+            return bmp;
         }
 
     }

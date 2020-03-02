@@ -2,13 +2,13 @@
 using System;
 using System.Windows.Forms;
 
-namespace RCAutopilot
+namespace SmartPilot2020
 {
     public class FlightHandler
     {
         private SmartPilot2020 main;
         private Timer ProcessTimer;
-        public RemoteDataInterface RemoteDataOutputInterface;
+        public RemoteDataInterface RemoteDataInterface;
 
         public bool ControlsActiveChecked = false;
 
@@ -18,15 +18,24 @@ namespace RCAutopilot
         public int RollValue;
         public int YawValue;
 
-        // Incoming plane location data
-        public int CurrentSpeed;
-        public int CurrentAltitude;
-        public int CurrentHeading;
+        // Aircraft measured positioning and environmental properties
         public int CurrentPitchAngle;
         public int CurrentRollAngle;
+        public int CurrentHeading;
+        public int CurrentSpeed;
+        public int CurrentAltitude;
+        
+        public double CurrentLatitude;
+        public double CurrentLongitude;
 
-        public String CurrentLatitude;
-        public String CurrentLongitude;
+        public double CurrentAircraftTemperature;
+        public double CurrentAircraftHumidity;
+        public int CurrentAircraftPressure;
+
+        // Stationary measured environmental properties
+        public double CurrentStationaryTemperature;
+        public double CurrentStationaryHumidity;
+        public int CurrentStationaryPressure;
 
         public FlightHandler(SmartPilot2020 main)
         {
@@ -37,27 +46,28 @@ namespace RCAutopilot
             ProcessTimer.Interval = main.SystemTickInterval;
             ProcessTimer.Start();
 
-            this.RemoteDataOutputInterface = new RemoteDataInterface(main);
-            this.RemoteDataOutputInterface.Connect();
+            this.RemoteDataInterface = new RemoteDataInterface(main);
+            this.RemoteDataInterface.Connect();
 
-            main.Log("FlightHandler started!");
+            main.log.Log("FlightHandler started!");
         }
 
         private void ProcessTimer_Tick(object sender, EventArgs e)
         {
+            main.UpdateControlVisualization();
+
             if (ControlsActiveChecked == false)
             {
                 if (ThrustValue != 0 && PitchValue != 0 && RollValue != 0 && YawValue != 0)
                 {
                     ControlsActiveChecked = true;
-                    main.Log("Flight controls are active and checked!");
+                    main.log.Log("Flight controls are active and checked!");
                 }
                 return;
             }
 
-            RemoteDataOutputInterface.SendControlPacket(new RemoteControlPacket(ThrustValue, PitchValue, RollValue, YawValue));
-
-            main.UpdateControlVisualization();
+            RemoteDataInterface.SendControlPacket(new RemoteControlPacket(ThrustValue, PitchValue, RollValue, YawValue));
+            
         }
 
         public void ProcessThrust(int ThrustValue)

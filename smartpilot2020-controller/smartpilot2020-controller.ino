@@ -6,6 +6,7 @@
 #include <TinyGPS++.h>
 #include <SoftwareSerial.h>
 #include <Wire.h>
+#include <MechaQMC5883.h>
 
 #define MOTOR_PIN 10
 #define ELEVATOR_PIN 3
@@ -33,6 +34,7 @@ TinyGPSPlus gps;
 SoftwareSerial softwareSerial(rxPin, txPin);
 
 // Compass
+MechaQMC5883 compass;
 
 const char *gpsStream =
   "$GPRMC,045103.000,A,3014.1984,N,09749.2872,W,0.67,161.46,030913,,,A*7C\r\n"
@@ -61,6 +63,8 @@ void setup() {
   softwareSerial.begin(gpsBaud);
 
   // Compass
+  Wire.begin();
+  compass.init();
 
   Serial.println("[SmartPilot2020] Setup finished!");
 }
@@ -71,7 +75,33 @@ void CompassTask(PTCB tcb)
 
   while(1)
   {
+    int x, y, z;
+    int heading;
     
+    compass.read(&x, &y, &z, &heading);
+
+    if(heading >= 0 && heading < 45) {
+      Serial.print("Heading NORTH - ");
+    } else if(heading >= 45 && heading < 90) {
+      Serial.print("Heading NORTH-EAST - ");
+    } else if(heading >= 90 && heading < 135) {
+      Serial.print("Heading EAST - ");
+    } else if(heading >= 135 && heading < 180) {
+      Serial.print("Heading SOUTH-EAST - ");
+    } else if(heading >= 180 && heading < 225) {
+      Serial.print("Heading SOUTH - ");
+    } else if(heading >= 225 && heading < 270) {
+      Serial.print("Heading SOUTH-WEST - ");
+    } else if(heading >= 270 && heading < 315) {
+      Serial.print("Heading WEST - ");
+    } else if(heading >= 315 && heading < 360) {
+      Serial.print("Heading NORTH-WEST - ");
+    }
+    
+    Serial.print(heading);
+    Serial.println("°");
+    
+    MOS_Delay(tcb, 500);
   }
 }
 
@@ -123,7 +153,7 @@ void DebugTask(PTCB tcb)
   while(debug)
   {
     Serial.println("This is a debug line!");
-
+    
     radio.stopListening();
     radio.openWritingPipe(address);
     radio.write("2;45;10;150;20;50", 32);
@@ -163,8 +193,8 @@ void ReceiveTask(PTCB tcb)
 void loop() {
   MOS_Call(ReceiveTask);
   //MOS_Call(GPSTask);
-  //MOS_Call(CompassTask);
-  MOS_Call(DebugTask);
+  MOS_Call(CompassTask);
+  //MOS_Call(DebugTask);
 }
 
 // Helper function to split control parameters
