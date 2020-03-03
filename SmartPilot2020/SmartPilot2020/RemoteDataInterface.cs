@@ -25,7 +25,7 @@ namespace SmartPilot2020
 
             main.SetPacketOutputState(PacketOutputState);
 
-            this.SerialPort = new SerialPort("COM11", 9600);
+            this.SerialPort = new SerialPort("COM11", 115200);
             this.SerialPort.DataReceived += new SerialDataReceivedEventHandler(SerialPort_DataReceived);
         }
 

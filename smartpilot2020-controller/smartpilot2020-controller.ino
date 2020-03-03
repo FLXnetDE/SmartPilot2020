@@ -7,6 +7,7 @@
 #include <SoftwareSerial.h>
 #include <Wire.h>
 #include <MechaQMC5883.h>
+#include <MPU6050.h>
 
 #define MOTOR_PIN 10
 #define ELEVATOR_PIN 3
@@ -36,6 +37,21 @@ SoftwareSerial softwareSerial(rxPin, txPin);
 // Compass
 MechaQMC5883 compass;
 
+// Gyro
+MPU6050 gyro;
+unsigned long timer = 0;
+float timeStep = 0.01;
+float pitch = 0;
+float roll = 0;
+float yaw = 0;
+
+// Aircraft data buffer
+int CurrentPitch;
+int CurrentRoll;
+int CurrentHeading;
+int CurrentSpeed;
+int CurrentAltitude;
+
 const char *gpsStream =
   "$GPRMC,045103.000,A,3014.1984,N,09749.2872,W,0.67,161.46,030913,,,A*7C\r\n"
   "$GPGGA,045104.000,3014.1985,N,09749.2873,W,1,09,1.2,211.6,M,-22.5,M,,0000*62\r\n"
@@ -45,7 +61,7 @@ const char *gpsStream =
   "$GPGGA,045252.000,3014.4273,N,09749.0628,W,1,09,1.3,206.9,M,-22.5,M,,0000*6F\r\n";
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // Radio
   radio.begin();
@@ -66,7 +82,65 @@ void setup() {
   Wire.begin();
   compass.init();
 
+  // Gyro
+  while(!gyro.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_2G))
+  {
+    Serial.println("[SmartPilot2020] Could not find a valid MPU6050 sensor, check wiring!");
+    delay(500);
+  }
+  gyro.calibrateGyro();
+  gyro.setThreshold(3);
+
   Serial.println("[SmartPilot2020] Setup finished!");
+}
+
+void RemoteTelemetryPacketTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+
+  while(1)
+  {    
+    char telemetryPacket[32];
+    sprintf(telemetryPacket, "%d;%d;%d;%d;%d;%d", 2, CurrentPitch, CurrentRoll, CurrentHeading, CurrentSpeed, CurrentAltitude);
+
+    radio.stopListening();
+    radio.openWritingPipe(address);
+    radio.write(telemetryPacket, 32);
+    radio.openReadingPipe(0, address);
+    radio.startListening();
+    
+    MOS_Delay(tcb, 500);
+  }
+}
+
+void GyroTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+
+  while(1)
+  {
+    timer = millis();
+    
+    Vector norm = gyro.readNormalizeGyro();
+
+    pitch = pitch + norm.YAxis * timeStep;
+    roll = roll + norm.XAxis * timeStep;
+    yaw = yaw + norm.ZAxis * timeStep;
+
+    CurrentPitch = (int) pitch;
+    CurrentRoll = (int) roll;
+
+    /*
+    Serial.print(" Pitch = ");
+    Serial.print(pitch);
+    Serial.print(" Roll = ");
+    Serial.print(roll);  
+    Serial.print(" Yaw = ");
+    Serial.println(yaw);
+    */
+  
+    MOS_Delay(tcb, (timeStep * 1000) - (millis() - timer));
+  }
 }
 
 void CompassTask(PTCB tcb)
@@ -80,6 +154,9 @@ void CompassTask(PTCB tcb)
     
     compass.read(&x, &y, &z, &heading);
 
+    CurrentHeading = heading;
+    
+    /*
     if(heading >= 0 && heading < 45) {
       Serial.print("Heading NORTH - ");
     } else if(heading >= 45 && heading < 90) {
@@ -100,6 +177,8 @@ void CompassTask(PTCB tcb)
     
     Serial.print(heading);
     Serial.println("°");
+
+    */
     
     MOS_Delay(tcb, 500);
   }
@@ -156,7 +235,6 @@ void DebugTask(PTCB tcb)
     
     radio.stopListening();
     radio.openWritingPipe(address);
-    radio.write("2;45;10;150;20;50", 32);
     radio.write("3;-97.821456;30.239772", 32);
     radio.openReadingPipe(0, address);
     radio.startListening();
@@ -192,8 +270,10 @@ void ReceiveTask(PTCB tcb)
 
 void loop() {
   MOS_Call(ReceiveTask);
-  //MOS_Call(GPSTask);
   MOS_Call(CompassTask);
+  MOS_Call(GyroTask);
+  MOS_Call(RemoteTelemetryPacketTask);
+  //MOS_Call(GPSTask);
   //MOS_Call(DebugTask);
 }
 

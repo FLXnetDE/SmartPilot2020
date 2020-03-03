@@ -8,13 +8,58 @@ const byte address[6] = "00001";
 
 void setup() {
   Serial.setTimeout(5);
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // Radio
   radio.begin();
   radio.openReadingPipe(0, address);
   radio.setPALevel(RF24_PA_MIN);
   radio.startListening();
+}
+
+void ReceiveTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+
+  while(radio.available())
+  {
+      char telemetry[32];
+      radio.read(&telemetry, sizeof(telemetry));
+      String telemetryString(telemetry);
+    
+      Serial.println(telemetryString);
+  }
+}
+
+void SendControlSignalTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+
+  while(Serial.available())
+  {
+    String flightParams = Serial.readString();
+    char copy[32];
+    flightParams.toCharArray(copy, 32);
+
+    radio.stopListening();
+    radio.openWritingPipe(address);
+    radio.write(&copy, 32);
+    radio.openReadingPipe(0, address);
+    radio.startListening();
+  }
+}
+
+void StationaryMeasurementTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+
+  while(1)
+  {
+    // StationaryEnvironmentPacket - ID;TEMPERATURE;HUMIDITY;PRESSURE
+    Serial.println("5;18,25;44,14;1008");
+
+    MOS_Delay(tcb, 5000);
+  }
 }
 
 void ExampleInputTask(PTCB tcb)
@@ -43,54 +88,9 @@ void ExampleInputTask(PTCB tcb)
   }
 }
 
-void StationaryMeasurementTask(PTCB tcb)
-{
-  MOS_Continue(tcb);
-
-  while(1)
-  {
-    // StationaryEnvironmentPacket - ID;TEMPERATURE;HUMIDITY;PRESSURE
-    Serial.println("5;18,25;44,14;1008");
-
-    MOS_Delay(tcb, 5000);
-  }
-}
-
-void ReceiveTask(PTCB tcb)
-{
-  MOS_Continue(tcb);
-
-  while(radio.available())
-  {
-      char telemetry[32] = "";
-      radio.read(&telemetry, sizeof(telemetry));
-      String telemetryString(telemetry);
-    
-      Serial.println(telemetryString);
-  }
-}
-
-void SendControlSignalTask(PTCB tcb)
-{
-  MOS_Continue(tcb);
-
-  while(Serial.available())
-  {
-    String flightParams = Serial.readString();
-    char copy[32];
-    flightParams.toCharArray(copy, 32);
-
-    radio.stopListening();
-    radio.openWritingPipe(address);
-    radio.write(&copy, 32);
-    radio.openReadingPipe(0, address);
-    radio.startListening();
-  }
-}
-
 void loop() {
   MOS_Call(ReceiveTask);
   MOS_Call(SendControlSignalTask);
   MOS_Call(StationaryMeasurementTask);
-  MOS_Call(ExampleInputTask);
+  //MOS_Call(ExampleInputTask);
 }
