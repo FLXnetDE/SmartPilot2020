@@ -37,6 +37,12 @@ namespace SmartPilot2020
         public double CurrentStationaryHumidity;
         public int CurrentStationaryPressure;
 
+        // FlightEnvelope definition
+        public int ProtectedPitchAngle;
+        public int ProtectedRollAngle;
+        public int ProtectedSpeed;
+        public int ProtectedAltitude;
+
         public FlightHandler(SmartPilot2020 main)
         {
             this.main = main;
@@ -48,6 +54,11 @@ namespace SmartPilot2020
 
             this.RemoteDataInterface = new RemoteDataInterface(main);
             this.RemoteDataInterface.Connect();
+
+            ProtectedPitchAngle = 50;
+            ProtectedRollAngle = 50;
+            ProtectedSpeed = 0;
+            ProtectedAltitude = 0;
 
             main.log.Log("FlightHandler started!");
         }

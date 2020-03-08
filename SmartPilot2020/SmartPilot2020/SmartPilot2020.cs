@@ -85,51 +85,50 @@ namespace SmartPilot2020
         private void pbPitchRollVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
 
-            ///////////////////////////////////
-            // Virtual horizon visualization //
-            ///////////////////////////////////
-            g.FillRectangle(Brushes.SkyBlue, new Rectangle(0, 0, 300, 150));
-            g.FillRectangle(Brushes.SandyBrown, new Rectangle(0, 150, 300, 300));
-            g.DrawLine(new Pen(Brushes.White, 2), 0, 150, 300, 150);
+            /////////////////////////////////////////////////////////////////
+            // Virtual horizon & Pitch/Roll current position visualization //
+            /////////////////////////////////////////////////////////////////
+            g.Clip = new Region(new Rectangle(0, 0, 300, 300));
+            g.FillRegion(Brushes.Black, g.Clip);
 
-            // Pitch degree helper lines
-            DrawPitchDegreeHelperLines(g);
+            Bitmap bezel = Resources.bezel;
+            Bitmap horizon = Resources.horizon;
+            Bitmap wings = Resources.wings;
 
-            if (!FlightHandler.ControlsActiveChecked)
-            {
-                return;
-            }
+            Point ptBoule = new Point(-25, -210); //Ground-Sky initial location
+            Point ptRotation = new Point(150, 150); // Point of rotation
 
-            ///////////////////////////////////////////////
-            // Pitch/Roll current position visualization //
-            ///////////////////////////////////////////////
-            int currentPitchAngle = FlightHandler.CurrentPitchAngle;
-            int pitchPosition = MapValue(currentPitchAngle, -60, 60, 275, 25);
+            bezel.MakeTransparent(Color.Yellow);
+            wings.MakeTransparent(Color.Yellow);
+            horizon.MakeTransparent(Color.Yellow);
 
-            g.DrawRectangle(new Pen(Brushes.Black, 2), new Rectangle(new Point(150 - 5, pitchPosition - 5), new Size(10, 10)));
-            g.DrawRectangle(new Pen(Brushes.Black, 2), new Rectangle(new Point(40 - 3, pitchPosition - 3), new Size(80, 6)));
-            g.DrawRectangle(new Pen(Brushes.Black, 2), new Rectangle(new Point(185 - 3, pitchPosition - 3), new Size(80, 6)));
+            double PitchAngleRadian = FlightHandler.CurrentPitchAngle;
+            double RollAngleRadian = FlightHandler.CurrentRollAngle * Math.PI / 180;
+
+            RotateAndTranslate(e, horizon, RollAngleRadian, 0, ptBoule, (double)(4 * PitchAngleRadian), ptRotation, 1);
+
+            g.DrawImage(bezel, 0, 0);
+            g.DrawImage(wings, 75, 125);
 
             ////////////////////////////////////////////
             // Pitch/Roll Control input visualization //
             ////////////////////////////////////////////
-            int pitchValue = MapValue(FlightHandler.PitchValue, PitchPulse[0], PitchPulse[1], 275, 25) - 4;
-            int rollValue = MapValue(FlightHandler.RollValue, RollPulse[0], RollPulse[1], 25, 275) - 4;
+            int pitchValue = MapValue(FlightHandler.PitchValue, PitchPulse[0], PitchPulse[1], 260, 40) - 4;
+            int rollValue = MapValue(FlightHandler.RollValue, RollPulse[0], RollPulse[1], 40, 260) - 4;
 
             g.DrawRectangle(new Pen(Brushes.Black, 4), new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
-            g.FillRectangle(Brushes.LimeGreen, new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
+            g.FillRectangle(Brushes.Gold, new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
 
-            g.DrawString(FlightHandler.PitchValue + "µs", new Font("Arial", 8), Brushes.Black, 135, 280);
-            g.DrawString(FlightHandler.RollValue + "µs", new Font("Arial", 8), Brushes.Black, 1, 155);
-
+            g.DrawString("Pitch: " + FlightHandler.PitchValue + "µs", new Font("Arial", 8), Brushes.White, 210, 280);
+            g.DrawString("Roll: " + FlightHandler.RollValue + "µs", new Font("Arial", 8), Brushes.White, 25, 280);
         }
 
         private void pbSpeedVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             pbSpeedVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
 
             if (!FlightHandler.ControlsActiveChecked)
@@ -142,6 +141,7 @@ namespace SmartPilot2020
         private void pbAltitudeVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             pbAltitudeVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
 
             if (!FlightHandler.ControlsActiveChecked)
@@ -154,7 +154,7 @@ namespace SmartPilot2020
         private void pbHeadingVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             pbHeadingVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
 
             g.DrawLine(new Pen(Brushes.White, 2), 5, 30, 295, 30);
@@ -191,7 +191,7 @@ namespace SmartPilot2020
         private void pbMonitorVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             pbMonitorVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
 
             g.DrawLine(new Pen(Brushes.White, 1), 62.5F, 5, 62.5F, 55);
@@ -221,7 +221,7 @@ namespace SmartPilot2020
         private void pbNavigation_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             pbNavigation.BackColor = Color.Black;
 
             Image plane = Properties.Resources.YellowPlane;
@@ -237,7 +237,7 @@ namespace SmartPilot2020
         private void pbStationaryWindDirection_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
 
             int angle = tbAngle.Value;
 
@@ -284,53 +284,6 @@ namespace SmartPilot2020
 
             g.DrawString(angle + "°", new Font("Arial", 8, FontStyle.Bold), Brushes.Black, 50, 125);
 
-        }
-
-        /////////////////////////////
-        // Drawing helper function //
-        /////////////////////////////
-        public void DrawPitchDegreeHelperLines(Graphics g)
-        {
-            int degreeLine10Up = MapValue(10, 0, 60, 150, 25);
-            int degreeLine20Up = MapValue(20, 0, 60, 150, 25);
-            int degreeLine30Up = MapValue(30, 0, 60, 150, 25);
-            int degreeLine40Up = MapValue(40, 0, 60, 150, 25);
-            int degreeLine50Up = MapValue(50, 0, 60, 150, 25);
-            int degreeLine60Up = MapValue(60, 0, 60, 150, 25);
-
-            g.DrawLine(new Pen(Brushes.White, 2), 140, degreeLine10Up, 160, degreeLine10Up);
-            g.DrawLine(new Pen(Brushes.White, 2), 120, degreeLine20Up, 180, degreeLine20Up);
-            g.DrawLine(new Pen(Brushes.White, 2), 140, degreeLine30Up, 160, degreeLine30Up);
-            g.DrawLine(new Pen(Brushes.White, 2), 120, degreeLine40Up, 180, degreeLine40Up);
-            g.DrawLine(new Pen(Brushes.White, 2), 140, degreeLine50Up, 160, degreeLine50Up);
-            g.DrawLine(new Pen(Brushes.White, 2), 120, degreeLine60Up, 180, degreeLine60Up);
-
-            g.DrawString("20", new Font("Arial", 8), Brushes.White, 100, degreeLine20Up - 7);
-            g.DrawString("20", new Font("Arial", 8), Brushes.White, 183, degreeLine20Up - 7);
-            g.DrawString("40", new Font("Arial", 8), Brushes.White, 100, degreeLine40Up - 7);
-            g.DrawString("40", new Font("Arial", 8), Brushes.White, 183, degreeLine40Up - 7);
-            g.DrawString("60", new Font("Arial", 8), Brushes.White, 100, degreeLine60Up - 7);
-            g.DrawString("60", new Font("Arial", 8), Brushes.White, 183, degreeLine60Up - 7);
-
-            int degreeLine10Down = MapValue(10, 0, 60, 150, 275);
-            int degreeLine20Down = MapValue(20, 0, 60, 150, 275);
-            int degreeLine30Down = MapValue(30, 0, 60, 150, 275);
-            int degreeLine40Down = MapValue(40, 0, 60, 150, 275);
-            int degreeLine50Down = MapValue(50, 0, 60, 150, 275);
-            int degreeLine60Down = MapValue(60, 0, 60, 150, 275);
-            g.DrawLine(new Pen(Brushes.White, 2), 140, degreeLine10Down, 160, degreeLine10Down);
-            g.DrawLine(new Pen(Brushes.White, 2), 120, degreeLine20Down, 180, degreeLine20Down);
-            g.DrawLine(new Pen(Brushes.White, 2), 140, degreeLine30Down, 160, degreeLine30Down);
-            g.DrawLine(new Pen(Brushes.White, 2), 120, degreeLine40Down, 180, degreeLine40Down);
-            g.DrawLine(new Pen(Brushes.White, 2), 140, degreeLine50Down, 160, degreeLine50Down);
-            g.DrawLine(new Pen(Brushes.White, 2), 120, degreeLine60Down, 180, degreeLine60Down);
-
-            g.DrawString("20", new Font("Arial", 8), Brushes.White, 100, degreeLine20Down - 7);
-            g.DrawString("20", new Font("Arial", 8), Brushes.White, 183, degreeLine20Down - 7);
-            g.DrawString("40", new Font("Arial", 8), Brushes.White, 100, degreeLine40Down - 7);
-            g.DrawString("40", new Font("Arial", 8), Brushes.White, 183, degreeLine40Down - 7);
-            g.DrawString("60", new Font("Arial", 8), Brushes.White, 100, degreeLine60Down - 7);
-            g.DrawString("60", new Font("Arial", 8), Brushes.White, 183, degreeLine60Down - 7);
         }
 
         //////////////////////
@@ -573,6 +526,48 @@ namespace SmartPilot2020
 
             //return the image
             return bmp;
+        }
+
+        protected void RotateAndTranslate(PaintEventArgs pe, Image img, Double alphaRot, Double alphaTrs, Point ptImg, double deltaPx, Point ptRot, float scaleFactor)
+        {
+            double beta = 0;
+            double d = 0;
+            float deltaXRot = 0;
+            float deltaYRot = 0;
+            float deltaXTrs = 0;
+            float deltaYTrs = 0;
+
+            // Rotation
+
+            if (ptImg != ptRot)
+            {
+                // Internals coeffs
+                if (ptRot.X != 0)
+                {
+                    beta = Math.Atan((double)ptRot.Y / (double)ptRot.X);
+                }
+
+                d = Math.Sqrt((ptRot.X * ptRot.X) + (ptRot.Y * ptRot.Y));
+
+                // Computed offset
+                deltaXRot = (float)(d * (Math.Cos(alphaRot - beta) - Math.Cos(alphaRot) * Math.Cos(alphaRot + beta) - Math.Sin(alphaRot) * Math.Sin(alphaRot + beta)));
+                deltaYRot = (float)(d * (Math.Sin(beta - alphaRot) + Math.Sin(alphaRot) * Math.Cos(alphaRot + beta) - Math.Cos(alphaRot) * Math.Sin(alphaRot + beta)));
+            }
+
+            // Translation
+
+            // Computed offset
+            deltaXTrs = (float)(deltaPx * (Math.Sin(alphaTrs)));
+            deltaYTrs = (float)(-deltaPx * (-Math.Cos(alphaTrs)));
+
+            // Rotate image support
+            pe.Graphics.RotateTransform((float)(alphaRot * 180 / Math.PI));
+
+            // Dispay image
+            pe.Graphics.DrawImage(img, (ptImg.X + deltaXRot + deltaXTrs) * scaleFactor, (ptImg.Y + deltaYRot + deltaYTrs) * scaleFactor, img.Width * scaleFactor, img.Height * scaleFactor);
+
+            // Put image support as found
+            pe.Graphics.RotateTransform((float)(-alphaRot * 180 / Math.PI));
         }
 
     }

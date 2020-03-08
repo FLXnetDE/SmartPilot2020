@@ -126,6 +126,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="rc_autopilot_icon.ico" />
+    <None Include="Resources\wings.bmp" />
+    <None Include="Resources\horizon.bmp" />
+    <None Include="Resources\bezel.bmp" />
     <None Include="Resources\YellowPlane.png" />
     <None Include="Resources\GreenArrow.png" />
   </ItemGroup>
