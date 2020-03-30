@@ -85,7 +85,7 @@ namespace SmartPilot2020
 
             SetCurrentWindInformation(tbAngle.Value, 15);
 
-            SetCarrierTest(FlightHandler.CarrierTest);
+            SetRadioSignalInformation(FlightHandler.UsedRadioChannel);
         }
 
         private void pbPitchRollVisualization_Paint(object sender, PaintEventArgs e)
@@ -415,6 +415,12 @@ namespace SmartPilot2020
 
         private void pbFlightEnvelopeToggle_MouseClick(object sender, MouseEventArgs e)
         {
+            if (!FlightHandler.ControlsActiveChecked)
+            {
+                log.Log("FlightControls are not yet checked!");
+                return;
+            }
+
             if (FlightHandler.ProtectionActive)
             {
                 FlightHandler.ProtectionActive = false;
@@ -456,6 +462,12 @@ namespace SmartPilot2020
 
         private void pbAutoPilotToggle_Click(object sender, EventArgs e)
         {
+            if (!FlightHandler.ControlsActiveChecked)
+            {
+                log.Log("FlightControls are not yet checked!");
+                return;
+            }
+
             if (FlightHandler.AutoPilotActive)
             {
                 FlightHandler.AutoPilotActive = false;
@@ -505,6 +517,12 @@ namespace SmartPilot2020
 
         private void pbAutoThrustToggle_Click(object sender, EventArgs e)
         {
+            if(!FlightHandler.ControlsActiveChecked)
+            {
+                log.Log("FlightControls are not yet checked!");
+                return;
+            }
+
             if (FlightHandler.AutoThrustActive)
             {
                 FlightHandler.AutoThrustActive = false;
@@ -630,18 +648,18 @@ namespace SmartPilot2020
             lblTrafficMonnitor.Text = text;
         }
 
-        // Set result of carrier test from NRF42 module on the station
-        public void SetCarrierTest(bool carrierTestResult)
+        // Set values regarding radio signal information (from Station device)
+        public void SetRadioSignalInformation(int channel)
         {
-            if(carrierTestResult)
+            if(channel == 0)
             {
-                lblCarrierTest.ForeColor = Color.Green;
-                lblCarrierTest.Text = "CarrierTest (true)";
-            } else
-            {
-                lblCarrierTest.ForeColor = Color.Red;
-                lblCarrierTest.Text = "CarrierTest (false)";
+                lblCarrierTest.ForeColor = Color.DarkRed;
+                lblCarrierTest.Text = "RF24 not connected";
+                return;
             }
+
+            lblCarrierTest.ForeColor = Color.SteelBlue;
+            lblCarrierTest.Text = "RF24 is using channel " + channel;
         }
 
         // Set info to label at the top

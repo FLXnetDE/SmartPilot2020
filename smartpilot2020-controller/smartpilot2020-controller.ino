@@ -12,7 +12,7 @@
 #include <BME280I2C.h>
 
 #define MOTOR_PIN 10
-#define ELEVATOR_PIN 3
+#define ELEVATOR_PIN 9
 #define AILERON_PIN 5
 #define RUDDER_PIN 6
 
@@ -22,6 +22,7 @@ bool debug = true;
 // Radio (2,4GHz)
 RF24 radio(7, 8); // CE, CSN
 const byte address[6] = "00001";
+String input;
 
 // Flight controls
 Servo MOTOR;
@@ -31,7 +32,7 @@ Servo RUDDER;
 
 // GPS
 int rxPin = 4;
-int txPin = 2;
+int txPin = 3;
 int gpsBaud = 4800;
 TinyGPSPlus gps;
 SoftwareSerial softwareSerial(rxPin, txPin);
@@ -62,6 +63,26 @@ int CurrentHumidity;
 int CurrentPressure;
 
 int BaroReference; // hPa
+
+
+#ifdef __arm__
+// should use uinstd.h to define sbrk but Due causes a conflict
+extern "C" char* sbrk(int incr);
+#else  // __ARM__
+extern char *__brkval;
+#endif  // __arm__
+ 
+int freeMemory() {
+  char top;
+#ifdef __arm__
+  return &top - reinterpret_cast<char*>(sbrk(0));
+#elif defined(CORE_TEENSY) || (ARDUINO > 103 && ARDUINO != 151)
+  return &top - __brkval;
+#else  // __arm__
+  return __brkval ? &top - __brkval : &top - __malloc_heap_start;
+#endif  // __arm__
+}
+
 
 void setup() {
   Serial.begin(115200);
@@ -125,11 +146,11 @@ void RemoteTelemetryPacketTask(PTCB tcb)
     radio.openReadingPipe(0, address);
     radio.startListening();
     
-    MOS_Delay(tcb, 500);
+    MOS_Delay(tcb, 100);
   }
 }
 
-void RemoteEnvironmentPacket(PTCB tcb)
+void RemoteEnvironmentPacketTask(PTCB tcb)
 {
   MOS_Continue(tcb);
 
@@ -212,19 +233,68 @@ void CompassTask(PTCB tcb)
     int heading;
     compass.read(&x, &y, &z, &heading);
     CurrentHeading = heading;
+
+    Serial.print("Free memory: ");
+    Serial.println(freeMemory());
     
     MOS_Delay(tcb, 500);
   }
 }
 
-void GPSTask(PTCB tcb)
+void RemotePositionTask(PTCB tcb)
 {
   MOS_Continue(tcb);
 
-  while(softwareSerial.available())
-  {
-    Serial.println(gps.location.lng(), 6);
-    Serial.println(gps.location.lat(), 6);
+  while(softwareSerial.available() > 0)
+  {   
+    gps.encode(softwareSerial.read());
+
+    Serial.print("GPS Longitude: ");
+    Serial.println(gps.location.lng());
+
+    Serial.print("GPS Latitude: ");
+    Serial.println(gps.location.lat());
+
+    Serial.print("GPS Altitude: ");
+    Serial.print(gps.altitude.meters());
+    Serial.println("m");
+
+    Serial.print("GPS DateTime: ");
+    Serial.print(gps.date.value());
+    Serial.print(" ");
+    Serial.println(gps.time.value());
+
+    MOS_Delay(tcb, 5000);
+  }
+}
+
+void ReceiveTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+
+  while(radio.available())
+  {   
+      char controlParams[32] = "";
+      radio.read(&controlParams, sizeof(controlParams));
+
+      input = String(controlParams);
+    
+      int id = getValue(input, ';', 0).toInt();
+
+      if(id == 1) { // RemoteControlPacket
+        int thrust = getValue(input, ';', 1).toInt();
+        int pitch = getValue(input, ';', 2).toInt();
+        int roll = getValue(input, ';', 3).toInt();
+        int yaw = getValue(input, ';', 4).toInt();
+      
+        MOTOR.writeMicroseconds(thrust);
+        ELEVATOR.writeMicroseconds(pitch);
+        AILERON.writeMicroseconds(roll);
+        RUDDER.writeMicroseconds(yaw);
+      } else if(id == 7) { // AltitudeReferencePacket
+        BaroReference = getValue(input, ';', 1).toInt();
+      }
+
   }
 }
 
@@ -246,45 +316,14 @@ void DebugTask(PTCB tcb)
   }
 }
 
-void ReceiveTask(PTCB tcb)
-{
-  MOS_Continue(tcb);
-
-  while(radio.available())
-  {
-      char controlParams[32] = "";
-      radio.read(&controlParams, sizeof(controlParams));
-      String str(controlParams);
-    
-      Serial.println(str);
-    
-      int id = getValue(str, ';', 0).toInt();
-
-      if(id == 1) { // RemoteControlPacket
-        int thrust = getValue(str, ';', 1).toInt();
-        int pitch = getValue(str, ';', 2).toInt();
-        int roll = getValue(str, ';', 3).toInt();
-        int yaw = getValue(str, ';', 4).toInt();
-      
-        MOTOR.writeMicroseconds(thrust);
-        ELEVATOR.writeMicroseconds(pitch);
-        AILERON.writeMicroseconds(roll);
-        RUDDER.writeMicroseconds(yaw);
-      } else if(id == 7) { // AltitudeReferencePacket
-        BaroReference = getValue(str, ';', 1).toInt();
-      }
-
-  }
-}
-
 void loop() {
   MOS_Call(ReceiveTask);
   MOS_Call(CompassTask);
   MOS_Call(GyroTask);
   MOS_Call(EnvironmentTask);
   MOS_Call(RemoteTelemetryPacketTask);
-  //MOS_Call(GPSTask);
-  MOS_Call(RemoteEnvironmentPacket);
+  //MOS_Call(RemotePositionTask);
+  MOS_Call(RemoteEnvironmentPacketTask);
   //MOS_Call(DebugTask);
 }
 

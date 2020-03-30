@@ -10,7 +10,7 @@ namespace SmartPilot2020
         private Timer ProcessTimer;
         public RemoteDataInterface RemoteDataInterface;
 
-        public bool CarrierTest;
+        public int UsedRadioChannel;
 
         public bool ControlsActiveChecked = false;
 
@@ -102,6 +102,14 @@ namespace SmartPilot2020
 
             if (CurrentAltitude >= 2) AircraftMode = 1; // Enable air mode if aircraft is 2m above ground
 
+            ///////////////
+            // AutoPilot //
+            ///////////////
+            if (AutoPilotActive)
+            {
+
+            }
+
             ////////////////
             // AutoThrust //
             ////////////////
@@ -137,14 +145,6 @@ namespace SmartPilot2020
                         this.ThrustValue = value;
                     }
                 }
-            }
-
-            ///////////////
-            // AutoPilot //
-            ///////////////
-            if (AutoPilotActive)
-            {
-
             }
 
             ////////////////

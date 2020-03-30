@@ -49,6 +49,19 @@ void SendControlSignalTask(PTCB tcb)
   }
 }
 
+void RemoteSignalInformationTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+
+  while(1)
+  {
+    Serial.print("6;");
+    Serial.println(radio.getChannel());
+
+    MOS_Delay(tcb, 5000);
+  }
+}
+
 void StationaryMeasurementTask(PTCB tcb)
 {
   MOS_Continue(tcb);
@@ -57,9 +70,6 @@ void StationaryMeasurementTask(PTCB tcb)
   {
     // StationaryEnvironmentPacket - ID;TEMPERATURE;HUMIDITY;PRESSURE
     Serial.println("5;18,25;44,14;1008");
-
-    Serial.print("6;");
-    Serial.println(radio.testCarrier());
 
     MOS_Delay(tcb, 5000);
   }
@@ -99,6 +109,7 @@ void ExampleInputTask(PTCB tcb)
 void loop() {
   MOS_Call(ReceiveTask);
   MOS_Call(SendControlSignalTask);
-  MOS_Call(StationaryMeasurementTask);
+  MOS_Call(RemoteSignalInformationTask);
+  //MOS_Call(StationaryMeasurementTask);
   //MOS_Call(ExampleInputTask);
 }

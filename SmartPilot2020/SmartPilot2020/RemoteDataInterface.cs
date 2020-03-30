@@ -111,7 +111,7 @@ namespace SmartPilot2020
                         main.FlightHandler.CurrentStationaryPressure = Int32.Parse(inputSplit[3]);
                         break;
                     case 6: // RemoteSignalInformationPacket
-                        main.FlightHandler.CarrierTest = int.Parse(inputSplit[1]) == 0 ? false : true;
+                        main.FlightHandler.UsedRadioChannel = Int32.Parse(inputSplit[1]);
                         break;
                 }
 

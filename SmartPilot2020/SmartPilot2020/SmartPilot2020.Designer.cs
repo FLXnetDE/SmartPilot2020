@@ -221,9 +221,10 @@
             // 
             // lblCarrierTest
             // 
+            this.lblCarrierTest.ForeColor = System.Drawing.Color.Black;
             this.lblCarrierTest.Name = "lblCarrierTest";
-            this.lblCarrierTest.Size = new System.Drawing.Size(75, 17);
-            this.lblCarrierTest.Text = "lblCarrierTest";
+            this.lblCarrierTest.Size = new System.Drawing.Size(145, 17);
+            this.lblCarrierTest.Text = "lblRadioSignalInformation";
             // 
             // tbAngle
             // 
