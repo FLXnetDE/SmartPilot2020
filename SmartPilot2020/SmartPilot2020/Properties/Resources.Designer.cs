@@ -63,6 +63,16 @@ namespace SmartPilot2020.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AltitudeButton {
+            get {
+                object obj = ResourceManager.GetObject("AltitudeButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bezel {
             get {
                 object obj = ResourceManager.GetObject("bezel", resourceCulture);
@@ -83,9 +93,29 @@ namespace SmartPilot2020.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap HeadingButton {
+            get {
+                object obj = ResourceManager.GetObject("HeadingButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap horizon {
             get {
                 object obj = ResourceManager.GetObject("horizon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SpeedButton {
+            get {
+                object obj = ResourceManager.GetObject("SpeedButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

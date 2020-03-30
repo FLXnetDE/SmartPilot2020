@@ -58,6 +58,9 @@ void StationaryMeasurementTask(PTCB tcb)
     // StationaryEnvironmentPacket - ID;TEMPERATURE;HUMIDITY;PRESSURE
     Serial.println("5;18,25;44,14;1008");
 
+    Serial.print("6;");
+    Serial.println(radio.testCarrier());
+
     MOS_Delay(tcb, 5000);
   }
 }
@@ -70,10 +73,15 @@ void ExampleInputTask(PTCB tcb)
   {
     // RemoteTelemetryPacket - ID;PITCH;ROLL;HEADING;SPEED;ALTITUDE
     Serial.print("2;");
-    Serial.print(random(-60, 60));
-    Serial.print(";10;");
-    Serial.print(random(0, 360));
-    Serial.println(";20;50");
+    Serial.print("8");
+    Serial.print(";");
+    Serial.print("0");
+    Serial.print(";");
+    Serial.print("250");
+    Serial.print(";");
+    Serial.print(random(8, 15));
+    Serial.print(";");
+    Serial.println(random(3, 8));
 
     // RemotePositionPacket - ID;LATITUDE;LONGITUDE
     Serial.print("3;-97,821");
@@ -84,7 +92,7 @@ void ExampleInputTask(PTCB tcb)
     // RemoteEnvironmentPacket - ID;TEMPERATURE;HUMIDITY;PRESSURE
     Serial.println("4;19,25;35,14;1002");
 
-    MOS_Delay(tcb, 3000);
+    MOS_Delay(tcb, 500);
   }
 }
 

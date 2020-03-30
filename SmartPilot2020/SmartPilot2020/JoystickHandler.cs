@@ -45,7 +45,7 @@ namespace SmartPilot2020
                         case JoystickOffset.Y: // Pitch input
                             main.FlightHandler.ProcessPitch(state.Value);
                             break;
-                        case JoystickOffset.Z: // Thrust input
+                        case JoystickOffset.Sliders0: // Thrust input
                             main.FlightHandler.ProcessThrust(SmartPilot2020.MapValue(state.Value, 65534, 0, 0, 65534));
                             break;
                         case JoystickOffset.RotationZ: // Yaw input

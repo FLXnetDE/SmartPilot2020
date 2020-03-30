@@ -47,6 +47,24 @@ namespace SmartPilot2020
             }
         }
 
+        public void SendAltitudeReferencePacket(int BaroReference)
+        {
+            String encoded = "7;" + BaroReference;
+
+            if (SerialPort.IsOpen && PacketOutputState)
+            {
+                this.SerialPort.WriteLine(encoded);
+
+                if (main.Debug)
+                {
+                    main.log.Log("AltitudeReferencePacket" + ": " + encoded);
+                }
+
+                tx++;
+                main.SetTraffic("RX " + rx + " / TX " + tx);
+            }
+        }
+
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             String input = SerialPort.ReadLine();
@@ -59,7 +77,11 @@ namespace SmartPilot2020
             {
                 inputSplit = input.Split(';');
                 packetId = Int32.Parse(inputSplit[0]);
-                main.log.Log("Received packet from type: " + packetId);
+
+                if(main.Debug)
+                {
+                    main.log.Log("Received packet from type: " + packetId);
+                }
 
                 switch (packetId)
                 {
@@ -79,14 +101,17 @@ namespace SmartPilot2020
                         main.FlightHandler.CurrentLongitude = Double.Parse(inputSplit[2]);
                         break;
                     case 4: // RemoteEnvironmentPacket
-                        main.FlightHandler.CurrentAircraftTemperature = Convert.ToDouble(inputSplit[1]);
-                        main.FlightHandler.CurrentAircraftHumidity = Convert.ToDouble(inputSplit[2]);
+                        main.FlightHandler.CurrentAircraftTemperature = Int32.Parse(inputSplit[1]);
+                        main.FlightHandler.CurrentAircraftHumidity = Int32.Parse(inputSplit[2]);
                         main.FlightHandler.CurrentAircraftPressure = Int32.Parse(inputSplit[3]);
                         break;
                     case 5: // StationaryEnvironmentPacket
                         main.FlightHandler.CurrentStationaryTemperature = Double.Parse(inputSplit[1]);
                         main.FlightHandler.CurrentStationaryHumidity = Double.Parse(inputSplit[2]);
                         main.FlightHandler.CurrentStationaryPressure = Int32.Parse(inputSplit[3]);
+                        break;
+                    case 6: // RemoteSignalInformationPacket
+                        main.FlightHandler.CarrierTest = int.Parse(inputSplit[1]) == 0 ? false : true;
                         break;
                 }
 

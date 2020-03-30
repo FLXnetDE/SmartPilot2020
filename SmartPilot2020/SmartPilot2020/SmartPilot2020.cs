@@ -22,14 +22,17 @@ namespace SmartPilot2020
         public bool Debug = false;
         public int SystemTickInterval = 50;
 
-        public int[] ThrustPulse = new int[2] { 500, 2500 };
-        public int[] PitchPulse = new int[2] { 500, 2500 };
-        public int[] RollPulse = new int[2] { 500, 2500 };
-        public int[] YawPulse = new int[2] { 500, 2500 };
-
         public SmartPilot2020()
         {
             InitializeComponent();
+
+            pbSpeedWheel.MouseHover += PbSpeedWheel_MouseHover;
+            pbSpeedWheel.MouseWheel += PbSpeedWheel_MouseWheel;
+            pbHeadingWheel.MouseHover += PbHeadingWheel_MouseHover;
+            pbHeadingWheel.MouseWheel += PbHeadingWheel_MouseWheel;
+            pbAltitudeWheel.MouseHover += PbAltitudeWheel_MouseHover;
+            pbAltitudeWheel.MouseWheel += PbAltitudeWheel_MouseWheel;
+
         }
 
         private void RCAutopilot_Load(object sender, EventArgs e)
@@ -52,14 +55,15 @@ namespace SmartPilot2020
             // Graphic based visualtization
             pbPitchRollVisualization.Refresh();
             pbMonitorVisualization.Refresh();
-
             pbSpeedVisualization.Refresh();
             pbAltitudeVisualization.Refresh();
             pbHeadingVisualization.Refresh();
-
             pbNavigation.Refresh();
-
             pbStationaryWindDirection.Refresh();
+            pbFlightEnvelopeToggle.Refresh();
+            pbAutoPilotToggle.Refresh();
+            pbAutoThrustToggle.Refresh();
+            pbHeadingWheel.Refresh();
 
             // Text based visualization
             SetCurrentPitch(FlightHandler.CurrentPitchAngle);
@@ -80,6 +84,8 @@ namespace SmartPilot2020
             SetCurrentStationaryPressure(FlightHandler.CurrentStationaryPressure);
 
             SetCurrentWindInformation(tbAngle.Value, 15);
+
+            SetCarrierTest(FlightHandler.CarrierTest);
         }
 
         private void pbPitchRollVisualization_Paint(object sender, PaintEventArgs e)
@@ -107,7 +113,7 @@ namespace SmartPilot2020
             double PitchAngleRadian = FlightHandler.CurrentPitchAngle;
             double RollAngleRadian = FlightHandler.CurrentRollAngle * Math.PI / 180;
 
-            RotateAndTranslate(e, horizon, RollAngleRadian, 0, ptBoule, (double)(4 * PitchAngleRadian), ptRotation, 1);
+            DrawingHelper.RotateAndTranslate(e, horizon, RollAngleRadian, 0, ptBoule, (double)(4 * PitchAngleRadian), ptRotation, 1);
 
             g.DrawImage(bezel, 0, 0);
             g.DrawImage(wings, 75, 125);
@@ -115,14 +121,131 @@ namespace SmartPilot2020
             ////////////////////////////////////////////
             // Pitch/Roll Control input visualization //
             ////////////////////////////////////////////
-            int pitchValue = MapValue(FlightHandler.PitchValue, PitchPulse[0], PitchPulse[1], 260, 40) - 4;
-            int rollValue = MapValue(FlightHandler.RollValue, RollPulse[0], RollPulse[1], 40, 260) - 4;
+            int pitchValue = MapValue(FlightHandler.PitchValue, FlightHandler.PitchPulse[0], FlightHandler.PitchPulse[1], 260, 40) - 4;
+            int rollValue = MapValue(FlightHandler.RollValue, FlightHandler.RollPulse[0], FlightHandler.RollPulse[1], 40, 260) - 4;
 
             g.DrawRectangle(new Pen(Brushes.Black, 4), new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
-            g.FillRectangle(Brushes.Gold, new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
+
+            Brush b = FlightHandler.AutoPilotActive ? Brushes.LimeGreen : Brushes.Gold;
+            g.FillRectangle(b, new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
 
             g.DrawString("Pitch: " + FlightHandler.PitchValue + "µs", new Font("Arial", 8), Brushes.White, 210, 280);
             g.DrawString("Roll: " + FlightHandler.RollValue + "µs", new Font("Arial", 8), Brushes.White, 25, 280);
+
+            ////////////////////////////////////
+            /// FlightEnvelope visualization ///
+            ////////////////////////////////////
+            
+            if(FlightHandler.ProtectionActive)
+            {
+                // Upper left
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 40, 60, 40);
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 40, 40, 60);
+
+                // Upper right
+                g.DrawLine(new Pen(Brushes.White, 2), 240, 40, 260, 40);
+                g.DrawLine(new Pen(Brushes.White, 2), 260, 40, 260, 60);
+
+                // Lower left
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 260, 40, 240);
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 260, 60, 260);
+
+                // Lower right
+                g.DrawLine(new Pen(Brushes.White, 2), 240, 260, 260, 260);
+                g.DrawLine(new Pen(Brushes.White, 2), 260, 260, 260, 240);
+            }
+
+        }
+
+        private void pbMonitorVisualization_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            pbMonitorVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
+
+            if (!FlightHandler.ControlsActiveChecked)
+            {
+                g.DrawString("Flightcontrols unchecked", new Font("Arial", 12, FontStyle.Bold), Brushes.Red, 110, 20);
+                return;
+            }
+
+            g.DrawLine(new Pen(Brushes.White, 1), 62.5F, 5, 62.5F, 55);
+
+            ///////////////////////////////
+            // Thrust mode visualization //
+            ///////////////////////////////
+
+            if(FlightHandler.AutoThrustActive)
+            {
+                g.DrawString("A/THR", new Font("Arial", 12, FontStyle.Bold), Brushes.LimeGreen, 3, 10);
+            } else
+            {
+                if(FlightHandler.ThrustValue == FlightHandler.ThrustPulse[0])
+                {
+                    g.DrawString("IDLE", new Font("Arial", 12, FontStyle.Bold), Brushes.White, 9, 10);
+                } else if(FlightHandler.ThrustValue == FlightHandler.ThrustPulse[1])
+                {
+                    g.DrawString("PWR", new Font("Arial", 12, FontStyle.Bold), Brushes.LimeGreen, 10, 10);
+                } else
+                {
+                    g.DrawString("M/THR", new Font("Arial", 12, FontStyle.Bold), Brushes.Orange, 3, 10);
+                }
+            }
+
+            g.DrawString(FlightHandler.ThrustValue + "µs", new Font("Arial", 8, FontStyle.Bold), Brushes.White, 12, 35);
+
+            /////////////////////////////////
+            /// Mode-Values visualization ///
+            /////////////////////////////////
+            
+            if(FlightHandler.AutoThrustActive)
+            {
+                g.DrawString("SPD", new Font("Arial", 8, FontStyle.Bold), Brushes.Orange, 80, 12);
+                g.DrawString(FlightHandler.TargetSpeed + "m/s", new Font("Arial", 12, FontStyle.Bold), Brushes.Cyan, 75, 25);
+            }
+
+            if(FlightHandler.AutoPilotActive)
+            {
+                g.DrawString("HDG", new Font("Arial", 8, FontStyle.Bold), Brushes.Orange, 145, 12);
+                g.DrawString(FlightHandler.TargetHeading + "°", new Font("Arial", 12, FontStyle.Bold), Brushes.Cyan, 140, 25);
+
+                g.DrawString("ALT", new Font("Arial", 8, FontStyle.Bold), Brushes.Orange, 200, 12);
+                g.DrawString(FlightHandler.TargetAltitude + "m", new Font("Arial", 12, FontStyle.Bold), Brushes.Cyan, 195, 25);
+            }
+
+            g.DrawLine(new Pen(Brushes.White, 1), 250, 5, 250, 55);
+
+            //////////////////////////
+            /// Mode visualization ///
+            //////////////////////////
+
+            g.DrawLine(new Pen(Brushes.White, 1), 370, 5, 370, 55);
+
+            if(FlightHandler.AutoPilotActive)
+            {
+                g.DrawString("AP", new Font("Arial", 10, FontStyle.Bold), Brushes.LimeGreen, 392, 5);
+            }
+            else
+            {
+                g.DrawString("AP", new Font("Arial", 10, FontStyle.Bold), Brushes.Red, 392, 5);
+            }
+
+            if (FlightHandler.ProtectionActive)
+            {
+                g.DrawString("FE", new Font("Arial", 10, FontStyle.Bold), Brushes.LimeGreen, 392, 23);
+            } else
+            {
+                g.DrawString("FE", new Font("Arial", 10, FontStyle.Bold), Brushes.Red, 392, 23);
+            }
+
+            if(FlightHandler.AutoThrustActive)
+            {
+                g.DrawString("A/THR", new Font("Arial", 10, FontStyle.Bold), Brushes.Cyan, 380, 40);
+            } else
+            {
+                g.DrawString("A/THR", new Font("Arial", 10, FontStyle.Bold), Brushes.Red, 380, 40);
+            }
+
         }
 
         private void pbSpeedVisualization_Paint(object sender, PaintEventArgs e)
@@ -131,11 +254,42 @@ namespace SmartPilot2020
             g.SmoothingMode = SmoothingMode.HighQuality;
             pbSpeedVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
 
+            g.DrawLine(new Pen(Brushes.White, 2), 50, 0, 50, 300);
+
             if (!FlightHandler.ControlsActiveChecked)
             {
+                g.DrawString("X", new Font("Arial", 20, FontStyle.Bold), Brushes.Red, 10, 135);
                 return;
             }
 
+            g.FillRectangle(Brushes.Gold, new Rectangle(0, 147, 6, 6));
+            g.DrawLine(new Pen(Brushes.Gold, 2), 0, 150, 60, 150);
+            g.DrawLine(new Pen(Brushes.Gold, 6), 40, 150, 60, 150);
+
+            int speed = FlightHandler.CurrentSpeed;
+
+            if (speed == 0)
+            {
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 30, 50, 30);
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 60, 50, 60);
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 90, 50, 90);
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 120, 50, 120);
+
+                g.DrawString("04", new Font("Arial", 10, FontStyle.Bold), Brushes.White, 15, 22);
+                g.DrawString("03", new Font("Arial", 10, FontStyle.Bold), Brushes.White, 15, 52);
+                g.DrawString("02", new Font("Arial", 10, FontStyle.Bold), Brushes.White, 15, 82);
+                g.DrawString("01", new Font("Arial", 10, FontStyle.Bold), Brushes.White, 15, 112);
+            } else
+            {
+
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 150, 50, 150);
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 180, 50, 180);
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 210, 50, 210);
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 240, 50, 240);
+                g.DrawLine(new Pen(Brushes.White, 2), 40, 270, 50, 270);
+
+            }
+            
         }
 
         private void pbAltitudeVisualization_Paint(object sender, PaintEventArgs e)
@@ -146,6 +300,7 @@ namespace SmartPilot2020
 
             if (!FlightHandler.ControlsActiveChecked)
             {
+                g.DrawString("X", new Font("Arial", 20, FontStyle.Bold), Brushes.Red, 10, 135);
                 return;
             }
 
@@ -157,6 +312,12 @@ namespace SmartPilot2020
             g.SmoothingMode = SmoothingMode.HighQuality;
             pbHeadingVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
 
+            if (!FlightHandler.ControlsActiveChecked)
+            {
+                g.DrawString("X", new Font("Arial", 20, FontStyle.Bold), Brushes.Red, 135, 15);
+                return;
+            }
+
             g.DrawLine(new Pen(Brushes.White, 2), 5, 30, 295, 30);
             g.DrawLine(new Pen(Brushes.White, 2), 150, 5, 150, 40);
 
@@ -164,11 +325,6 @@ namespace SmartPilot2020
             g.DrawLine(new Pen(Brushes.White, 2), 50, 15, 50, 40);
             g.DrawLine(new Pen(Brushes.White, 2), 200, 15, 200, 40);
             g.DrawLine(new Pen(Brushes.White, 2), 250, 15, 250, 40);
-
-            if (!FlightHandler.ControlsActiveChecked)
-            {
-                return;
-            }
 
             int currentHeading = FlightHandler.CurrentHeading;
 
@@ -188,36 +344,6 @@ namespace SmartPilot2020
 
         }
 
-        private void pbMonitorVisualization_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.HighQuality;
-            pbMonitorVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
-
-            g.DrawLine(new Pen(Brushes.White, 1), 62.5F, 5, 62.5F, 55);
-
-            if (!FlightHandler.ControlsActiveChecked)
-            {
-                g.DrawString("Flightcontrols unchecked", new Font("Arial", 12, FontStyle.Bold), Brushes.Red, 110, 20);
-                return;
-            }
-
-            ///////////////////////////////
-            // Thrust mode visualization //
-            ///////////////////////////////
-            if (FlightHandler.ThrustValue == ThrustPulse[0])
-            {
-                g.DrawString("IDLE", new Font("Arial", 12, FontStyle.Bold), Brushes.White, 9, 10);
-            }
-            else if (FlightHandler.ThrustValue == ThrustPulse[1])
-            {
-                g.DrawString("PWR", new Font("Arial", 12, FontStyle.Bold), Brushes.LimeGreen, 9, 10);
-            }
-
-            g.DrawString(FlightHandler.ThrustValue + "µs", new Font("Arial", 8, FontStyle.Bold), Brushes.White, 12, 35);
-
-        }
-
         private void pbNavigation_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -230,8 +356,24 @@ namespace SmartPilot2020
             int b = (pbNavigation.Size.Height / 2) - (plane.Height / 2);
             g.DrawImage(plane, a, b);
 
-            g.DrawString("Latitude: " + FlightHandler.CurrentLatitude, new Font("Arial", 10, FontStyle.Bold), Brushes.Green, 10, 10);
-            g.DrawString("Longitude: " + FlightHandler.CurrentLongitude, new Font("Arial", 10, FontStyle.Bold), Brushes.Green, 10, 30);
+            // AircratfMode visualization
+            g.DrawRectangle(Pens.White, new Rectangle(5, 5, 55, 25));
+            g.DrawString("Mode: " + FlightHandler.AircraftMode, new Font("Arial", 8), Brushes.LimeGreen, 10, 11);
+
+            // Latitude / Longitude visualization
+            g.DrawString("Latitude: " + FlightHandler.CurrentLatitude, new Font("Arial", 10, FontStyle.Bold), Brushes.LimeGreen, 160, 10);
+            g.DrawString("Longitude: " + FlightHandler.CurrentLongitude, new Font("Arial", 10, FontStyle.Bold), Brushes.LimeGreen, 160, 30);
+
+            // Protection visualization
+            if(FlightHandler.ProtectionActive)
+            {
+                g.DrawRectangle(Pens.White, new Rectangle(335, 5, 90, 70));
+                g.DrawString("Pitch: " + FlightHandler.ProtectedPitchDownAngle + "/" + FlightHandler.ProtectedPitchUpAngle + "°", new Font("Arial", 8), Brushes.LimeGreen, 340, 10);
+                g.DrawString("Roll: " + FlightHandler.ProtectedRollAngle + "°", new Font("Arial", 8), Brushes.LimeGreen, 340, 25);
+                g.DrawString("Speed: " + FlightHandler.ProtectedStallSpeed + "/" + FlightHandler.ProtectedOverSpeed + "m/s", new Font("Arial", 8), Brushes.LimeGreen, 340, 40);
+                g.DrawString("Altitude: " + FlightHandler.ProtectedAltitude + "m", new Font("Arial", 8), Brushes.LimeGreen, 340, 55);
+            }
+
         }
 
         private void pbStationaryWindDirection_Paint(object sender, PaintEventArgs e)
@@ -242,58 +384,264 @@ namespace SmartPilot2020
             int angle = tbAngle.Value;
 
             Image greenArrow = Properties.Resources.GreenArrow;
-            g.DrawImage(RotateImage(greenArrow, angle), 0, 0);
+            g.DrawImage(DrawingHelper.RotateImage(greenArrow, angle), 0, 0);
         }
 
-        //////////
-        // Test //
-        //////////
-
-        private void tbAngle_Scroll(object sender, EventArgs e)
-        {
-            pbGaugeTest.Refresh();
-        }
-
-        private void pbGaugeTest_Paint(object sender, PaintEventArgs e)
+        ////////////////////
+        // FlightEnvelope //
+        ////////////////////
+        private void pbFlightEnvelopeToggle_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
 
-            int diameter = 118;
-            int angle = tbAngle.Value;
+            g.FillRectangle(Brushes.DarkGray, new Rectangle(1, 1, 47, 47));
+            g.DrawString("FE", new Font("Arial", 10, FontStyle.Bold), Brushes.White, 15, 28);
 
-            double radian = (angle * (Math.PI / 180));
+            if (FlightHandler.ProtectionActive)
+            {
+                g.DrawLine(new Pen(Brushes.LimeGreen, 3), 10, 10, 40, 10);
+                g.DrawLine(new Pen(Brushes.LimeGreen, 3), 10, 15, 40, 15);
+                g.DrawLine(new Pen(Brushes.LimeGreen, 3), 10, 20, 40, 20);
+            }
+            else
+            {
+                g.DrawLine(new Pen(Brushes.Gray, 3), 10, 10, 40, 10);
+                g.DrawLine(new Pen(Brushes.Gray, 3), 10, 15, 40, 15);
+                g.DrawLine(new Pen(Brushes.Gray, 3), 10, 20, 40, 20);
+            }
 
-            // Center
-            int a = 60;
-            int b = 60;
+        }
 
-            g.DrawEllipse(new Pen(Brushes.Green, 2), new Rectangle(0, 0, diameter, diameter));
-            g.FillEllipse(Brushes.Green, new Rectangle(a - 3, b - 3, 6, 6));
+        private void pbFlightEnvelopeToggle_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (FlightHandler.ProtectionActive)
+            {
+                FlightHandler.ProtectionActive = false;
+                log.Log("FlightEnvelope has been disabled!");
+            }
+            else
+            {
+                FlightHandler.ProtectionActive = true;
+                log.Log("FlightEnvelope has been enabled!");
+            }
 
-            // Point on circumfence
-            int x = (int) (a + ((diameter / 2) * Math.Cos(radian)));
-            int y = (int) (b + ((diameter / 2) * Math.Sin(radian)));
-            g.DrawLine(new Pen(Brushes.Black, 2), a, b, x, y);
+            pbFlightEnvelopeToggle.Refresh();
+        }
 
-            /*
-            int x2 = (int)(a - ((diameter / 2) * Math.Cos(radian)));
-            int y2 = (int)(b - ((diameter / 2) * Math.Sin(radian)));
-            g.DrawLine(new Pen(Brushes.Black, 2), a, b, x2, y2);
-            */
+        ///////////////
+        // AutoPilot //
+        ///////////////
+        private void pbAutoPilotToggle_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
 
-            g.DrawString(angle + "°", new Font("Arial", 8, FontStyle.Bold), Brushes.Black, 50, 125);
+            g.FillRectangle(Brushes.DarkGray, new Rectangle(1, 1, 47, 47));
+            g.DrawString("AP", new Font("Arial", 10, FontStyle.Bold), Brushes.White, 15, 28);
 
+            if (FlightHandler.AutoPilotActive)
+            {
+                g.DrawLine(new Pen(Brushes.LimeGreen, 3), 10, 10, 40, 10);
+                g.DrawLine(new Pen(Brushes.LimeGreen, 3), 10, 15, 40, 15);
+                g.DrawLine(new Pen(Brushes.LimeGreen, 3), 10, 20, 40, 20);
+            }
+            else
+            {
+                g.DrawLine(new Pen(Brushes.Gray, 3), 10, 10, 40, 10);
+                g.DrawLine(new Pen(Brushes.Gray, 3), 10, 15, 40, 15);
+                g.DrawLine(new Pen(Brushes.Gray, 3), 10, 20, 40, 20);
+            }
+        }
+
+        private void pbAutoPilotToggle_Click(object sender, EventArgs e)
+        {
+            if (FlightHandler.AutoPilotActive)
+            {
+                FlightHandler.AutoPilotActive = false;
+                log.Log("AutoPilot has been disabled!");
+            }
+            else
+            {
+                FlightHandler.AutoPilotActive = true;
+
+                if(FlightHandler.ProtectionActive)
+                {
+                    log.Log("AutoPilot has been enabled!");
+                } else
+                {
+                    FlightHandler.ProtectionActive = true;
+                    log.Log("AutoPilot and FlightEnvelope has been enabled!");
+                }
+            }
+
+            pbAutoPilotToggle.Refresh();
+        }
+
+        ////////////////
+        // AutoThrust //
+        ////////////////
+        private void pbAutoThrustToggle_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+
+            g.FillRectangle(Brushes.DarkGray, new Rectangle(1, 1, 47, 47));
+            g.DrawString("A/THR", new Font("Arial", 10, FontStyle.Bold), Brushes.White, 3, 28);
+
+            if (FlightHandler.AutoThrustActive == true)
+            {
+                g.DrawLine(new Pen(Brushes.LimeGreen, 3), 10, 10, 40, 10);
+                g.DrawLine(new Pen(Brushes.LimeGreen, 3), 10, 15, 40, 15);
+                g.DrawLine(new Pen(Brushes.LimeGreen, 3), 10, 20, 40, 20);
+            }
+            else
+            {
+                g.DrawLine(new Pen(Brushes.Gray, 3), 10, 10, 40, 10);
+                g.DrawLine(new Pen(Brushes.Gray, 3), 10, 15, 40, 15);
+                g.DrawLine(new Pen(Brushes.Gray, 3), 10, 20, 40, 20);
+            }
+        }
+
+        private void pbAutoThrustToggle_Click(object sender, EventArgs e)
+        {
+            if (FlightHandler.AutoThrustActive)
+            {
+                FlightHandler.AutoThrustActive = false;
+                log.Log("AutoThrust has been disabled!");
+            }
+            else
+            {
+                FlightHandler.AutoThrustActive = true;
+                log.Log("AutoThrust has been enabled!");
+            }
+
+            pbAutoThrustToggle.Refresh();
+        }
+
+        /////////////////
+        // SpeedButton //
+        /////////////////
+        private void PbSpeedWheel_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta == 120)
+            {
+                FlightHandler.TargetSpeed++;
+            }
+            else if (e.Delta == -120)
+            {
+                if (FlightHandler.TargetSpeed != 0) FlightHandler.TargetSpeed--;
+            }
+        }
+
+        private void PbSpeedWheel_MouseHover(object sender, EventArgs e)
+        {
+            pbSpeedWheel.Focus();
+        }
+
+        private void pbSpeedWheel_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+
+            g.DrawImage(Resources.SpeedButton, 0, 0);
+        }
+
+        ////////////////////
+        // AltitudeButton //
+        ////////////////////
+        private void PbAltitudeWheel_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta == 120)
+            {
+                FlightHandler.TargetAltitude++;
+            }
+            else if (e.Delta == -120)
+            {
+                if (FlightHandler.TargetAltitude != 0) FlightHandler.TargetAltitude--;
+            }
+        }
+
+        private void PbAltitudeWheel_MouseHover(object sender, EventArgs e)
+        {
+            pbAltitudeWheel.Focus();
+        }
+
+        private void pbAltitudeWheel_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+
+            g.DrawImage(Resources.AltitudeButton, 0, 0);
+        }
+
+        ///////////////////
+        // HeadingButton //
+        ///////////////////
+        private void PbHeadingWheel_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if(e.Delta == 120)
+            {
+                if(FlightHandler.TargetHeading == 350)
+                {
+                    FlightHandler.TargetHeading = 0;
+                } else
+                {
+                    FlightHandler.TargetHeading += 10;
+                }
+            } else if(e.Delta == -120)
+            {
+                if (FlightHandler.TargetHeading == 0)
+                {
+                    FlightHandler.TargetHeading = 350;
+                } else
+                {
+                    FlightHandler.TargetHeading -= 10;
+                }  
+            }
+        }
+
+        private void PbHeadingWheel_MouseHover(object sender, EventArgs e)
+        {
+            pbHeadingWheel.Focus();
+        }
+
+        private void pbHeadingWheel_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+
+            Image HeadingButton = DrawingHelper.RotateImage(Resources.HeadingButton, FlightHandler.TargetHeading);
+
+            g.DrawImage(HeadingButton, 0, 0);
         }
 
         //////////////////////
         // Helper functions //
         //////////////////////
+        public bool IsWithin(int value, int minimum, int maximum)
+        {
+            return value >= minimum && value <= maximum;
+        }
 
         // Display in/out traffic to 2,4GHz module
         public void SetTraffic(String text)
         {
             lblTrafficMonnitor.Text = text;
+        }
+
+        // Set result of carrier test from NRF42 module on the station
+        public void SetCarrierTest(bool carrierTestResult)
+        {
+            if(carrierTestResult)
+            {
+                lblCarrierTest.ForeColor = Color.Green;
+                lblCarrierTest.Text = "CarrierTest (true)";
+            } else
+            {
+                lblCarrierTest.ForeColor = Color.Red;
+                lblCarrierTest.Text = "CarrierTest (false)";
+            }
         }
 
         // Set info to label at the top
@@ -369,7 +717,7 @@ namespace SmartPilot2020
         {
             lblCurrentSpeed.Invoke((MethodInvoker)delegate
             {
-                lblCurrentSpeed.Text = "Speed: " + speed + " ?";
+                lblCurrentSpeed.Text = "Speed: " + speed + " m/s";
             });
         }
 
@@ -378,7 +726,7 @@ namespace SmartPilot2020
         {
             lblCurrentAltitude.Invoke((MethodInvoker)delegate
             {
-                lblCurrentAltitude.Text = "Altitude: " + altitude + " ?";
+                lblCurrentAltitude.Text = "Altitude: " + altitude + " m";
             });
         }
 
@@ -401,7 +749,7 @@ namespace SmartPilot2020
         }
 
         // Set current aircraft pressure (label text)
-        public void SetCurrentAircraftPressure(int pressure)
+        public void SetCurrentAircraftPressure(double pressure)
         {
             lblAircraftPressure.Invoke((MethodInvoker)delegate
             {
@@ -498,76 +846,61 @@ namespace SmartPilot2020
             }
         }
 
-        public static Image RotateImage(Image img, float rotationAngle)
+        //////////
+        // Test //
+        //////////
+
+        private void tbAngle_Scroll(object sender, EventArgs e)
         {
-            //create an empty Bitmap image
-            Bitmap bmp = new Bitmap(img.Width, img.Height);
-
-            //turn the Bitmap into a Graphics object
-            Graphics gfx = Graphics.FromImage(bmp);
-
-            //now we set the rotation point to the center of our image
-            gfx.TranslateTransform((float)bmp.Width / 2, (float)bmp.Height / 2);
-
-            //now rotate the image
-            gfx.RotateTransform(rotationAngle);
-
-            gfx.TranslateTransform(-(float)bmp.Width / 2, -(float)bmp.Height / 2);
-
-            //set the InterpolationMode to HighQualityBicubic so to ensure a high
-            //quality image once it is transformed to the specified size
-            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-            //now draw our new image onto the graphics object
-            gfx.DrawImage(img, new Point(0, 0));
-
-            //dispose of our Graphics object
-            gfx.Dispose();
-
-            //return the image
-            return bmp;
+            pbGaugeTest.Refresh();
         }
 
-        protected void RotateAndTranslate(PaintEventArgs pe, Image img, Double alphaRot, Double alphaTrs, Point ptImg, double deltaPx, Point ptRot, float scaleFactor)
+        private void pbGaugeTest_Paint(object sender, PaintEventArgs e)
         {
-            double beta = 0;
-            double d = 0;
-            float deltaXRot = 0;
-            float deltaYRot = 0;
-            float deltaXTrs = 0;
-            float deltaYTrs = 0;
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            // Rotation
+            int diameter = 118;
+            int angle = tbAngle.Value;
 
-            if (ptImg != ptRot)
+            double radian = (angle * (Math.PI / 180));
+
+            // Center
+            int a = 60;
+            int b = 60;
+
+            g.DrawEllipse(new Pen(Brushes.Green, 2), new Rectangle(0, 0, diameter, diameter));
+            g.FillEllipse(Brushes.Green, new Rectangle(a - 3, b - 3, 6, 6));
+
+            // Point on circumfence
+            int x = (int)(a + ((diameter / 2) * Math.Cos(radian)));
+            int y = (int)(b + ((diameter / 2) * Math.Sin(radian)));
+            g.DrawLine(new Pen(Brushes.Black, 2), a, b, x, y);
+
+            g.DrawString(angle + "°", new Font("Arial", 8, FontStyle.Bold), Brushes.Black, 50, 125);
+
+        }
+
+        private void btnAircraftMode_Click(object sender, EventArgs e)
+        {
+            int mode;
+
+            if(FlightHandler.AircraftMode == 0)
             {
-                // Internals coeffs
-                if (ptRot.X != 0)
-                {
-                    beta = Math.Atan((double)ptRot.Y / (double)ptRot.X);
-                }
-
-                d = Math.Sqrt((ptRot.X * ptRot.X) + (ptRot.Y * ptRot.Y));
-
-                // Computed offset
-                deltaXRot = (float)(d * (Math.Cos(alphaRot - beta) - Math.Cos(alphaRot) * Math.Cos(alphaRot + beta) - Math.Sin(alphaRot) * Math.Sin(alphaRot + beta)));
-                deltaYRot = (float)(d * (Math.Sin(beta - alphaRot) + Math.Sin(alphaRot) * Math.Cos(alphaRot + beta) - Math.Cos(alphaRot) * Math.Sin(alphaRot + beta)));
+                mode = 1;
+            } else
+            {
+                mode = 0;
             }
 
-            // Translation
+            FlightHandler.AircraftMode = mode;
+            log.Log("AircraftMode has been manually set to " + mode);
 
-            // Computed offset
-            deltaXTrs = (float)(deltaPx * (Math.Sin(alphaTrs)));
-            deltaYTrs = (float)(-deltaPx * (-Math.Cos(alphaTrs)));
+        }
 
-            // Rotate image support
-            pe.Graphics.RotateTransform((float)(alphaRot * 180 / Math.PI));
-
-            // Dispay image
-            pe.Graphics.DrawImage(img, (ptImg.X + deltaXRot + deltaXTrs) * scaleFactor, (ptImg.Y + deltaYRot + deltaYTrs) * scaleFactor, img.Width * scaleFactor, img.Height * scaleFactor);
-
-            // Put image support as found
-            pe.Graphics.RotateTransform((float)(-alphaRot * 180 / Math.PI));
+        private void btnAltitudeReference_Click(object sender, EventArgs e)
+        {
+            FlightHandler.RemoteDataInterface.SendAltitudeReferencePacket((int) nudBaroRef.Value);
         }
 
     }
