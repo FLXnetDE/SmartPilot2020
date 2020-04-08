@@ -47,6 +47,9 @@ namespace SmartPilot2020
                         case JoystickOffset.RotationZ: // Yaw input
                             main.FlightHandler.ProcessYaw(state.Value);
                             break;
+                        case JoystickOffset.PointOfViewControllers0: // Top knob/joystick input
+                            main.FlightHandler.ProccessTrim(state.Value);
+                            break;
                     }
                 }
             }

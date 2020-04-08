@@ -14,10 +14,10 @@ namespace SmartPilot2020
         public bool ControlsActiveChecked = false;
 
         // Default pulse width configuration
-        public int[] ThrustPulse = new int[3] { 500, 2500, 1500 }; // [2] = AutoThrustThresoldValue
-        public int[] PitchPulse = new int[2] { 500, 2500 };
-        public int[] RollPulse = new int[2] { 500, 2500 };
-        public int[] YawPulse = new int[2] { 500, 2500 };
+        public int[] ThrustPulse = new int[3] { 1000, 2000, 0 };
+        public int[] PitchPulse = new int[3] { 1000, 2000, 0 };
+        public int[] RollPulse = new int[3] { 1000, 2000, 0 };
+        public int[] YawPulse = new int[3] { 1000, 2000, 0 };
 
         // Calculated output pulse values
         public int ThrustValue;
@@ -63,10 +63,11 @@ namespace SmartPilot2020
         public int TargetSpeed = 10;
         public int TargetAltitude;
 
-        // Calculation variables
-        private int LatestPitchValue;
-        private int LatestRollValue;
-        private int LatestThrustValue;
+        // Value finalization / correction / check
+        public int FinalThrustValue;
+        public int FinalPitchValue;
+        public int FinalRollValue;
+        public int FinalYawValue;
 
         public FlightHandler(SmartPilot2020 main)
         {
@@ -99,14 +100,15 @@ namespace SmartPilot2020
                 return;
             }
 
-            if (CurrentAltitude >= 2) AircraftMode = 1; // Enable air mode if aircraft is 2m above ground
+            // Enable air mode if aircraft is 2m above ground
+            if (CurrentAltitude >= 2) AircraftMode = 1;
 
             ///////////////
             // AutoPilot //
             ///////////////
             if (AutoPilotActive)
             {
-
+                if (AircraftMode == 0) return;
             }
 
             ////////////////
@@ -115,8 +117,6 @@ namespace SmartPilot2020
             if (AutoThrustActive)
             {
                 if (AircraftMode == 0) return;
-
-                
             }
 
             ////////////////
@@ -125,65 +125,15 @@ namespace SmartPilot2020
             if (ProtectionActive)
             {
                 if (AircraftMode == 0) return;
-
-                // Speed protection
-                if (CurrentSpeed < ProtectedStallSpeed)
-                {
-                    this.ThrustValue = ThrustPulse[1];
-
-                    if (main.Debug) main.log.Log("Speed is lower than ProtectedStallSpeed -> FULL THRUST");
-                }
-
-                if (CurrentSpeed > ProtectedOverSpeed)
-                {
-                    this.ThrustValue = this.ThrustValue / 2;
-
-                    if (main.Debug) main.log.Log("Speed is lower than ProtectedOverSpeed -> THRUST DERATED / 2");
-                }
-
-                // Pitch protection
-                if (CurrentPitchAngle > ProtectedPitchUpAngle)
-                {
-                    int down = (LatestPitchValue / 100) * 15;
-                    int value = LatestPitchValue - down;
-
-
-                    if (value < PitchPulse[0])
-                    {
-                        this.PitchValue = PitchPulse[0];
-                    }
-                    else
-                    {
-                        this.PitchValue = value;
-                    }
-
-                    main.log.Log("Aircraft exceeded the maximum protected pitch up angle (" + ProtectedPitchUpAngle + ") -> CORRECTING");
-                }
-
-                if (CurrentPitchAngle < ProtectedPitchDownAngle)
-                {
-                    int up = (LatestPitchValue / 100) * 15;
-                    int value = LatestPitchValue + up;
-
-                    if(value > PitchPulse[1])
-                    {
-                        this.PitchValue = PitchPulse[1];
-                    } else
-                    {
-                        this.PitchValue = value;
-                    }
-
-                    main.log.Log("Aircraft exceeded the maximum protected pitch down angle (" + ProtectedPitchDownAngle + ") -> CORRECTING");
-                }
-
             }
 
-            RemoteDataInterface.SendControlPacket(new RemoteControlPacket(ThrustValue, PitchValue, RollValue, YawValue));
+            // Value finalization / correction / check
+            FinalThrustValue = ThrustValue;
+            FinalPitchValue = PitchValue + PitchPulse[2];
+            FinalRollValue = RollValue + RollPulse[2];
+            FinalYawValue = YawValue;
 
-            LatestPitchValue = PitchValue;
-            LatestRollValue = RollValue;
-            LatestThrustValue = ThrustValue;
-
+            RemoteDataInterface.SendControlPacket(new RemoteControlPacket(FinalThrustValue, FinalPitchValue, FinalRollValue, FinalYawValue));
         }
 
         public void ProcessThrust(int ThrustValue)
@@ -200,19 +150,41 @@ namespace SmartPilot2020
         public void ProcessPitch(int PitchValue)
         {
             if (!AutoPilotActive)
-                this.PitchValue = Util.MapValue(PitchValue, 0, 65536, PitchPulse[0], PitchPulse[1]);
+                this.PitchValue = Util.MapValue(PitchValue, 0, 65535, PitchPulse[0], PitchPulse[1]);
         }
 
         public void ProcessRoll(int RollValue)
         {
             if (!AutoPilotActive)
-                this.RollValue = Util.MapValue(RollValue, 0, 65536, RollPulse[0], RollPulse[1]);
+                this.RollValue = Util.MapValue(RollValue, 0, 65535, RollPulse[0], RollPulse[1]);
         }
 
         public void ProcessYaw(int YawValue)
         {
             if (!AutoPilotActive)
-                this.YawValue = Util.MapValue(YawValue, 0, 65536, YawPulse[0], YawPulse[1]);
+                this.YawValue = Util.MapValue(YawValue, 0, 65535, YawPulse[0], YawPulse[1]);
+        }
+
+        public void ProccessTrim(int TrimValue)
+        {
+            if(!AutoPilotActive)
+            {
+                switch(TrimValue)
+                {
+                    case 0: // Stick forwards - trim pitch pulse down
+                        this.PitchPulse[2] -= main.AdditionalTrimValue;
+                        break;
+                    case 18000: // Stick backwards - trim pitch pulse up
+                        this.PitchPulse[2] += main.AdditionalTrimValue;
+                        break;
+                    case 27000: // Stick left - trim roll pulse down
+                        this.RollPulse[2] -= main.AdditionalTrimValue;
+                        break;
+                    case 9000: // Stick left - trim roll pulse up
+                        this.RollPulse[2] += main.AdditionalTrimValue;
+                        break;
+                }
+            }
         }
 
     }

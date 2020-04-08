@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using SmartPilot2020;
+﻿using SmartPilot2020;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

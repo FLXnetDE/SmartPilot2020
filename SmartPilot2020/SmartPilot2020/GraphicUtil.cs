@@ -20,13 +20,14 @@ namespace SmartPilot2020
                 return;
             }
 
-            g.DrawLine(new Pen(Brushes.White, 2), 5, 30, 295, 30);
-            g.DrawLine(new Pen(Brushes.White, 2), 150, 5, 150, 40);
+            g.DrawLine(new Pen(Brushes.White, 2), 0, 20, 300, 20);
+            g.DrawLine(new Pen(Brushes.Gold, 5), 150, 0, 150, 20);
 
-            g.DrawLine(new Pen(Brushes.White, 2), 100, 15, 100, 40);
-            g.DrawLine(new Pen(Brushes.White, 2), 50, 15, 50, 40);
-            g.DrawLine(new Pen(Brushes.White, 2), 200, 15, 200, 40);
-            g.DrawLine(new Pen(Brushes.White, 2), 250, 15, 250, 40);
+            g.DrawLine(new Pen(Brushes.White, 2), 50, 20, 50, 30);
+            g.DrawLine(new Pen(Brushes.White, 2), 100, 20, 100, 30);
+            g.DrawLine(new Pen(Brushes.White, 2), 150, 20, 150, 40);
+            g.DrawLine(new Pen(Brushes.White, 2), 200, 20, 200, 30);
+            g.DrawLine(new Pen(Brushes.White, 2), 250, 20, 250, 30);
 
             int currentHeading = main.FlightHandler.CurrentHeading;
 
@@ -44,7 +45,7 @@ namespace SmartPilot2020
                 width = 137;
             }
 
-            g.DrawString(currentHeading.ToString(), Util.AirbusFont10(), Brushes.White, width, 40);
+            g.DrawString(currentHeading.ToString(), Util.AirbusFont10(), Brushes.White, width, 42);
         }
 
         // Method to draw the speed display band on the left side of the PFD

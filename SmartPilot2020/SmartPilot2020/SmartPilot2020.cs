@@ -20,6 +20,7 @@ namespace SmartPilot2020
 
         public bool Debug = false;
         public int SystemTickInterval = 50;
+        public int AdditionalTrimValue = 10;
 
         public SmartPilot2020()
         {
@@ -128,14 +129,31 @@ namespace SmartPilot2020
             Brush b = FlightHandler.AutoPilotActive ? Brushes.LimeGreen : Brushes.Gold;
             g.FillRectangle(b, new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
 
-            g.DrawString("Pitch: " + FlightHandler.PitchValue + "µs", new Font("Arial", 8), Brushes.White, 210, 280);
-            g.DrawString("Roll: " + FlightHandler.RollValue + "µs", new Font("Arial", 8), Brushes.White, 25, 280);
+            g.DrawString("Pitch: " + (FlightHandler.PitchValue + FlightHandler.PitchPulse[2]) + "µs", new Font("Arial", 8), Brushes.White, 160, 280);
+            g.DrawString("Roll: " + (FlightHandler.RollValue + FlightHandler.RollPulse[2]) + "µs", new Font("Arial", 8), Brushes.White, 25, 280);
+
+            if(FlightHandler.PitchPulse[2] > 0)
+            {
+                g.DrawString("(+" + FlightHandler.PitchPulse[2] + "µs)", new Font("Arial", 8, FontStyle.Bold), Brushes.LimeGreen, 230, 280);
+            } else if(FlightHandler.PitchPulse[2] < 0)
+            {
+                g.DrawString("(" + FlightHandler.PitchPulse[2] + "µs)", new Font("Arial", 8, FontStyle.Bold), Brushes.Red, 230, 280);
+            }
+
+            if (FlightHandler.RollPulse[2] > 0)
+            {
+                g.DrawString("(+" + FlightHandler.RollPulse[2] + "µs)", new Font("Arial", 8, FontStyle.Bold), Brushes.LimeGreen, 90, 280);
+            }
+            else if (FlightHandler.RollPulse[2] < 0)
+            {
+                g.DrawString("(" + FlightHandler.RollPulse[2] + "µs)", new Font("Arial", 8, FontStyle.Bold), Brushes.Red, 90, 280);
+            }
 
             ////////////////////////////////////
             /// FlightEnvelope visualization ///
             ////////////////////////////////////
-            
-            if(FlightHandler.ProtectionActive)
+
+            if (FlightHandler.ProtectionActive)
             {
                 // Upper left
                 g.DrawLine(new Pen(Brushes.White, 2), 40, 40, 60, 40);
@@ -455,9 +473,7 @@ namespace SmartPilot2020
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
 
-            Image HeadingButton = DrawingHelper.RotateImage(Resources.HeadingButton, FlightHandler.TargetHeading);
-
-            g.DrawImage(HeadingButton, 0, 0);
+            g.DrawImage(Resources.HeadingButton, 0, 0);
         }
 
         //////////////////////
@@ -741,7 +757,7 @@ namespace SmartPilot2020
         {
             try
             {
-                FlightHandler.CurrentHeading = Int32.Parse(txtbTest.Text);
+                FlightHandler.CurrentSpeed = Int32.Parse(txtbTest.Text);
                 log.Log("Test value: " + txtbTest.Text);
             } catch(Exception)
             {
