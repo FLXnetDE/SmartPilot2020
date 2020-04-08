@@ -79,6 +79,8 @@
             this.btnAircraftMode = new System.Windows.Forms.Button();
             this.btnAltitudeReference = new System.Windows.Forms.Button();
             this.nudBaroRef = new System.Windows.Forms.NumericUpDown();
+            this.txtbTest = new System.Windows.Forms.TextBox();
+            this.btnTest = new System.Windows.Forms.Button();
             this.tsTop.SuspendLayout();
             this.ssBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbAngle)).BeginInit();
@@ -642,11 +644,31 @@
             this.nudBaroRef.Size = new System.Drawing.Size(107, 20);
             this.nudBaroRef.TabIndex = 42;
             // 
+            // txtbTest
+            // 
+            this.txtbTest.Location = new System.Drawing.Point(1108, 269);
+            this.txtbTest.Name = "txtbTest";
+            this.txtbTest.Size = new System.Drawing.Size(107, 20);
+            this.txtbTest.TabIndex = 43;
+            // 
+            // btnTest
+            // 
+            this.btnTest.ForeColor = System.Drawing.Color.Black;
+            this.btnTest.Location = new System.Drawing.Point(1108, 296);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(107, 23);
+            this.btnTest.TabIndex = 44;
+            this.btnTest.Text = "Test";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // SmartPilot2020
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1270, 909);
+            this.Controls.Add(this.btnTest);
+            this.Controls.Add(this.txtbTest);
             this.Controls.Add(this.nudBaroRef);
             this.Controls.Add(this.btnAltitudeReference);
             this.Controls.Add(this.btnAircraftMode);
@@ -752,6 +774,8 @@
         private System.Windows.Forms.Button btnAircraftMode;
         private System.Windows.Forms.Button btnAltitudeReference;
         private System.Windows.Forms.NumericUpDown nudBaroRef;
+        private System.Windows.Forms.TextBox txtbTest;
+        private System.Windows.Forms.Button btnTest;
     }
 }
 

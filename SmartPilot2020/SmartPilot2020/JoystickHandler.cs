@@ -1,9 +1,5 @@
 ﻿using SharpDX.DirectInput;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmartPilot2020
 {
@@ -46,7 +42,7 @@ namespace SmartPilot2020
                             main.FlightHandler.ProcessPitch(state.Value);
                             break;
                         case JoystickOffset.Sliders0: // Thrust input
-                            main.FlightHandler.ProcessThrust(SmartPilot2020.MapValue(state.Value, 65534, 0, 0, 65534));
+                            main.FlightHandler.ProcessThrust(Util.MapValue(state.Value, 65534, 0, 0, 65534));
                             break;
                         case JoystickOffset.RotationZ: // Yaw input
                             main.FlightHandler.ProcessYaw(state.Value);

@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrawingHelper.cs" />
+    <Compile Include="GraphicUtil.cs" />
     <Compile Include="LogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +102,7 @@
     <Compile Include="FlightHandler.cs" />
     <Compile Include="RemoteDataInterface.cs" />
     <Compile Include="ThrustMode.cs" />
+    <Compile Include="Util.cs" />
     <EmbeddedResource Include="LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>

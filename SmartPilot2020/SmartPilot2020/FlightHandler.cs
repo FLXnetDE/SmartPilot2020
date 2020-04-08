@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace SmartPilot2020
@@ -15,7 +14,7 @@ namespace SmartPilot2020
         public bool ControlsActiveChecked = false;
 
         // Default pulse width configuration
-        public int[] ThrustPulse = new int[3] { 500, 2500, 1800 }; // [2] = InitialRegulatedThrustPulse
+        public int[] ThrustPulse = new int[3] { 500, 2500, 1500 }; // [2] = AutoThrustThresoldValue
         public int[] PitchPulse = new int[2] { 500, 2500 };
         public int[] RollPulse = new int[2] { 500, 2500 };
         public int[] YawPulse = new int[2] { 500, 2500 };
@@ -115,36 +114,9 @@ namespace SmartPilot2020
             ////////////////
             if (AutoThrustActive)
             {
+                if (AircraftMode == 0) return;
 
-                if(CurrentSpeed >= TargetSpeed) // CurrentSpeed is greater than TargetSpeed - DERATE THRUST / 2
-                {
-                    int derate = (LatestThrustValue / 100) * 15;
-                    int value = LatestThrustValue - derate;
-
-                    if (value < ThrustPulse[0])
-                    {
-                        this.ThrustValue = ThrustPulse[0];
-                    } else
-                    {
-                        this.ThrustValue = value;
-                    }
-
-                }
-
-                if(CurrentSpeed <= TargetSpeed) // CurrentSpeed is below TargetSpeed - SET THRUST InitialRegulatedThrustPulse
-                {
-                    int accel = (LatestThrustValue / 100) * 5;
-                    int value = LatestThrustValue + accel;
-
-                    if (value > ThrustPulse[1])
-                    {
-                        this.ThrustValue = ThrustPulse[1];
-                    }
-                    else
-                    {
-                        this.ThrustValue = value;
-                    }
-                }
+                
             }
 
             ////////////////
@@ -152,7 +124,6 @@ namespace SmartPilot2020
             ////////////////
             if (ProtectionActive)
             {
-
                 if (AircraftMode == 0) return;
 
                 // Speed protection
@@ -217,26 +188,31 @@ namespace SmartPilot2020
 
         public void ProcessThrust(int ThrustValue)
         {
+            if(AutoThrustActive && ThrustValue <= 0)
+            {
+                AutoThrustActive = false;
+            }
+
             if(!AutoThrustActive)
-                this.ThrustValue = SmartPilot2020.MapValue(ThrustValue, 0, 65536, ThrustPulse[0], ThrustPulse[1]);
+            this.ThrustValue = Util.MapValue(ThrustValue, 0, 65536, ThrustPulse[0], ThrustPulse[1]);
         }
 
         public void ProcessPitch(int PitchValue)
         {
             if (!AutoPilotActive)
-                this.PitchValue = SmartPilot2020.MapValue(PitchValue, 0, 65536, PitchPulse[0], PitchPulse[1]);
+                this.PitchValue = Util.MapValue(PitchValue, 0, 65536, PitchPulse[0], PitchPulse[1]);
         }
 
         public void ProcessRoll(int RollValue)
         {
             if (!AutoPilotActive)
-                this.RollValue = SmartPilot2020.MapValue(RollValue, 0, 65536, RollPulse[0], RollPulse[1]);
+                this.RollValue = Util.MapValue(RollValue, 0, 65536, RollPulse[0], RollPulse[1]);
         }
 
         public void ProcessYaw(int YawValue)
         {
             if (!AutoPilotActive)
-                this.YawValue = SmartPilot2020.MapValue(YawValue, 0, 65536, YawPulse[0], YawPulse[1]);
+                this.YawValue = Util.MapValue(YawValue, 0, 65536, YawPulse[0], YawPulse[1]);
         }
 
     }
