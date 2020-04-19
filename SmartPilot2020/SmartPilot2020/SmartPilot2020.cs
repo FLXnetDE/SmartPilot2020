@@ -11,12 +11,11 @@ namespace SmartPilot2020
     {
         public JoystickHandler JoystickHandler;
         public FlightHandler FlightHandler;
+        public MonitoringHandler MonitoringHandler;
 
         ///////////////////
         // Global config //
         ///////////////////
-
-        public LogForm log;
 
         public bool Debug = false;
         public int SystemTickInterval = 50;
@@ -37,14 +36,14 @@ namespace SmartPilot2020
 
         private void RCAutopilot_Load(object sender, EventArgs e)
         {
-            log = new LogForm();
-            log.Show();
-
             (new Thread(() => {
                 JoystickHandler = new JoystickHandler(this);
             })).Start();
 
+            MonitoringHandler = new MonitoringHandler(this);
             FlightHandler = new FlightHandler(this);
+
+            MonitoringHandler.AddMessageTimed("SmartPilot2020 started", Color.LimeGreen, 3000);
         }
 
         ////////////////////////////////
@@ -64,6 +63,8 @@ namespace SmartPilot2020
             pbAutoPilotToggle.Refresh();
             pbAutoThrustToggle.Refresh();
             pbHeadingWheel.Refresh();
+            pbMonitoring.Refresh();
+            pbSelectorDisplay.Refresh();
 
             // Text based visualization
             SetCurrentPitch(FlightHandler.CurrentPitchAngle);
@@ -121,16 +122,15 @@ namespace SmartPilot2020
             ////////////////////////////////////////////
             // Pitch/Roll Control input visualization //
             ////////////////////////////////////////////
-            int pitchValue = Util.MapValue(FlightHandler.PitchValue, FlightHandler.PitchPulse[0], FlightHandler.PitchPulse[1], 260, 40) - 4;
-            int rollValue = Util.MapValue(FlightHandler.RollValue, FlightHandler.RollPulse[0], FlightHandler.RollPulse[1], 40, 260) - 4;
+            int pitchValue = Util.MapValue(FlightHandler.RawPitchValue, FlightHandler.PitchPulse[0], FlightHandler.PitchPulse[1], 260, 40) - 4;
+            int rollValue = Util.MapValue(FlightHandler.RawRollValue, FlightHandler.RollPulse[0], FlightHandler.RollPulse[1], 40, 260) - 4;
 
             g.DrawRectangle(new Pen(Brushes.Black, 4), new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
-
             Brush b = FlightHandler.AutoPilotActive ? Brushes.LimeGreen : Brushes.Gold;
             g.FillRectangle(b, new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
 
-            g.DrawString("Pitch: " + (FlightHandler.PitchValue + FlightHandler.PitchPulse[2]) + "µs", new Font("Arial", 8), Brushes.White, 160, 280);
-            g.DrawString("Roll: " + (FlightHandler.RollValue + FlightHandler.RollPulse[2]) + "µs", new Font("Arial", 8), Brushes.White, 25, 280);
+            g.DrawString("Pitch: " + FlightHandler.PitchValue + "µs", new Font("Arial", 8), Brushes.White, 160, 280);
+            g.DrawString("Roll: " + FlightHandler.RollValue + "µs", new Font("Arial", 8), Brushes.White, 25, 280);
 
             if(FlightHandler.PitchPulse[2] > 0)
             {
@@ -170,6 +170,16 @@ namespace SmartPilot2020
                 // Lower right
                 g.DrawLine(new Pen(Brushes.White, 2), 240, 260, 260, 260);
                 g.DrawLine(new Pen(Brushes.White, 2), 260, 260, 260, 240);
+            }
+
+            ////////////////////////////////////
+            /// FlightDirector visualization ///
+            ////////////////////////////////////
+            ///
+            if(FlightHandler.FlightDirectorActive)
+            {
+                g.DrawLine(new Pen(Color.LimeGreen, 3), 150, 40, 150, 260);
+                g.DrawLine(new Pen(Color.LimeGreen, 3), 40, 150, 260, 150);
             }
 
         }
@@ -231,9 +241,9 @@ namespace SmartPilot2020
             g.DrawImage(DrawingHelper.RotateImage(greenArrow, angle), 0, 0);
         }
 
-        ////////////////////
-        // FlightEnvelope //
-        ////////////////////
+        ////////////////
+        // Protection //
+        ////////////////
         private void pbFlightEnvelopeToggle_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -261,19 +271,16 @@ namespace SmartPilot2020
         {
             if (!FlightHandler.ControlsActiveChecked)
             {
-                log.Log("FlightControls are not yet checked!");
                 return;
             }
 
             if (FlightHandler.ProtectionActive)
             {
                 FlightHandler.ProtectionActive = false;
-                log.Log("FlightEnvelope has been disabled!");
             }
             else
             {
                 FlightHandler.ProtectionActive = true;
-                log.Log("FlightEnvelope has been enabled!");
             }
 
             pbFlightEnvelopeToggle.Refresh();
@@ -308,26 +315,26 @@ namespace SmartPilot2020
         {
             if (!FlightHandler.ControlsActiveChecked)
             {
-                log.Log("FlightControls are not yet checked!");
                 return;
             }
 
             if (FlightHandler.AutoPilotActive)
             {
                 FlightHandler.AutoPilotActive = false;
-                log.Log("AutoPilot has been disabled!");
             }
             else
             {
+                if (FlightHandler.AircraftMode == 0)
+                {
+                    MonitoringHandler.AddMessageTimed("INVALID AIRCRAFT MODE FOR AP", Color.Orange, 2000);
+                    return;
+                }
+
                 FlightHandler.AutoPilotActive = true;
 
-                if(FlightHandler.ProtectionActive)
-                {
-                    log.Log("AutoPilot has been enabled!");
-                } else
+                if(!FlightHandler.ProtectionActive)
                 {
                     FlightHandler.ProtectionActive = true;
-                    log.Log("AutoPilot and FlightEnvelope has been enabled!");
                 }
             }
 
@@ -363,19 +370,23 @@ namespace SmartPilot2020
         {
             if(!FlightHandler.ControlsActiveChecked)
             {
-                log.Log("FlightControls are not yet checked!");
                 return;
             }
 
             if (FlightHandler.AutoThrustActive)
             {
                 FlightHandler.AutoThrustActive = false;
-                log.Log("AutoThrust has been disabled!");
             }
             else
             {
+
+                if(FlightHandler.ThrustValue <= 600)
+                {
+                    MonitoringHandler.AddMessageTimed("M/THR NOT ENGAGED", Color.Orange, 2000);
+                    return;
+                }
+
                 FlightHandler.AutoThrustActive = true;
-                log.Log("AutoThrust has been enabled!");
             }
 
             pbAutoThrustToggle.Refresh();
@@ -474,6 +485,28 @@ namespace SmartPilot2020
             g.SmoothingMode = SmoothingMode.HighQuality;
 
             g.DrawImage(Resources.HeadingButton, 0, 0);
+        }
+
+        /////////////////////
+        // SelectorDisplay //
+        /////////////////////
+        private void pbSelectorDisplay_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            pbSelectorDisplay.BackColor = Color.Black;
+            GraphicUtil.DrawSelectorDispaly(g, this);
+        }
+
+        ///////////////////////
+        // MonitoringDisplay //
+        ///////////////////////
+        private void pbMonitoring_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            pbMonitoring.BackColor = Color.Black;
+            MonitoringHandler.DrawMonitoringDisplay(g);
         }
 
         //////////////////////
@@ -674,12 +707,10 @@ namespace SmartPilot2020
             {
                 this.FlightHandler.RemoteDataInterface.PacketOutputState = false;
                 SetPacketOutputState(false);
-                log.Log("Remote packet output stopped!");
             } else
             {
                 this.FlightHandler.RemoteDataInterface.PacketOutputState = true;
                 SetPacketOutputState(true);
-                log.Log("Remote packet output started!");
             }
         }
 
@@ -694,6 +725,13 @@ namespace SmartPilot2020
                 lblPacketOutput.ForeColor = Color.Red;
                 lblPacketOutput.Text = "Stopped";
             }
+        }
+
+        public void Log(String message)
+        {
+            lbLog.Invoke((MethodInvoker) delegate {
+                lbLog.Items.Add(message);
+            });
         }
 
         //////////
@@ -744,7 +782,6 @@ namespace SmartPilot2020
             }
 
             FlightHandler.AircraftMode = mode;
-            log.Log("AircraftMode has been manually set to " + mode);
 
         }
 
@@ -758,10 +795,8 @@ namespace SmartPilot2020
             try
             {
                 FlightHandler.CurrentSpeed = Int32.Parse(txtbTest.Text);
-                log.Log("Test value: " + txtbTest.Text);
             } catch(Exception)
             {
-                log.Log("Malformed numeric value");
             }
 
         }

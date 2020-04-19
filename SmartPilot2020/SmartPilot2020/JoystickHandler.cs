@@ -10,7 +10,6 @@ namespace SmartPilot2020
         public JoystickHandler(SmartPilot2020 main)
         {
             this.main = main;
-            main.log.Log("JoystickHandler started!");
 
             DirectInput directInput = new DirectInput();
             Guid joystickGuid = Guid.Empty;
@@ -49,6 +48,12 @@ namespace SmartPilot2020
                             break;
                         case JoystickOffset.PointOfViewControllers0: // Top knob/joystick input
                             main.FlightHandler.ProccessTrim(state.Value);
+                            break;
+                        case JoystickOffset.Buttons0:
+                            if(main.FlightHandler.AutoPilotActive)
+                            {
+                                main.FlightHandler.AutoPilotActive = false;
+                            }
                             break;
                     }
                 }

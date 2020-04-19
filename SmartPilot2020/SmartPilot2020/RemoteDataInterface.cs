@@ -36,11 +36,6 @@ namespace SmartPilot2020
             {
                 this.SerialPort.WriteLine(encoded);
 
-                if (main.Debug)
-                {
-                    main.log.Log(remotePacket.GetName() + ": " + encoded);
-                }
-
                 tx++;
                 main.SetTraffic("RX " + rx + " / TX " + tx);
             }
@@ -53,11 +48,6 @@ namespace SmartPilot2020
             if (SerialPort.IsOpen && PacketOutputState)
             {
                 this.SerialPort.WriteLine(encoded);
-
-                if (main.Debug)
-                {
-                    main.log.Log("AltitudeReferencePacket" + ": " + encoded);
-                }
 
                 tx++;
                 main.SetTraffic("RX " + rx + " / TX " + tx);
@@ -77,11 +67,6 @@ namespace SmartPilot2020
                 inputSplit = input.Split(';');
                 packetId = Int32.Parse(inputSplit[0]);
 
-                if(main.Debug)
-                {
-                    main.log.Log("Received packet from type: " + packetId);
-                }
-
                 switch (packetId)
                 {
                     case 0: // not implemented as incoming packet
@@ -96,8 +81,11 @@ namespace SmartPilot2020
                         main.FlightHandler.CurrentAltitude = Int32.Parse(inputSplit[5]);
                         break;
                     case 3: // RemotePositionPacket
-                        main.FlightHandler.CurrentLatitude = Double.Parse(inputSplit[1]);
-                        main.FlightHandler.CurrentLongitude = Double.Parse(inputSplit[2]);
+                        main.Log(input);
+
+                        main.FlightHandler.CurrentLatitude = Double.Parse(inputSplit[1].Replace('.', ','));
+                        main.FlightHandler.CurrentLongitude = Double.Parse(inputSplit[2].Replace('.', ','));
+                        main.FlightHandler.CurrentGpsAltitude = Int32.Parse(inputSplit[3]);
                         break;
                     case 4: // RemoteEnvironmentPacket
                         main.FlightHandler.CurrentAircraftTemperature = Int32.Parse(inputSplit[1]);
@@ -116,13 +104,8 @@ namespace SmartPilot2020
 
             } catch(Exception)
             {
-                main.log.Log("Received a faulty packet");
+                main.MonitoringHandler.AddMessageTimed("FLT MSG RECV", System.Drawing.Color.Orange, 1000);
                 return;
-            }
-
-            if(main.Debug)
-            {
-                main.log.Log(input);
             }
 
             rx++;
@@ -135,11 +118,9 @@ namespace SmartPilot2020
             {
                 this.SerialPort.Open();
                 main.SetComPortState(true);
-                main.log.Log("Successfully connected to serial port '" + SerialPort.PortName + "'!");
             }
             catch (Exception)
             {
-                main.log.Log("Serial port '" + SerialPort.PortName + "' is not available!");
                 main.SetComPortState(false);
             }
         }
@@ -150,18 +131,15 @@ namespace SmartPilot2020
             {
                 if(!this.SerialPort.IsOpen)
                 {
-                    main.log.Log("Serial port '" + SerialPort.PortName + "' already disconnected!");
                     main.SetComPortState(false);
                     return;
                 }
 
                 this.SerialPort.Close();
                 main.SetComPortState(false);
-                main.log.Log("Successfully disconnected serial port '" + SerialPort.PortName + "'!");
             }
             catch (Exception)
             {
-                main.log.Log("Serial port '" + SerialPort.PortName + "' already disconnected!");
                 main.SetComPortState(false);
             }
         }

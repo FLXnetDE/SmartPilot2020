@@ -51,38 +51,27 @@ float yaw = 0;
 // BME280
 BME280I2C bme;
 
+// Pitot tube / differential pressure sensor
+int PressureSensorPin = A1;
+
+float V_0 = 5.0; // supply voltage to the pressure sensor
+float rho = 1.204; // density of air 
+// parameters for averaging and offset
+int offset = 0;
+int offset_size = 10;
+int veloc_mean_size = 20;
+int zero_span = 2;
+
 // Aircraft data buffer
 int CurrentPitch;
 int CurrentRoll;
 int CurrentHeading;
 int CurrentSpeed;
 int CurrentAltitude;
-
 int CurrentTemperature;
 int CurrentHumidity;
 int CurrentPressure;
-
 int BaroReference; // hPa
-
-
-#ifdef __arm__
-// should use uinstd.h to define sbrk but Due causes a conflict
-extern "C" char* sbrk(int incr);
-#else  // __ARM__
-extern char *__brkval;
-#endif  // __arm__
- 
-int freeMemory() {
-  char top;
-#ifdef __arm__
-  return &top - reinterpret_cast<char*>(sbrk(0));
-#elif defined(CORE_TEENSY) || (ARDUINO > 103 && ARDUINO != 151)
-  return &top - __brkval;
-#else  // __arm__
-  return __brkval ? &top - __brkval : &top - __malloc_heap_start;
-#endif  // __arm__
-}
-
 
 void setup() {
   Serial.begin(115200);
@@ -112,7 +101,7 @@ void setup() {
     Serial.println("[SmartPilot2020] Could not find a valid MPU6050 sensor, check wiring!");
     delay(500);
   }
-  gyro.calibrateGyro();
+  //gyro.calibrateGyro();
   gyro.setThreshold(3);
 
   // BME280
@@ -127,6 +116,12 @@ void setup() {
      default:
        Serial.println("[SmartPilot2020] Found UNKNOWN sensor! Error!");
   }
+
+  // Pitot tube / differential pressure sensor
+  for (int ii = 0; ii < offset_size; ii++) {
+    offset += analogRead(PressureSensorPin) - (1023 / 2);
+  }
+  offset /= offset_size;
   
   Serial.println("[SmartPilot2020] Setup finished!");
 }
@@ -147,6 +142,40 @@ void RemoteTelemetryPacketTask(PTCB tcb)
     radio.startListening();
     
     MOS_Delay(tcb, 100);
+  }
+}
+
+void PitotTask(PTCB tcb)
+{
+  MOS_Continue(tcb);
+
+  while(1)
+  {
+    float adc_avg = 0;
+    float veloc = 0.0;
+    
+    // average a few ADC readings for stability
+    for (int ii=0; ii < veloc_mean_size; ii++){
+      adc_avg += analogRead(PressureSensorPin) - offset;
+    }
+    adc_avg /= veloc_mean_size;
+    
+    // make sure if the ADC reads below 512, then we equate it to a negative velocity
+    MOS_WaitForCond(tcb, adc_avg > 512-zero_span and adc_avg < 512 + zero_span);
+    if (adc_avg > 512-zero_span and adc_avg < 512 + zero_span){
+    }
+    else
+    {
+      MOS_WaitForCond(tcb, adc_avg < 512);
+      if (adc_avg < 512)
+      {
+        veloc = -sqrt((-10000.0*((adc_avg/1023.0)-0.5))/rho);
+      }
+      else
+      {
+        veloc = sqrt((10000.0*((adc_avg/1023.0)-0.5))/rho);
+      }
+    }
   }
 }
 
@@ -233,9 +262,6 @@ void CompassTask(PTCB tcb)
     int heading;
     compass.read(&x, &y, &z, &heading);
     CurrentHeading = heading;
-
-    Serial.print("Free memory: ");
-    Serial.println(freeMemory());
     
     MOS_Delay(tcb, 500);
   }
@@ -245,6 +271,21 @@ void RemotePositionTask(PTCB tcb)
 {
   MOS_Continue(tcb);
 
+  while(1)
+  {
+    char positionPacket[32];
+    sprintf(positionPacket, "%d;%s;%s;%d", 3, "48.611640", "9.109360", 445);
+
+    radio.stopListening();
+    radio.openWritingPipe(address);
+    radio.write(positionPacket, 32);
+    radio.openReadingPipe(0, address);
+    radio.startListening();
+
+    MOS_Delay(tcb, 6000);
+  }
+
+  /*
   while(softwareSerial.available() > 0)
   {   
     gps.encode(softwareSerial.read());
@@ -266,6 +307,7 @@ void RemotePositionTask(PTCB tcb)
 
     MOS_Delay(tcb, 5000);
   }
+  */
 }
 
 void ReceiveTask(PTCB tcb)
@@ -320,9 +362,10 @@ void loop() {
   MOS_Call(ReceiveTask);
   MOS_Call(CompassTask);
   MOS_Call(GyroTask);
+  MOS_Call(PitotTask);
   MOS_Call(EnvironmentTask);
   MOS_Call(RemoteTelemetryPacketTask);
-  //MOS_Call(RemotePositionTask);
+  MOS_Call(RemotePositionTask);
   MOS_Call(RemoteEnvironmentPacketTask);
   //MOS_Call(DebugTask);
 }

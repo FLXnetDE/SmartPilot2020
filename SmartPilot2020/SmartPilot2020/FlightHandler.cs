@@ -12,18 +12,13 @@ namespace SmartPilot2020
         public int UsedRadioChannel;
 
         public bool ControlsActiveChecked = false;
+        private Guid ControlsActiveCheckedGuid;
 
         // Default pulse width configuration
-        public int[] ThrustPulse = new int[3] { 1000, 2000, 0 };
+        public int[] ThrustPulse = new int[3] { 500, 2500, 0 };
         public int[] PitchPulse = new int[3] { 1000, 2000, 0 };
         public int[] RollPulse = new int[3] { 1000, 2000, 0 };
         public int[] YawPulse = new int[3] { 1000, 2000, 0 };
-
-        // Calculated output pulse values
-        public int ThrustValue;
-        public int PitchValue;
-        public int RollValue;
-        public int YawValue;
 
         // AircraftMode
         public int AircraftMode = 0; // 0 = GroundMode - 1 = AirMode
@@ -34,10 +29,10 @@ namespace SmartPilot2020
         public int CurrentHeading;
         public int CurrentSpeed;
         public int CurrentAltitude;
-        
+        public int CurrentLaserAltitude;
         public double CurrentLatitude;
         public double CurrentLongitude;
-
+        public int CurrentGpsAltitude;
         public double CurrentAircraftTemperature;
         public double CurrentAircraftHumidity;
         public double CurrentAircraftPressure;
@@ -47,7 +42,28 @@ namespace SmartPilot2020
         public double CurrentStationaryHumidity;
         public int CurrentStationaryPressure;
 
-        // FlightEnvelope definition
+        // Raw mapped input values from joystick
+        public int RawThrustValue;
+        public int RawPitchValue;
+        public int RawRollValue;
+        public int RawYawValue;
+
+        // Calculated and modified output values
+        public int ThrustValue;
+        public int PitchValue;
+        public int RollValue;
+        public int YawValue;
+
+        // AutoPilot
+        public bool AutoPilotActive = false;
+        public int TargetHeading;
+        public int TargetAltitude = 30;
+
+        // AutoThrust
+        public bool AutoThrustActive = false;
+        public int TargetSpeed = 20;
+
+        // Protection
         public bool ProtectionActive = false;
         public int ProtectedPitchUpAngle = 30;
         public int ProtectedPitchDownAngle = -15;
@@ -56,18 +72,8 @@ namespace SmartPilot2020
         public int ProtectedOverSpeed = 20;
         public int ProtectedStallSpeed = 5;
 
-        // AutoPilot definition
-        public bool AutoPilotActive = false;
-        public bool AutoThrustActive = false;
-        public int TargetHeading;
-        public int TargetSpeed = 10;
-        public int TargetAltitude;
-
-        // Value finalization / correction / check
-        public int FinalThrustValue;
-        public int FinalPitchValue;
-        public int FinalRollValue;
-        public int FinalYawValue;
+        // FlightDirector
+        public bool FlightDirectorActive = false;
 
         public FlightHandler(SmartPilot2020 main)
         {
@@ -83,7 +89,7 @@ namespace SmartPilot2020
             this.RemoteDataInterface = new RemoteDataInterface(main);
             this.RemoteDataInterface.Connect();
 
-            main.log.Log("FlightHandler started!");
+            ControlsActiveCheckedGuid = main.MonitoringHandler.AddMessagePersistent("F/C UNCHECKED", System.Drawing.Color.Red);
         }
 
         private void ProcessTimer_Tick(object sender, EventArgs e)
@@ -92,16 +98,30 @@ namespace SmartPilot2020
 
             if (ControlsActiveChecked == false)
             {
-                if (ThrustValue != 0 && PitchValue != 0 && RollValue != 0 && YawValue != 0)
+                if (RawThrustValue != 0 && RawPitchValue != 0 && RawRollValue != 0 && RawYawValue != 0)
                 {
                     ControlsActiveChecked = true;
-                    main.log.Log("Flight controls are active and checked!");
+                    main.MonitoringHandler.RemoveMessage(ControlsActiveCheckedGuid);
                 }
                 return;
             }
 
             // Enable air mode if aircraft is 2m above ground
-            if (CurrentAltitude >= 2) AircraftMode = 1;
+            if (CurrentLaserAltitude >= 2) AircraftMode = 1;
+
+            // Raw value assignment
+            ThrustValue = RawThrustValue;
+            PitchValue = RawPitchValue;
+            RollValue = RawRollValue;
+            YawValue = RawYawValue;
+
+            // Manual Trim processing (if AutoPilot is disabled)
+            if (!AutoPilotActive)
+            {
+                PitchValue = RawPitchValue + PitchPulse[2];
+                RollValue = RawRollValue + RollPulse[2];
+                YawValue = RawYawValue + YawPulse[2];
+            }
 
             ///////////////
             // AutoPilot //
@@ -127,13 +147,7 @@ namespace SmartPilot2020
                 if (AircraftMode == 0) return;
             }
 
-            // Value finalization / correction / check
-            FinalThrustValue = ThrustValue;
-            FinalPitchValue = PitchValue + PitchPulse[2];
-            FinalRollValue = RollValue + RollPulse[2];
-            FinalYawValue = YawValue;
-
-            RemoteDataInterface.SendControlPacket(new RemoteControlPacket(FinalThrustValue, FinalPitchValue, FinalRollValue, FinalYawValue));
+            RemoteDataInterface.SendControlPacket(new RemoteControlPacket(ThrustValue, PitchValue, RollValue, YawValue));
         }
 
         public void ProcessThrust(int ThrustValue)
@@ -144,32 +158,32 @@ namespace SmartPilot2020
             }
 
             if(!AutoThrustActive)
-            this.ThrustValue = Util.MapValue(ThrustValue, 0, 65536, ThrustPulse[0], ThrustPulse[1]);
+                this.RawThrustValue = Util.MapValue(ThrustValue, 0, 65536, ThrustPulse[0], ThrustPulse[1]);
         }
 
         public void ProcessPitch(int PitchValue)
         {
             if (!AutoPilotActive)
-                this.PitchValue = Util.MapValue(PitchValue, 0, 65535, PitchPulse[0], PitchPulse[1]);
+                this.RawPitchValue = Util.MapValue(PitchValue, 0, 65535, PitchPulse[0], PitchPulse[1]);
         }
 
         public void ProcessRoll(int RollValue)
         {
             if (!AutoPilotActive)
-                this.RollValue = Util.MapValue(RollValue, 0, 65535, RollPulse[0], RollPulse[1]);
+                this.RawRollValue = Util.MapValue(RollValue, 0, 65535, RollPulse[0], RollPulse[1]);
         }
 
         public void ProcessYaw(int YawValue)
         {
             if (!AutoPilotActive)
-                this.YawValue = Util.MapValue(YawValue, 0, 65535, YawPulse[0], YawPulse[1]);
+                this.RawYawValue = Util.MapValue(YawValue, 0, 65535, YawPulse[0], YawPulse[1]);
         }
 
         public void ProccessTrim(int TrimValue)
         {
             if(!AutoPilotActive)
             {
-                switch(TrimValue)
+                switch (TrimValue)
                 {
                     case 0: // Stick forwards - trim pitch pulse down
                         this.PitchPulse[2] -= main.AdditionalTrimValue;

@@ -75,12 +75,7 @@
   <ItemGroup>
     <Compile Include="DrawingHelper.cs" />
     <Compile Include="GraphicUtil.cs" />
-    <Compile Include="LogForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LogForm.Designer.cs">
-      <DependentUpon>LogForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="MonitoringHandler.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,9 +95,6 @@
     <Compile Include="RemoteDataInterface.cs" />
     <Compile Include="ThrustMode.cs" />
     <Compile Include="Util.cs" />
-    <EmbeddedResource Include="LogForm.resx">
-      <DependentUpon>LogForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SmartPilot2020.resx">
       <DependentUpon>SmartPilot2020.cs</DependentUpon>
     </EmbeddedResource>

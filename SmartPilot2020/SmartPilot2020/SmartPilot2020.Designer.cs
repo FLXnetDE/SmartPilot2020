@@ -76,11 +76,14 @@
             this.pbMonitorVisualization = new System.Windows.Forms.PictureBox();
             this.pbPitchRollVisualization = new System.Windows.Forms.PictureBox();
             this.gbFCU = new System.Windows.Forms.GroupBox();
+            this.pbSelectorDisplay = new System.Windows.Forms.PictureBox();
             this.btnAircraftMode = new System.Windows.Forms.Button();
             this.btnAltitudeReference = new System.Windows.Forms.Button();
             this.nudBaroRef = new System.Windows.Forms.NumericUpDown();
             this.txtbTest = new System.Windows.Forms.TextBox();
             this.btnTest = new System.Windows.Forms.Button();
+            this.pbMonitoring = new System.Windows.Forms.PictureBox();
+            this.lbLog = new System.Windows.Forms.ListBox();
             this.tsTop.SuspendLayout();
             this.ssBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbAngle)).BeginInit();
@@ -102,7 +105,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMonitorVisualization)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPitchRollVisualization)).BeginInit();
             this.gbFCU.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSelectorDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBaroRef)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMonitoring)).BeginInit();
             this.SuspendLayout();
             // 
             // tsTop
@@ -120,7 +125,7 @@
             this.toolStripSeparator3});
             this.tsTop.Location = new System.Drawing.Point(0, 0);
             this.tsTop.Name = "tsTop";
-            this.tsTop.Size = new System.Drawing.Size(1270, 25);
+            this.tsTop.Size = new System.Drawing.Size(1812, 25);
             this.tsTop.TabIndex = 13;
             this.tsTop.Text = "Top";
             // 
@@ -210,7 +215,7 @@
             this.lblCarrierTest});
             this.ssBottom.Location = new System.Drawing.Point(0, 887);
             this.ssBottom.Name = "ssBottom";
-            this.ssBottom.Size = new System.Drawing.Size(1270, 22);
+            this.ssBottom.Size = new System.Drawing.Size(1812, 22);
             this.ssBottom.TabIndex = 14;
             this.ssBottom.Text = "Bottom";
             // 
@@ -231,7 +236,7 @@
             // tbAngle
             // 
             this.tbAngle.LargeChange = 1;
-            this.tbAngle.Location = new System.Drawing.Point(930, 795);
+            this.tbAngle.Location = new System.Drawing.Point(1046, 795);
             this.tbAngle.Maximum = 360;
             this.tbAngle.Name = "tbAngle";
             this.tbAngle.Size = new System.Drawing.Size(120, 45);
@@ -470,7 +475,7 @@
             // 
             this.pbAltitudeWheel.BackColor = System.Drawing.Color.SteelBlue;
             this.pbAltitudeWheel.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbAltitudeWheel.InitialImage")));
-            this.pbAltitudeWheel.Location = new System.Drawing.Point(382, 22);
+            this.pbAltitudeWheel.Location = new System.Drawing.Point(494, 78);
             this.pbAltitudeWheel.Name = "pbAltitudeWheel";
             this.pbAltitudeWheel.Size = new System.Drawing.Size(50, 50);
             this.pbAltitudeWheel.TabIndex = 38;
@@ -481,7 +486,7 @@
             // 
             this.pbSpeedWheel.BackColor = System.Drawing.Color.SteelBlue;
             this.pbSpeedWheel.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbSpeedWheel.InitialImage")));
-            this.pbSpeedWheel.Location = new System.Drawing.Point(270, 22);
+            this.pbSpeedWheel.Location = new System.Drawing.Point(270, 78);
             this.pbSpeedWheel.Name = "pbSpeedWheel";
             this.pbSpeedWheel.Size = new System.Drawing.Size(50, 50);
             this.pbSpeedWheel.TabIndex = 37;
@@ -490,7 +495,7 @@
             // 
             // pbAutoThrustToggle
             // 
-            this.pbAutoThrustToggle.Location = new System.Drawing.Point(118, 19);
+            this.pbAutoThrustToggle.Location = new System.Drawing.Point(119, 78);
             this.pbAutoThrustToggle.Name = "pbAutoThrustToggle";
             this.pbAutoThrustToggle.Size = new System.Drawing.Size(50, 50);
             this.pbAutoThrustToggle.TabIndex = 36;
@@ -502,7 +507,7 @@
             // 
             this.pbHeadingWheel.BackColor = System.Drawing.Color.SteelBlue;
             this.pbHeadingWheel.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbHeadingWheel.InitialImage")));
-            this.pbHeadingWheel.Location = new System.Drawing.Point(326, 22);
+            this.pbHeadingWheel.Location = new System.Drawing.Point(382, 78);
             this.pbHeadingWheel.Name = "pbHeadingWheel";
             this.pbHeadingWheel.Size = new System.Drawing.Size(50, 50);
             this.pbHeadingWheel.TabIndex = 35;
@@ -511,7 +516,7 @@
             // 
             // pbAutoPilotToggle
             // 
-            this.pbAutoPilotToggle.Location = new System.Drawing.Point(62, 19);
+            this.pbAutoPilotToggle.Location = new System.Drawing.Point(63, 78);
             this.pbAutoPilotToggle.Name = "pbAutoPilotToggle";
             this.pbAutoPilotToggle.Size = new System.Drawing.Size(50, 50);
             this.pbAutoPilotToggle.TabIndex = 34;
@@ -521,7 +526,7 @@
             // 
             // pbFlightEnvelopeToggle
             // 
-            this.pbFlightEnvelopeToggle.Location = new System.Drawing.Point(6, 19);
+            this.pbFlightEnvelopeToggle.Location = new System.Drawing.Point(7, 78);
             this.pbFlightEnvelopeToggle.Name = "pbFlightEnvelopeToggle";
             this.pbFlightEnvelopeToggle.Size = new System.Drawing.Size(50, 50);
             this.pbFlightEnvelopeToggle.TabIndex = 33;
@@ -540,7 +545,7 @@
             // 
             // pbGaugeTest
             // 
-            this.pbGaugeTest.Location = new System.Drawing.Point(930, 638);
+            this.pbGaugeTest.Location = new System.Drawing.Point(1046, 638);
             this.pbGaugeTest.Name = "pbGaugeTest";
             this.pbGaugeTest.Size = new System.Drawing.Size(120, 150);
             this.pbGaugeTest.TabIndex = 27;
@@ -595,6 +600,7 @@
             // gbFCU
             // 
             this.gbFCU.BackColor = System.Drawing.Color.SteelBlue;
+            this.gbFCU.Controls.Add(this.pbSelectorDisplay);
             this.gbFCU.Controls.Add(this.pbFlightEnvelopeToggle);
             this.gbFCU.Controls.Add(this.pbAltitudeWheel);
             this.gbFCU.Controls.Add(this.pbAutoPilotToggle);
@@ -610,10 +616,19 @@
             this.gbFCU.TabStop = false;
             this.gbFCU.Text = "FCU";
             // 
+            // pbSelectorDisplay
+            // 
+            this.pbSelectorDisplay.Location = new System.Drawing.Point(270, 22);
+            this.pbSelectorDisplay.Name = "pbSelectorDisplay";
+            this.pbSelectorDisplay.Size = new System.Drawing.Size(274, 50);
+            this.pbSelectorDisplay.TabIndex = 39;
+            this.pbSelectorDisplay.TabStop = false;
+            this.pbSelectorDisplay.Paint += new System.Windows.Forms.PaintEventHandler(this.pbSelectorDisplay_Paint);
+            // 
             // btnAircraftMode
             // 
             this.btnAircraftMode.ForeColor = System.Drawing.Color.Black;
-            this.btnAircraftMode.Location = new System.Drawing.Point(1108, 45);
+            this.btnAircraftMode.Location = new System.Drawing.Point(933, 638);
             this.btnAircraftMode.Name = "btnAircraftMode";
             this.btnAircraftMode.Size = new System.Drawing.Size(107, 23);
             this.btnAircraftMode.TabIndex = 40;
@@ -624,7 +639,7 @@
             // btnAltitudeReference
             // 
             this.btnAltitudeReference.ForeColor = System.Drawing.Color.Black;
-            this.btnAltitudeReference.Location = new System.Drawing.Point(1108, 168);
+            this.btnAltitudeReference.Location = new System.Drawing.Point(933, 715);
             this.btnAltitudeReference.Name = "btnAltitudeReference";
             this.btnAltitudeReference.Size = new System.Drawing.Size(107, 23);
             this.btnAltitudeReference.TabIndex = 41;
@@ -634,7 +649,7 @@
             // 
             // nudBaroRef
             // 
-            this.nudBaroRef.Location = new System.Drawing.Point(1108, 142);
+            this.nudBaroRef.Location = new System.Drawing.Point(933, 689);
             this.nudBaroRef.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -646,7 +661,7 @@
             // 
             // txtbTest
             // 
-            this.txtbTest.Location = new System.Drawing.Point(1108, 269);
+            this.txtbTest.Location = new System.Drawing.Point(933, 761);
             this.txtbTest.Name = "txtbTest";
             this.txtbTest.Size = new System.Drawing.Size(107, 20);
             this.txtbTest.TabIndex = 43;
@@ -654,7 +669,7 @@
             // btnTest
             // 
             this.btnTest.ForeColor = System.Drawing.Color.Black;
-            this.btnTest.Location = new System.Drawing.Point(1108, 296);
+            this.btnTest.Location = new System.Drawing.Point(933, 788);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(107, 23);
             this.btnTest.TabIndex = 44;
@@ -662,11 +677,30 @@
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
+            // pbMonitoring
+            // 
+            this.pbMonitoring.Location = new System.Drawing.Point(1179, 45);
+            this.pbMonitoring.Name = "pbMonitoring";
+            this.pbMonitoring.Size = new System.Drawing.Size(432, 432);
+            this.pbMonitoring.TabIndex = 45;
+            this.pbMonitoring.TabStop = false;
+            this.pbMonitoring.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMonitoring_Paint);
+            // 
+            // lbLog
+            // 
+            this.lbLog.FormattingEnabled = true;
+            this.lbLog.Location = new System.Drawing.Point(1179, 633);
+            this.lbLog.Name = "lbLog";
+            this.lbLog.Size = new System.Drawing.Size(432, 238);
+            this.lbLog.TabIndex = 46;
+            // 
             // SmartPilot2020
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1270, 909);
+            this.ClientSize = new System.Drawing.Size(1812, 909);
+            this.Controls.Add(this.lbLog);
+            this.Controls.Add(this.pbMonitoring);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.txtbTest);
             this.Controls.Add(this.nudBaroRef);
@@ -717,7 +751,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMonitorVisualization)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPitchRollVisualization)).EndInit();
             this.gbFCU.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbSelectorDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBaroRef)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMonitoring)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -776,6 +812,9 @@
         private System.Windows.Forms.NumericUpDown nudBaroRef;
         private System.Windows.Forms.TextBox txtbTest;
         private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.PictureBox pbMonitoring;
+        private System.Windows.Forms.PictureBox pbSelectorDisplay;
+        private System.Windows.Forms.ListBox lbLog;
     }
 }
 

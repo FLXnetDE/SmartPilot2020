@@ -11,6 +11,29 @@ namespace SmartPilot2020
     public class GraphicUtil
     {
 
+        // Method to draw the selection display above the AutoPilot buttons
+        public static void DrawSelectorDispaly(Graphics g, SmartPilot2020 main)
+        {
+            g.DrawString("SPD", new Font("Arial", 6), Brushes.Orange, 10, 5);
+            g.DrawString(main.FlightHandler.TargetSpeed.ToString(), new Font("DS-Digital", 24), Brushes.Orange, 5, 15);
+
+            g.DrawString("HDG", new Font("Arial", 6), Brushes.Orange, 120, 5);
+            if(main.FlightHandler.TargetHeading < 100 && main.FlightHandler.TargetHeading != 0)
+            {
+                g.DrawString("0" + main.FlightHandler.TargetHeading, new Font("DS-Digital", 24), Brushes.Orange, 115, 15);
+            } else if(main.FlightHandler.TargetHeading == 0)
+            {
+                g.DrawString("000", new Font("DS-Digital", 24), Brushes.Orange, 115, 15);
+            } else
+            {
+                g.DrawString(main.FlightHandler.TargetHeading.ToString(), new Font("DS-Digital", 24), Brushes.Orange, 115, 15);
+            }
+
+            g.DrawString("ALT", new Font("Arial", 6), Brushes.Orange, 220, 5);
+            g.DrawString(main.FlightHandler.TargetAltitude.ToString(), new Font("DS-Digital", 24), Brushes.Orange, 220, 15);
+
+        }
+
         // Method to draw the heading band below the PFD
         public static void DrawHeading(Graphics g, SmartPilot2020 main)
         {
@@ -140,8 +163,10 @@ namespace SmartPilot2020
             g.DrawString("Mode: " + main.FlightHandler.AircraftMode, new Font("Arial", 8), Brushes.LimeGreen, 10, 36);
 
             // Latitude / Longitude visualization
-            g.DrawString("Latitude: " + main.FlightHandler.CurrentLatitude, new Font("Arial", 10, FontStyle.Bold), Brushes.LimeGreen, 160, 10);
-            g.DrawString("Longitude: " + main.FlightHandler.CurrentLongitude, new Font("Arial", 10, FontStyle.Bold), Brushes.LimeGreen, 160, 30);
+            g.DrawString("LAT: ", new Font("Arial", 8), Brushes.White, 160, 10);
+            g.DrawString(main.FlightHandler.CurrentLatitude.ToString(), new Font("Arial", 8), Brushes.LimeGreen, 190, 10);
+            g.DrawString("LON: ", new Font("Arial", 8), Brushes.White, 160, 25);
+            g.DrawString(main.FlightHandler.CurrentLongitude.ToString(), new Font("Arial", 8), Brushes.LimeGreen, 190, 25);
 
             // Protection visualization
             if (main.FlightHandler.ProtectionActive)
@@ -188,8 +213,6 @@ namespace SmartPilot2020
                     g.DrawString("M/THR", new Font("Arial", 12, FontStyle.Bold), Brushes.Orange, 3, 10);
                 }
             }
-
-            g.DrawString(main.FlightHandler.ThrustValue + "µs", new Font("Arial", 8, FontStyle.Bold), Brushes.White, 12, 35);
 
             /////////////////////////////////
             /// Mode-Values visualization ///

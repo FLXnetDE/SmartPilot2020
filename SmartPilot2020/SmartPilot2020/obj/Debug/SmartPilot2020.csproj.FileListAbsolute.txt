@@ -67,5 +67,4 @@ C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilo
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020_1\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.csproj.CopyComplete
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020_1\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.exe
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020_1\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.pdb
-C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.LogForm.resources
 C:\Users\Felix\OneDrive\Dokumente\05 FLXnet Development\20 Application\SmartPilot2020\SmartPilot2020\SmartPilot2020\obj\Debug\SmartPilot2020.SmartPilot2020.resources
