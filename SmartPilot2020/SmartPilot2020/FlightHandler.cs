@@ -1,5 +1,7 @@
-﻿using System;
+﻿using GeoCoordinatePortable;
+using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace SmartPilot2020
 {
@@ -30,9 +32,7 @@ namespace SmartPilot2020
         public int CurrentSpeed;
         public int CurrentAltitude;
         public int CurrentLaserAltitude;
-        public double CurrentLatitude;
-        public double CurrentLongitude;
-        public int CurrentGpsAltitude;
+        public GeoCoordinate CurrentGpsData;
         public double CurrentAircraftTemperature;
         public double CurrentAircraftHumidity;
         public double CurrentAircraftPressure;
@@ -78,6 +78,7 @@ namespace SmartPilot2020
         public FlightHandler(SmartPilot2020 main)
         {
             this.main = main;
+            this.CurrentGpsData = new GeoCoordinate();
 
             // Setup main system timer
             ProcessTimer = new Timer();
@@ -199,6 +200,11 @@ namespace SmartPilot2020
                         break;
                 }
             }
+        }
+
+        public double DistanceToNavigationPoint(NavigationPoint navigationPoint)
+        {
+            return this.CurrentGpsData.GetDistanceTo(new GeoCoordinate(navigationPoint.Latitude, navigationPoint.Longitude));
         }
 
     }

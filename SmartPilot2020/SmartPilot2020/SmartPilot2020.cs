@@ -11,6 +11,7 @@ namespace SmartPilot2020
     {
         public JoystickHandler JoystickHandler;
         public FlightHandler FlightHandler;
+        public FlightManagementHandler FlightManagementHandler;
         public MonitoringHandler MonitoringHandler;
 
         ///////////////////
@@ -42,8 +43,9 @@ namespace SmartPilot2020
 
             MonitoringHandler = new MonitoringHandler(this);
             FlightHandler = new FlightHandler(this);
+            FlightManagementHandler = new FlightManagementHandler(this);
 
-            MonitoringHandler.AddMessageTimed("SmartPilot2020 started", Color.LimeGreen, 3000);
+            MonitoringHandler.AddMessageTimed("SmartPilot2020 started", Color.LimeGreen, 5000);
         }
 
         ////////////////////////////////
@@ -65,6 +67,7 @@ namespace SmartPilot2020
             pbHeadingWheel.Refresh();
             pbMonitoring.Refresh();
             pbSelectorDisplay.Refresh();
+            pbFMC.Refresh();
 
             // Text based visualization
             SetCurrentPitch(FlightHandler.CurrentPitchAngle);
@@ -72,9 +75,6 @@ namespace SmartPilot2020
             SetCurrentHeading(FlightHandler.CurrentHeading);
             SetCurrentSpeed(FlightHandler.CurrentSpeed);
             SetCurrentAltitude(FlightHandler.CurrentAltitude);
-
-            SetLatitude(FlightHandler.CurrentLatitude);
-            SetLongitude(FlightHandler.CurrentLongitude);
 
             SetCurrentAircraftTemperature(FlightHandler.CurrentAircraftTemperature);
             SetCurrentAircraftHumidity(FlightHandler.CurrentAircraftHumidity);
@@ -84,7 +84,7 @@ namespace SmartPilot2020
             SetCurrentStationaryHumidity(FlightHandler.CurrentStationaryHumidity);
             SetCurrentStationaryPressure(FlightHandler.CurrentStationaryPressure);
 
-            SetCurrentWindInformation(tbAngle.Value, 15);
+            SetCurrentWindInformation(250, 15);
 
             SetRadioSignalInformation(FlightHandler.UsedRadioChannel);
         }
@@ -122,12 +122,12 @@ namespace SmartPilot2020
             ////////////////////////////////////////////
             // Pitch/Roll Control input visualization //
             ////////////////////////////////////////////
-            int pitchValue = Util.MapValue(FlightHandler.RawPitchValue, FlightHandler.PitchPulse[0], FlightHandler.PitchPulse[1], 260, 40) - 4;
-            int rollValue = Util.MapValue(FlightHandler.RawRollValue, FlightHandler.RollPulse[0], FlightHandler.RollPulse[1], 40, 260) - 4;
+            int pitchValue = Util.MapValue(FlightHandler.RawPitchValue, FlightHandler.PitchPulse[0], FlightHandler.PitchPulse[1], 260, 40);
+            int rollValue = Util.MapValue(FlightHandler.RawRollValue, FlightHandler.RollPulse[0], FlightHandler.RollPulse[1], 40, 260);
 
-            g.DrawRectangle(new Pen(Brushes.Black, 4), new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
+            g.DrawRectangle(new Pen(Brushes.Black, 4), new Rectangle(new Point(rollValue - 4, pitchValue - 4), new Size(8, 8)));
             Brush b = FlightHandler.AutoPilotActive ? Brushes.LimeGreen : Brushes.Gold;
-            g.FillRectangle(b, new Rectangle(new Point(rollValue, pitchValue), new Size(8, 8)));
+            g.FillRectangle(b, new Rectangle(new Point(rollValue - 4, pitchValue - 4), new Size(8, 8)));
 
             g.DrawString("Pitch: " + FlightHandler.PitchValue + "µs", new Font("Arial", 8), Brushes.White, 160, 280);
             g.DrawString("Roll: " + FlightHandler.RollValue + "µs", new Font("Arial", 8), Brushes.White, 25, 280);
@@ -216,6 +216,21 @@ namespace SmartPilot2020
             GraphicUtil.DrawNavigation(g, pbNavigation, this);
         }
 
+        private void pbFMC_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            FlightManagementHandler.DrawFMC(g, this);
+        }
+
+        private void pbFMC_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                FlightManagementHandler.HandleFMCClick(this, txtbFMCInput, e.X, e.Y);
+            }
+        }
+
         private void pbAltitudeVisualization_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -235,7 +250,7 @@ namespace SmartPilot2020
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
 
-            int angle = tbAngle.Value;
+            int angle = 250;
 
             Image greenArrow = Properties.Resources.GreenArrow;
             g.DrawImage(DrawingHelper.RotateImage(greenArrow, angle), 0, 0);
@@ -556,24 +571,6 @@ namespace SmartPilot2020
             }
         }
 
-        // Set latitude
-        public void SetLatitude(double latitude)
-        {
-            lblLatitude.Invoke((MethodInvoker)delegate
-           {
-               lblLatitude.Text = "Latitude: " + latitude;
-           });
-        }
-
-        // Set longitude
-        public void SetLongitude(double longitude)
-        {
-            lblLongitude.Invoke((MethodInvoker)delegate
-            {
-                lblLongitude.Text = "Longitude: " + longitude;
-            });
-        }
-
         // Set current pitch (label text)
         public void SetCurrentPitch(int pitch)
         {
@@ -738,37 +735,6 @@ namespace SmartPilot2020
         // Test //
         //////////
 
-        private void tbAngle_Scroll(object sender, EventArgs e)
-        {
-            pbGaugeTest.Refresh();
-        }
-
-        private void pbGaugeTest_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-
-            int diameter = 118;
-            int angle = tbAngle.Value;
-
-            double radian = (angle * (Math.PI / 180));
-
-            // Center
-            int a = 60;
-            int b = 60;
-
-            g.DrawEllipse(new Pen(Brushes.Green, 2), new Rectangle(0, 0, diameter, diameter));
-            g.FillEllipse(Brushes.Green, new Rectangle(a - 3, b - 3, 6, 6));
-
-            // Point on circumfence
-            int x = (int)(a + ((diameter / 2) * Math.Cos(radian)));
-            int y = (int)(b + ((diameter / 2) * Math.Sin(radian)));
-            g.DrawLine(new Pen(Brushes.Black, 2), a, b, x, y);
-
-            g.DrawString(angle + "°", new Font("Arial", 8, FontStyle.Bold), Brushes.Black, 50, 125);
-
-        }
-
         private void btnAircraftMode_Click(object sender, EventArgs e)
         {
             int mode;
@@ -799,6 +765,25 @@ namespace SmartPilot2020
             {
             }
 
+        }
+
+        private void btnGpsTest_Click(object sender, EventArgs e)
+        {
+            string navPointName = txtbNavPointName.Text;
+
+            if (navPointName == "") return;
+
+            NavigationPoint navigationPoint = FlightManagementHandler.GetNavigationPoint(navPointName);
+
+            if (navigationPoint == null)
+            {
+                MonitoringHandler.AddMessageTimed("Unknown NavigationPoint '" + navPointName + "'", Color.Orange, 2000);
+                return;
+            }
+
+            double distance = FlightHandler.DistanceToNavigationPoint(navigationPoint);
+
+            MonitoringHandler.AddMessageTimed("Distance to '" + navPointName + "' is " + distance + "m", Color.Cyan, 3000);
         }
 
     }

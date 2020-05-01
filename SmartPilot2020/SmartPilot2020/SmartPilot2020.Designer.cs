@@ -43,14 +43,11 @@
             this.ssBottom = new System.Windows.Forms.StatusStrip();
             this.lblTrafficMonnitor = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCarrierTest = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tbAngle = new System.Windows.Forms.TrackBar();
             this.lblCurrentPitch = new System.Windows.Forms.Label();
             this.lblCurrentRoll = new System.Windows.Forms.Label();
             this.lblCurrentHeading = new System.Windows.Forms.Label();
             this.lblCurrentSpeed = new System.Windows.Forms.Label();
             this.lblCurrentAltitude = new System.Windows.Forms.Label();
-            this.lblLongitude = new System.Windows.Forms.Label();
-            this.lblLatitude = new System.Windows.Forms.Label();
             this.gbAircraftTelemetryData = new System.Windows.Forms.GroupBox();
             this.lblAircraftTemperature = new System.Windows.Forms.Label();
             this.lblAircraftHumidity = new System.Windows.Forms.Label();
@@ -69,7 +66,6 @@
             this.pbAutoPilotToggle = new System.Windows.Forms.PictureBox();
             this.pbFlightEnvelopeToggle = new System.Windows.Forms.PictureBox();
             this.pbNavigation = new System.Windows.Forms.PictureBox();
-            this.pbGaugeTest = new System.Windows.Forms.PictureBox();
             this.pbHeadingVisualization = new System.Windows.Forms.PictureBox();
             this.pbAltitudeVisualization = new System.Windows.Forms.PictureBox();
             this.pbSpeedVisualization = new System.Windows.Forms.PictureBox();
@@ -84,9 +80,12 @@
             this.btnTest = new System.Windows.Forms.Button();
             this.pbMonitoring = new System.Windows.Forms.PictureBox();
             this.lbLog = new System.Windows.Forms.ListBox();
+            this.btnGpsTest = new System.Windows.Forms.Button();
+            this.txtbNavPointName = new System.Windows.Forms.TextBox();
+            this.pbFMC = new System.Windows.Forms.PictureBox();
+            this.txtbFMCInput = new System.Windows.Forms.TextBox();
             this.tsTop.SuspendLayout();
             this.ssBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbAngle)).BeginInit();
             this.gbAircraftTelemetryData.SuspendLayout();
             this.gbAircraftEnvironmentalData.SuspendLayout();
             this.gbStationaryEnvData.SuspendLayout();
@@ -98,7 +97,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbAutoPilotToggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFlightEnvelopeToggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNavigation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGaugeTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeadingVisualization)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAltitudeVisualization)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSpeedVisualization)).BeginInit();
@@ -108,6 +106,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbSelectorDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBaroRef)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMonitoring)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFMC)).BeginInit();
             this.SuspendLayout();
             // 
             // tsTop
@@ -233,16 +232,6 @@
             this.lblCarrierTest.Size = new System.Drawing.Size(145, 17);
             this.lblCarrierTest.Text = "lblRadioSignalInformation";
             // 
-            // tbAngle
-            // 
-            this.tbAngle.LargeChange = 1;
-            this.tbAngle.Location = new System.Drawing.Point(1046, 795);
-            this.tbAngle.Maximum = 360;
-            this.tbAngle.Name = "tbAngle";
-            this.tbAngle.Size = new System.Drawing.Size(120, 45);
-            this.tbAngle.TabIndex = 28;
-            this.tbAngle.Scroll += new System.EventHandler(this.tbAngle_Scroll);
-            // 
             // lblCurrentPitch
             // 
             this.lblCurrentPitch.AutoSize = true;
@@ -303,35 +292,9 @@
             this.lblCurrentAltitude.TabIndex = 31;
             this.lblCurrentAltitude.Text = "Altitude";
             // 
-            // lblLongitude
-            // 
-            this.lblLongitude.AutoSize = true;
-            this.lblLongitude.BackColor = System.Drawing.Color.Transparent;
-            this.lblLongitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLongitude.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lblLongitude.Location = new System.Drawing.Point(6, 198);
-            this.lblLongitude.Name = "lblLongitude";
-            this.lblLongitude.Size = new System.Drawing.Size(107, 26);
-            this.lblLongitude.TabIndex = 33;
-            this.lblLongitude.Text = "Longitude";
-            // 
-            // lblLatitude
-            // 
-            this.lblLatitude.AutoSize = true;
-            this.lblLatitude.BackColor = System.Drawing.Color.Transparent;
-            this.lblLatitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLatitude.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lblLatitude.Location = new System.Drawing.Point(6, 172);
-            this.lblLatitude.Name = "lblLatitude";
-            this.lblLatitude.Size = new System.Drawing.Size(89, 26);
-            this.lblLatitude.TabIndex = 32;
-            this.lblLatitude.Text = "Latitude";
-            // 
             // gbAircraftTelemetryData
             // 
             this.gbAircraftTelemetryData.BackColor = System.Drawing.Color.Black;
-            this.gbAircraftTelemetryData.Controls.Add(this.lblLatitude);
-            this.gbAircraftTelemetryData.Controls.Add(this.lblLongitude);
             this.gbAircraftTelemetryData.Controls.Add(this.lblCurrentAltitude);
             this.gbAircraftTelemetryData.Controls.Add(this.lblCurrentSpeed);
             this.gbAircraftTelemetryData.Controls.Add(this.lblCurrentHeading);
@@ -543,15 +506,6 @@
             this.pbNavigation.TabStop = false;
             this.pbNavigation.Paint += new System.Windows.Forms.PaintEventHandler(this.pbNavigation_Paint);
             // 
-            // pbGaugeTest
-            // 
-            this.pbGaugeTest.Location = new System.Drawing.Point(1046, 638);
-            this.pbGaugeTest.Name = "pbGaugeTest";
-            this.pbGaugeTest.Size = new System.Drawing.Size(120, 150);
-            this.pbGaugeTest.TabIndex = 27;
-            this.pbGaugeTest.TabStop = false;
-            this.pbGaugeTest.Paint += new System.Windows.Forms.PaintEventHandler(this.pbGaugeTest_Paint);
-            // 
             // pbHeadingVisualization
             // 
             this.pbHeadingVisualization.Location = new System.Drawing.Point(123, 417);
@@ -661,7 +615,7 @@
             // 
             // txtbTest
             // 
-            this.txtbTest.Location = new System.Drawing.Point(933, 761);
+            this.txtbTest.Location = new System.Drawing.Point(933, 758);
             this.txtbTest.Name = "txtbTest";
             this.txtbTest.Size = new System.Drawing.Size(107, 20);
             this.txtbTest.TabIndex = 43;
@@ -669,11 +623,11 @@
             // btnTest
             // 
             this.btnTest.ForeColor = System.Drawing.Color.Black;
-            this.btnTest.Location = new System.Drawing.Point(933, 788);
+            this.btnTest.Location = new System.Drawing.Point(933, 785);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(107, 23);
             this.btnTest.TabIndex = 44;
-            this.btnTest.Text = "Test";
+            this.btnTest.Text = "Test value";
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
@@ -689,16 +643,59 @@
             // lbLog
             // 
             this.lbLog.FormattingEnabled = true;
-            this.lbLog.Location = new System.Drawing.Point(1179, 633);
+            this.lbLog.Location = new System.Drawing.Point(1617, 45);
             this.lbLog.Name = "lbLog";
-            this.lbLog.Size = new System.Drawing.Size(432, 238);
+            this.lbLog.Size = new System.Drawing.Size(183, 433);
             this.lbLog.TabIndex = 46;
+            // 
+            // btnGpsTest
+            // 
+            this.btnGpsTest.ForeColor = System.Drawing.Color.Black;
+            this.btnGpsTest.Location = new System.Drawing.Point(933, 844);
+            this.btnGpsTest.Name = "btnGpsTest";
+            this.btnGpsTest.Size = new System.Drawing.Size(107, 23);
+            this.btnGpsTest.TabIndex = 47;
+            this.btnGpsTest.Text = "GPS test";
+            this.btnGpsTest.UseVisualStyleBackColor = true;
+            this.btnGpsTest.Click += new System.EventHandler(this.btnGpsTest_Click);
+            // 
+            // txtbNavPointName
+            // 
+            this.txtbNavPointName.Location = new System.Drawing.Point(933, 817);
+            this.txtbNavPointName.Name = "txtbNavPointName";
+            this.txtbNavPointName.Size = new System.Drawing.Size(107, 20);
+            this.txtbNavPointName.TabIndex = 48;
+            // 
+            // pbFMC
+            // 
+            this.pbFMC.Location = new System.Drawing.Point(1179, 493);
+            this.pbFMC.Name = "pbFMC";
+            this.pbFMC.Size = new System.Drawing.Size(240, 380);
+            this.pbFMC.TabIndex = 49;
+            this.pbFMC.TabStop = false;
+            this.pbFMC.Paint += new System.Windows.Forms.PaintEventHandler(this.pbFMC_Paint);
+            this.pbFMC.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbFMC_MouseClick);
+            // 
+            // txtbFMCInput
+            // 
+            this.txtbFMCInput.BackColor = System.Drawing.Color.Black;
+            this.txtbFMCInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtbFMCInput.Font = new System.Drawing.Font("AirbusMCDUa", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbFMCInput.ForeColor = System.Drawing.Color.White;
+            this.txtbFMCInput.Location = new System.Drawing.Point(1198, 844);
+            this.txtbFMCInput.Name = "txtbFMCInput";
+            this.txtbFMCInput.Size = new System.Drawing.Size(200, 16);
+            this.txtbFMCInput.TabIndex = 50;
             // 
             // SmartPilot2020
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1812, 909);
+            this.Controls.Add(this.txtbFMCInput);
+            this.Controls.Add(this.pbFMC);
+            this.Controls.Add(this.txtbNavPointName);
+            this.Controls.Add(this.btnGpsTest);
             this.Controls.Add(this.lbLog);
             this.Controls.Add(this.pbMonitoring);
             this.Controls.Add(this.btnTest);
@@ -711,8 +708,6 @@
             this.Controls.Add(this.gbAircraftEnvironmentalData);
             this.Controls.Add(this.gbAircraftTelemetryData);
             this.Controls.Add(this.gbStationaryEnvData);
-            this.Controls.Add(this.tbAngle);
-            this.Controls.Add(this.pbGaugeTest);
             this.Controls.Add(this.pbHeadingVisualization);
             this.Controls.Add(this.pbAltitudeVisualization);
             this.Controls.Add(this.pbSpeedVisualization);
@@ -729,7 +724,6 @@
             this.tsTop.PerformLayout();
             this.ssBottom.ResumeLayout(false);
             this.ssBottom.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbAngle)).EndInit();
             this.gbAircraftTelemetryData.ResumeLayout(false);
             this.gbAircraftTelemetryData.PerformLayout();
             this.gbAircraftEnvironmentalData.ResumeLayout(false);
@@ -744,7 +738,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbAutoPilotToggle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFlightEnvelopeToggle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNavigation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGaugeTest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeadingVisualization)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAltitudeVisualization)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSpeedVisualization)).EndInit();
@@ -754,6 +747,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbSelectorDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBaroRef)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMonitoring)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFMC)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -778,15 +772,11 @@
         private System.Windows.Forms.ToolStripButton btnStopOutgoingPackets;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel lblPacketOutput;
-        private System.Windows.Forms.PictureBox pbGaugeTest;
-        private System.Windows.Forms.TrackBar tbAngle;
         private System.Windows.Forms.Label lblCurrentPitch;
         private System.Windows.Forms.Label lblCurrentRoll;
         private System.Windows.Forms.Label lblCurrentHeading;
         private System.Windows.Forms.Label lblCurrentSpeed;
         private System.Windows.Forms.Label lblCurrentAltitude;
-        private System.Windows.Forms.Label lblLongitude;
-        private System.Windows.Forms.Label lblLatitude;
         private System.Windows.Forms.GroupBox gbAircraftTelemetryData;
         private System.Windows.Forms.Label lblAircraftTemperature;
         private System.Windows.Forms.Label lblAircraftHumidity;
@@ -815,6 +805,10 @@
         private System.Windows.Forms.PictureBox pbMonitoring;
         private System.Windows.Forms.PictureBox pbSelectorDisplay;
         private System.Windows.Forms.ListBox lbLog;
+        private System.Windows.Forms.Button btnGpsTest;
+        private System.Windows.Forms.TextBox txtbNavPointName;
+        private System.Windows.Forms.PictureBox pbFMC;
+        private System.Windows.Forms.TextBox txtbFMCInput;
     }
 }
 

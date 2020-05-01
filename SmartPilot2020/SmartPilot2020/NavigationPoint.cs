@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace SmartPilot2020
 {
-    public enum ThrustMode
+    public class NavigationPoint
     {
-        ATHR_REG,
-        ATHR_PWR,
-        THR_MAN,
-        THR_IDLE
+        public string Name;
+        public double Latitude;
+        public double Longitude;
     }
 }

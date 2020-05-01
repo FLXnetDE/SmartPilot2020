@@ -81,11 +81,9 @@ namespace SmartPilot2020
                         main.FlightHandler.CurrentAltitude = Int32.Parse(inputSplit[5]);
                         break;
                     case 3: // RemotePositionPacket
-                        main.Log(input);
-
-                        main.FlightHandler.CurrentLatitude = Double.Parse(inputSplit[1].Replace('.', ','));
-                        main.FlightHandler.CurrentLongitude = Double.Parse(inputSplit[2].Replace('.', ','));
-                        main.FlightHandler.CurrentGpsAltitude = Int32.Parse(inputSplit[3]);
+                        main.FlightHandler.CurrentGpsData.Latitude = Double.Parse(inputSplit[1].Replace('.', ','));
+                        main.FlightHandler.CurrentGpsData.Longitude = Double.Parse(inputSplit[2].Replace('.', ','));
+                        main.FlightHandler.CurrentGpsData.Altitude = Int32.Parse(inputSplit[3]);
                         break;
                     case 4: // RemoteEnvironmentPacket
                         main.FlightHandler.CurrentAircraftTemperature = Int32.Parse(inputSplit[1]);

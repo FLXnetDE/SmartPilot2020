@@ -148,11 +148,6 @@ namespace SmartPilot2020
         // Method to draw the navigation display
         public static void DrawNavigation(Graphics g, PictureBox pictureBox, SmartPilot2020 main)
         {
-            Image plane = Properties.Resources.YellowPlane;
-
-            int a = (pictureBox.Size.Width / 2) - (plane.Width / 2);
-            int b = (pictureBox.Size.Height / 2) - (plane.Height / 2);
-            g.DrawImage(plane, a, b);
 
             // Speed visualization
             g.DrawString("IAS", Util.AirbusFont10(), Brushes.White, 5, 5);
@@ -164,9 +159,9 @@ namespace SmartPilot2020
 
             // Latitude / Longitude visualization
             g.DrawString("LAT: ", new Font("Arial", 8), Brushes.White, 160, 10);
-            g.DrawString(main.FlightHandler.CurrentLatitude.ToString(), new Font("Arial", 8), Brushes.LimeGreen, 190, 10);
+            g.DrawString(main.FlightHandler.CurrentGpsData.Latitude.ToString(), new Font("Arial", 8), Brushes.LimeGreen, 190, 10);
             g.DrawString("LON: ", new Font("Arial", 8), Brushes.White, 160, 25);
-            g.DrawString(main.FlightHandler.CurrentLongitude.ToString(), new Font("Arial", 8), Brushes.LimeGreen, 190, 25);
+            g.DrawString(main.FlightHandler.CurrentGpsData.Longitude.ToString(), new Font("Arial", 8), Brushes.LimeGreen, 190, 25);
 
             // Protection visualization
             if (main.FlightHandler.ProtectionActive)
@@ -177,6 +172,43 @@ namespace SmartPilot2020
                 g.DrawString("Speed: " + main.FlightHandler.ProtectedStallSpeed + "/" + main.FlightHandler.ProtectedOverSpeed + "m/s", new Font("Arial", 8), Brushes.LimeGreen, 340, 40);
                 g.DrawString("Altitude: " + main.FlightHandler.ProtectedAltitude + "m", new Font("Arial", 8), Brushes.LimeGreen, 340, 55);
             }
+
+            ///////////////////////////////////
+            // Navigation / Position drawing //
+            ///////////////////////////////////
+
+            /*
+            double resolution = 5;
+
+            double aircraftLat = main.FlightHandler.CurrentGpsData.Latitude;
+            double aircraftLon = main.FlightHandler.CurrentGpsData.Longitude;
+
+            Image plane = Properties.Resources.YellowPlane;
+            g.DrawImage(plane, 216 - (plane.Width / 2), 216 - (plane.Height / 2));
+
+            // --------------------------
+
+            NavigationPoint krl = main.FlightManagementHandler.GetNavigationPoint("KRL");
+
+            double x = Math.Cos(krl.Latitude) * Math.Sin(Math.Abs(krl.Longitude - aircraftLon));
+            double y = Math.Cos(aircraftLat) * Math.Sin(krl.Latitude) - Math.Sin(aircraftLat) * Math.Cos(krl.Latitude) * Math.Cos(krl.Longitude - aircraftLon);
+
+            g.DrawString("X=" + x + "; Y=" + y, Util.AirbusFont10(), Brushes.White, 10, 100);
+
+            // --------------------------
+
+            double beta = Math.Abs(Math.Atan2(x, y)) * 180 / Math.PI;
+            beta = Util.DegreeBearing(aircraftLat, aircraftLon, krl.Latitude, krl.Longitude);
+
+            g.DrawString("BETA=" + beta, Util.AirbusFont10(), Brushes.White, 10, 120);
+
+            // --------------------------
+
+            double px = Util.MapValue2(x, x - resolution, x + resolution, 0, 432);
+            double py = Util.MapValue2(y, y - resolution, y + resolution, 0, 432);
+            g.DrawString("PX=" + px + "; PY=" + py, Util.AirbusFont10(), Brushes.White, 10, 140);
+            */
+
         }
 
         // Method to draw the monitor band above the PFD
@@ -196,21 +228,24 @@ namespace SmartPilot2020
 
             if (main.FlightHandler.AutoThrustActive)
             {
-                g.DrawString("A/THR", new Font("Arial", 12, FontStyle.Bold), Brushes.LimeGreen, 3, 10);
+                g.DrawString("A/THR", new Font("Arial", 12, FontStyle.Bold), Brushes.LimeGreen, 3, 20);
+                g.DrawRectangle(Pens.White, new Rectangle(3, 19, 55, 19));
             }
             else
             {
                 if (main.FlightHandler.ThrustValue == main.FlightHandler.ThrustPulse[0])
                 {
-                    g.DrawString("IDLE", new Font("Arial", 12, FontStyle.Bold), Brushes.White, 9, 10);
+                    g.DrawString("IDLE", new Font("Arial", 12, FontStyle.Bold), Brushes.White, 9, 20);
+                    g.DrawRectangle(Pens.White, new Rectangle(8, 19, 45, 19));
                 }
                 else if (main.FlightHandler.ThrustValue == main.FlightHandler.ThrustPulse[1])
                 {
-                    g.DrawString("PWR", new Font("Arial", 12, FontStyle.Bold), Brushes.LimeGreen, 10, 10);
+                    g.DrawString("PWR", new Font("Arial", 12, FontStyle.Bold), Brushes.LimeGreen, 10, 20);
+                    g.DrawRectangle(Pens.White, new Rectangle(10, 19, 43, 19));
                 }
                 else
                 {
-                    g.DrawString("M/THR", new Font("Arial", 12, FontStyle.Bold), Brushes.Orange, 3, 10);
+                    g.DrawString("M/THR", new Font("Arial", 12, FontStyle.Bold), Brushes.Orange, 3, 20);
                 }
             }
 
