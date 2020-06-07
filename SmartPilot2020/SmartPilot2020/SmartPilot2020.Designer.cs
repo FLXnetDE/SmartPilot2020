@@ -42,7 +42,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ssBottom = new System.Windows.Forms.StatusStrip();
             this.lblTrafficMonnitor = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblCarrierTest = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblCurrentChannel = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCurrentPitch = new System.Windows.Forms.Label();
             this.lblCurrentRoll = new System.Windows.Forms.Label();
             this.lblCurrentHeading = new System.Windows.Forms.Label();
@@ -84,6 +84,8 @@
             this.txtbNavPointName = new System.Windows.Forms.TextBox();
             this.pbFMC = new System.Windows.Forms.PictureBox();
             this.txtbFMCInput = new System.Windows.Forms.TextBox();
+            this.lblCarrierTest = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblRpdTest = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsTop.SuspendLayout();
             this.ssBottom.SuspendLayout();
             this.gbAircraftTelemetryData.SuspendLayout();
@@ -211,7 +213,9 @@
             // 
             this.ssBottom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblTrafficMonnitor,
-            this.lblCarrierTest});
+            this.lblCurrentChannel,
+            this.lblCarrierTest,
+            this.lblRpdTest});
             this.ssBottom.Location = new System.Drawing.Point(0, 887);
             this.ssBottom.Name = "ssBottom";
             this.ssBottom.Size = new System.Drawing.Size(1812, 22);
@@ -225,12 +229,12 @@
             this.lblTrafficMonnitor.Size = new System.Drawing.Size(61, 17);
             this.lblTrafficMonnitor.Text = "RX - / TX -";
             // 
-            // lblCarrierTest
+            // lblCurrentChannel
             // 
-            this.lblCarrierTest.ForeColor = System.Drawing.Color.Black;
-            this.lblCarrierTest.Name = "lblCarrierTest";
-            this.lblCarrierTest.Size = new System.Drawing.Size(145, 17);
-            this.lblCarrierTest.Text = "lblRadioSignalInformation";
+            this.lblCurrentChannel.ForeColor = System.Drawing.Color.Black;
+            this.lblCurrentChannel.Name = "lblCurrentChannel";
+            this.lblCurrentChannel.Size = new System.Drawing.Size(104, 17);
+            this.lblCurrentChannel.Text = "lblCurrentChannel";
             // 
             // lblCurrentPitch
             // 
@@ -687,6 +691,20 @@
             this.txtbFMCInput.Size = new System.Drawing.Size(200, 16);
             this.txtbFMCInput.TabIndex = 50;
             // 
+            // lblCarrierTest
+            // 
+            this.lblCarrierTest.ForeColor = System.Drawing.Color.Black;
+            this.lblCarrierTest.Name = "lblCarrierTest";
+            this.lblCarrierTest.Size = new System.Drawing.Size(75, 17);
+            this.lblCarrierTest.Text = "lblCarrierTest";
+            // 
+            // lblRpdTest
+            // 
+            this.lblRpdTest.ForeColor = System.Drawing.Color.Black;
+            this.lblRpdTest.Name = "lblRpdTest";
+            this.lblRpdTest.Size = new System.Drawing.Size(61, 17);
+            this.lblRpdTest.Text = "lblRpdTest";
+            // 
             // SmartPilot2020
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -792,7 +810,7 @@
         private System.Windows.Forms.Label lblStationaryTemperature;
         private System.Windows.Forms.PictureBox pbAutoPilotToggle;
         private System.Windows.Forms.PictureBox pbHeadingWheel;
-        private System.Windows.Forms.ToolStripStatusLabel lblCarrierTest;
+        private System.Windows.Forms.ToolStripStatusLabel lblCurrentChannel;
         private System.Windows.Forms.PictureBox pbAutoThrustToggle;
         private System.Windows.Forms.PictureBox pbSpeedWheel;
         private System.Windows.Forms.PictureBox pbAltitudeWheel;
@@ -809,6 +827,8 @@
         private System.Windows.Forms.TextBox txtbNavPointName;
         private System.Windows.Forms.PictureBox pbFMC;
         private System.Windows.Forms.TextBox txtbFMCInput;
+        private System.Windows.Forms.ToolStripStatusLabel lblCarrierTest;
+        private System.Windows.Forms.ToolStripStatusLabel lblRpdTest;
     }
 }
 

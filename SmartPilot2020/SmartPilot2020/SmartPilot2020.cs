@@ -11,6 +11,7 @@ namespace SmartPilot2020
     {
         public JoystickHandler JoystickHandler;
         public FlightHandler FlightHandler;
+        public NavigationHandler NavigationHandler;
         public FlightManagementHandler FlightManagementHandler;
         public MonitoringHandler MonitoringHandler;
 
@@ -43,6 +44,7 @@ namespace SmartPilot2020
 
             MonitoringHandler = new MonitoringHandler(this);
             FlightHandler = new FlightHandler(this);
+            NavigationHandler = new NavigationHandler(this);
             FlightManagementHandler = new FlightManagementHandler(this);
 
             MonitoringHandler.AddMessageTimed("SmartPilot2020 started", Color.LimeGreen, 5000);
@@ -86,7 +88,7 @@ namespace SmartPilot2020
 
             SetCurrentWindInformation(250, 15);
 
-            SetRadioSignalInformation(FlightHandler.UsedRadioChannel);
+            SetRadioSignalInformation(FlightHandler.UsedRadioChannel, FlightHandler.CarrierTest, FlightHandler.RpdTest);
         }
 
         private void pbPitchRollVisualization_Paint(object sender, PaintEventArgs e)
@@ -114,7 +116,7 @@ namespace SmartPilot2020
             double PitchAngleRadian = FlightHandler.CurrentPitchAngle;
             double RollAngleRadian = FlightHandler.CurrentRollAngle * Math.PI / 180;
 
-            DrawingHelper.RotateAndTranslate(e, horizon, RollAngleRadian, 0, ptBoule, (double)(4 * PitchAngleRadian), ptRotation, 1);
+            GraphicUtil.RotateAndTranslate(e, horizon, RollAngleRadian, 0, ptBoule, (double)(4 * PitchAngleRadian), ptRotation, 1);
 
             g.DrawImage(bezel, 0, 0);
             g.DrawImage(wings, 75, 125);
@@ -189,7 +191,7 @@ namespace SmartPilot2020
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
             pbMonitorVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
-            GraphicUtil.DrawMonitor(g, this);
+            DrawingHelper.DrawMonitor(g, this);
         }
 
         private void pbSpeedVisualization_Paint(object sender, PaintEventArgs e)
@@ -197,7 +199,7 @@ namespace SmartPilot2020
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
             pbSpeedVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
-            GraphicUtil.DrawSpeed(g, this);
+            DrawingHelper.DrawSpeed(g, this);
         }
 
         private void pbHeadingVisualization_Paint(object sender, PaintEventArgs e)
@@ -205,7 +207,7 @@ namespace SmartPilot2020
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
             pbHeadingVisualization.BackColor = ColorTranslator.FromHtml("#2B2B2B");
-            GraphicUtil.DrawHeading(g, this);
+            DrawingHelper.DrawHeading(g, this);
         }
 
         private void pbNavigation_Paint(object sender, PaintEventArgs e)
@@ -213,7 +215,7 @@ namespace SmartPilot2020
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
             pbNavigation.BackColor = Color.Black;
-            GraphicUtil.DrawNavigation(g, pbNavigation, this);
+            NavigationHandler.DrawNavigationDisplay(g);
         }
 
         private void pbFMC_Paint(object sender, PaintEventArgs e)
@@ -253,7 +255,7 @@ namespace SmartPilot2020
             int angle = 250;
 
             Image greenArrow = Properties.Resources.GreenArrow;
-            g.DrawImage(DrawingHelper.RotateImage(greenArrow, angle), 0, 0);
+            g.DrawImage(GraphicUtil.RotateImage(greenArrow, angle), 0, 0);
         }
 
         ////////////////
@@ -510,7 +512,7 @@ namespace SmartPilot2020
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
             pbSelectorDisplay.BackColor = Color.Black;
-            GraphicUtil.DrawSelectorDispaly(g, this);
+            DrawingHelper.DrawSelectorDispaly(g, this);
         }
 
         ///////////////////////
@@ -535,17 +537,40 @@ namespace SmartPilot2020
         }
 
         // Set values regarding radio signal information (from Station device)
-        public void SetRadioSignalInformation(int channel)
+        public void SetRadioSignalInformation(int channel, bool carrierTest, bool rpdTest)
         {
+            // Radio channel
             if(channel == 0)
             {
-                lblCarrierTest.ForeColor = Color.DarkRed;
-                lblCarrierTest.Text = "Station device not connected";
-                return;
+                lblCurrentChannel.ForeColor = Color.DarkRed;
+                lblCurrentChannel.Text = "Station device not connected";
+            } else
+            {
+                lblCurrentChannel.ForeColor = Color.SteelBlue;
+                lblCurrentChannel.Text = "RF24 is using channel " + channel;
             }
 
-            lblCarrierTest.ForeColor = Color.SteelBlue;
-            lblCarrierTest.Text = "RF24 is using channel " + channel;
+            // Carrier test (https://maniacbug.github.io/RF24/classRF24.html#ad0d522ccf39493510e64bf1740be790d)
+            if (carrierTest)
+            {
+                lblCarrierTest.ForeColor = Color.Green;
+            } else
+            {
+                lblCarrierTest.ForeColor = Color.DarkRed;
+            }
+
+            lblCarrierTest.Text = "Carrier: " + carrierTest;
+
+            // RPD test (https://maniacbug.github.io/RF24/classRF24.html#ad0d522ccf39493510e64bf1740be790d)
+            if (rpdTest)
+            {
+                lblRpdTest.ForeColor = Color.Green;
+            } else
+            {
+                lblRpdTest.ForeColor = Color.DarkRed;
+            }
+
+            lblRpdTest.Text = "RPD: " + rpdTest;
         }
 
         // Set info to label at the top

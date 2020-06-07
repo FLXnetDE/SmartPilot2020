@@ -1,49 +1,34 @@
-//Routine for calculating the velocity from 
-//a pitot tube and MPXV7002DP pressure differential sensor
 
-float V_0 = 5.0; // supply voltage to the pressure sensor
-float rho = 1.204; // density of air 
+float result;
+float kPa;
 
-// parameters for averaging and offset
-int offset = 0;
-int offset_size = 10;
-int veloc_mean_size = 20;
-int zero_span = 2;
+int avgValues = 10;
+float avgSum = 0.0;
 
-// setup and calculate offset
 void setup() {
   Serial.begin(115200);
-  for (int ii = 0; ii < offset_size; ii++){
-    offset += analogRead(A0) - (1023 / 2);
-  }
-  offset /= offset_size;
 }
 
 void loop() {
-  float adc_avg = 0;
-  float veloc = 0.0;
-  
-  // average a few ADC readings for stability
-  for (int ii=0; ii < veloc_mean_size; ii++){
-    adc_avg += analogRead(A0) - offset;
-  }
-  adc_avg /= veloc_mean_size;
-  
-  // make sure if the ADC reads below 512, then we equate it to a negative velocity
-  if (adc_avg > 512-zero_span and adc_avg < 512 + zero_span){
-  }
-  else
+
+  for(int i = 0; i < avgValues; i++)
   {
-    if (adc_avg < 512)
-    {
-      veloc = -sqrt((-10000.0*((adc_avg/1023.0)-0.5))/rho);
-    }
-    else
-    {
-      veloc = sqrt((10000.0*((adc_avg/1023.0)-0.5))/rho);
+    avgSum += analogRead(A0);
+  }
+
+  result = avgSum / avgValues;
+  avgSum = 0.0;
+  
+  if (result < 102) {
+    kPa = -2.0;
+  } else {
+    if (result > 921) {
+      kPa = 2.0;
+    } else { 
+      kPa = map(result, 102, 921, -2000, 2000)/1000.0;
     }
   }
-  
-  Serial.println(veloc); // print velocity
-  delay(200); // delay for stability
+  Serial.println(result);
+  //Serial.println(kPa);
+  delay(50);
 }

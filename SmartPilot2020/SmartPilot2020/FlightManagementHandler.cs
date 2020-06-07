@@ -175,6 +175,12 @@ namespace SmartPilot2020
 
                 if (this.CurrentPage == FMCPage.FLIGHTMANEUVER)
                 {
+                    if (!main.FlightHandler.AutoPilotActive)
+                    {
+                        inputBox.Text = "A/P IS NOT ENGAGED";
+                        return;
+                    }
+
                     inputBox.Text = "[?] JOIN RIGHT HOLDING";
                 }
             }
@@ -247,7 +253,7 @@ namespace SmartPilot2020
         // Aviative functions //
         ////////////////////////
 
-
+        
 
     }
 }

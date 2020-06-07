@@ -101,7 +101,7 @@ void setup() {
     Serial.println("[SmartPilot2020] Could not find a valid MPU6050 sensor, check wiring!");
     delay(500);
   }
-  //gyro.calibrateGyro();
+  gyro.calibrateGyro();
   gyro.setThreshold(3);
 
   // BME280
@@ -122,6 +122,8 @@ void setup() {
     offset += analogRead(PressureSensorPin) - (1023 / 2);
   }
   offset /= offset_size;
+  Serial.print("Offset: ");
+  Serial.println(offset);
   
   Serial.println("[SmartPilot2020] Setup finished!");
 }
@@ -151,6 +153,8 @@ void PitotTask(PTCB tcb)
 
   while(1)
   {
+    Serial.println("pitot");
+    
     float adc_avg = 0;
     float veloc = 0.0;
     
@@ -159,7 +163,9 @@ void PitotTask(PTCB tcb)
       adc_avg += analogRead(PressureSensorPin) - offset;
     }
     adc_avg /= veloc_mean_size;
-    
+
+    Serial.println(adc_avg);
+
     // make sure if the ADC reads below 512, then we equate it to a negative velocity
     MOS_WaitForCond(tcb, adc_avg > 512-zero_span and adc_avg < 512 + zero_span);
     if (adc_avg > 512-zero_span and adc_avg < 512 + zero_span){
@@ -175,7 +181,16 @@ void PitotTask(PTCB tcb)
       {
         veloc = sqrt((10000.0*((adc_avg/1023.0)-0.5))/rho);
       }
+
+      CurrentSpeed = (int) veloc;
+      
+      Serial.print(veloc);
+      Serial.print(" - ");
+      Serial.println(CurrentSpeed);
+      
     }
+
+    MOS_Delay(tcb, 500);
   }
 }
 

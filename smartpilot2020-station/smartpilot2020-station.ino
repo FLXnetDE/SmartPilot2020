@@ -3,6 +3,7 @@
 #include <nRF24L01.h>
 #include <RF24.h>
 
+// Radio
 RF24 radio(7, 8); // CE, CSN
 const byte address[6] = "00001";
 
@@ -56,53 +57,13 @@ void RemoteSignalInformationTask(PTCB tcb)
   while(1)
   {
     Serial.print("6;");
-    Serial.println(radio.getChannel());
+    Serial.print(radio.getChannel());
+    Serial.print(";");
+    Serial.print(radio.testCarrier());
+    Serial.print(";");
+    Serial.println(radio.testRPD());
 
     MOS_Delay(tcb, 5000);
-  }
-}
-
-void StationaryMeasurementTask(PTCB tcb)
-{
-  MOS_Continue(tcb);
-
-  while(1)
-  {
-    // StationaryEnvironmentPacket - ID;TEMPERATURE;HUMIDITY;PRESSURE
-    Serial.println("5;18,25;44,14;1008");
-
-    MOS_Delay(tcb, 5000);
-  }
-}
-
-void ExampleInputTask(PTCB tcb)
-{
-  MOS_Continue(tcb);
-
-  while(1)
-  {
-    // RemoteTelemetryPacket - ID;PITCH;ROLL;HEADING;SPEED;ALTITUDE
-    Serial.print("2;");
-    Serial.print("8");
-    Serial.print(";");
-    Serial.print("0");
-    Serial.print(";");
-    Serial.print("250");
-    Serial.print(";");
-    Serial.print(random(8, 15));
-    Serial.print(";");
-    Serial.println(random(3, 8));
-
-    // RemotePositionPacket - ID;LATITUDE;LONGITUDE
-    Serial.print("3;-97,821");
-    Serial.print(random(0, 999));
-    Serial.print(";30,239");
-    Serial.println(random(0, 999));
-
-    // RemoteEnvironmentPacket - ID;TEMPERATURE;HUMIDITY;PRESSURE
-    Serial.println("4;19,25;35,14;1002");
-
-    MOS_Delay(tcb, 500);
   }
 }
 
@@ -110,6 +71,4 @@ void loop() {
   MOS_Call(ReceiveTask);
   MOS_Call(SendControlSignalTask);
   MOS_Call(RemoteSignalInformationTask);
-  //MOS_Call(StationaryMeasurementTask);
-  //MOS_Call(ExampleInputTask);
 }

@@ -11,7 +11,10 @@ namespace SmartPilot2020
         private Timer ProcessTimer;
         public RemoteDataInterface RemoteDataInterface;
 
+        // Signal information
         public int UsedRadioChannel;
+        public bool CarrierTest;
+        public bool RpdTest;
 
         public bool ControlsActiveChecked = false;
         private Guid ControlsActiveCheckedGuid;

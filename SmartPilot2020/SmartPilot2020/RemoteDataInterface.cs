@@ -24,7 +24,7 @@ namespace SmartPilot2020
 
             main.SetPacketOutputState(PacketOutputState);
 
-            this.SerialPort = new SerialPort("COM11", 115200);
+            this.SerialPort = new SerialPort("COM13", 115200);
             this.SerialPort.DataReceived += new SerialDataReceivedEventHandler(SerialPort_DataReceived);
         }
 
@@ -97,6 +97,8 @@ namespace SmartPilot2020
                         break;
                     case 6: // RemoteSignalInformationPacket
                         main.FlightHandler.UsedRadioChannel = Int32.Parse(inputSplit[1]);
+                        main.FlightHandler.CarrierTest = Int32.Parse(inputSplit[2]) == 0 ? false : true;
+                        main.FlightHandler.RpdTest = Int32.Parse(inputSplit[3]) == 0 ? false : true;
                         break;
                 }
 

@@ -79,10 +79,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DrawingHelper.cs" />
-    <Compile Include="FlightManagementHandler.cs" />
     <Compile Include="GraphicUtil.cs" />
+    <Compile Include="FlightManagementHandler.cs" />
+    <Compile Include="DrawingHelper.cs" />
     <Compile Include="MonitoringHandler.cs" />
+    <Compile Include="NavigationHandler.cs" />
     <Compile Include="NavigationPoint.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
